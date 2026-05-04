@@ -1,0 +1,30 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Weather/API cache and temporary files
+weather_cache/
+weather_cache_district_full/
+data/weather_cache/
+*.tmp
+*.log
+
+# Local backups
+*_backup/
+MML1-project-HW2_backup*/
