@@ -1,0 +1,15 @@
+FINAL DATASET SUMMARY
+=====================
+
+Crop shape: (575848, 8)
+Weather shape: (134263, 19)
+Joined shape: (575848, 22)
+Weather-complete final dataset: (186126, 23)
+Train: (143170, 23) (1997-2010)
+Validation: (21349, 23) (2011-2012)
+Test: (21607, 23) (2013-2014)
+Missing weather ratio in full joined data: 0.6236
+Years in final weather-complete dataset: (1997, 2014)
+
+Year counts:
+{1997: 6533, 1998: 8364, 1999: 8782, 2000: 10662, 2001: 10676, 2002: 11906, 2003: 11842, 2004: 10579, 2005: 10942, 2006: 10491, 2007: 10595, 2008: 10928, 2009: 10285, 2010: 10585, 2011: 10864, 2012: 10485, 2013: 11053, 2014: 10554}
