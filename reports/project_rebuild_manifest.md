@@ -75,6 +75,10 @@ The archived `Indian_crop_production_yield_dataset_old_4493186c.csv` is the old 
 
 The large interim CSV remains local and ignored by Git.
 
+## Rebuild Steps
+
+- District-name audit completed; geographic matching not yet performed.
+
 ## Next Step
 
 Create the district crosswalk and verified district points.

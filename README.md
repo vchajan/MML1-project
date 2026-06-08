@@ -13,6 +13,7 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 - Denní počasí bude později získané z NASA POWER.
 - Půdní vlastnosti budou později získané ze SoilGrids.
 - Stará geografická a weather pipeline se už nepoužívá.
+- Audit názvů okresů byl vytvořen; souřadnice zatím nebyly přiřazeny.
 
 Nová geography, weather ani soil pipeline zatím nejsou dokončené.
 
