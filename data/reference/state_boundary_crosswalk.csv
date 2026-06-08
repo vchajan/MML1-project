@@ -1,0 +1,71 @@
+crop_state_name,boundary_state_name,census_version,match_method,match_status,evidence
+Andaman and Nicobar Islands,Andaman & Nicobar Island,Census 2001,explicit_state_alias,confirmed_by_name,explicit state alias ANDAMAN AND NICOBAR ISLANDS/ISLAND
+Andhra Pradesh,Andhra Pradesh,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `ANDHRAPRADESH`
+Arunachal Pradesh,Arunanchal Pradesh,Census 2001,explicit_state_alias,confirmed_by_name,explicit boundary spelling alias ARUNACHAL PRADESH
+Assam,Assam,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `ASSAM`
+Bihar,Bihar,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `BIHAR`
+Chandigarh,Chandigarh,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `CHANDIGARH`
+Chhattisgarh,Chhattisgarh,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `CHHATTISGARH`
+Dadra and Nagar Haveli,Dadara & Nagar Havelli,Census 2001,explicit_state_alias,confirmed_by_name,explicit boundary spelling alias DADRA AND NAGAR HAVELI
+Daman and Diu,Daman & Diu,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `DAMANANDDIU`
+Delhi,Delhi  & NCR,Census 2001,explicit_state_alias,confirmed_by_name,explicit state alias DELHI/DELHI & NCR
+Goa,Goa,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `GOA`
+Gujarat,Gujarat,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `GUJARAT`
+Haryana,Haryana,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `HARYANA`
+Himachal Pradesh,Himachal Pradesh,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `HIMACHALPRADESH`
+Jammu and Kashmir,Jammu and Kashmir,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `JAMMUANDKASHMIR`
+Jharkhand,Jharkhand,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `JHARKHAND`
+Karnataka,Karnataka,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `KARNATAKA`
+Kerala,Kerala,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `KERALA`
+Madhya Pradesh,Madhya Pradesh,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MADHYAPRADESH`
+Maharashtra,Maharashtra,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MAHARASHTRA`
+Manipur,Manipur,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MANIPUR`
+Meghalaya,Meghalaya,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MEGHALAYA`
+Mizoram,Mizoram,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MIZORAM`
+Nagaland,Nagaland,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `NAGALAND`
+Odisha,Orissa,Census 2001,explicit_state_alias,confirmed_by_name,explicit historical state alias ORISSA/ODISHA
+Puducherry,Puducherry,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `PUDUCHERRY`
+Punjab,Punjab,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `PUNJAB`
+Rajasthan,Rajasthan,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `RAJASTHAN`
+Sikkim,Sikkim,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `SIKKIM`
+Tamil Nadu,Tamil Nadu,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `TAMILNADU`
+Telangana,Andhra Pradesh,Census 2001,cross_state_historical_candidate,cross_state_historical_candidate,Telangana districts appear under Andhra Pradesh in this boundary layer
+Tripura,Tripura,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `TRIPURA`
+Uttar Pradesh,Uttar Pradesh,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `UTTARPRADESH`
+Uttarakhand,Uttarakhand,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `UTTARAKHAND`
+West Bengal,West Bengal,Census 2001,unique_exact_normalized,confirmed_by_name,Unique normalized state key `WESTBENGAL`
+Andaman and Nicobar Islands,Andaman & Nicobar Island,Census 2011,explicit_state_alias,confirmed_by_name,explicit state alias ANDAMAN AND NICOBAR ISLANDS/ISLAND
+Andhra Pradesh,Andhra Pradesh,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `ANDHRAPRADESH`
+Arunachal Pradesh,Arunanchal Pradesh,Census 2011,explicit_state_alias,confirmed_by_name,explicit boundary spelling alias ARUNACHAL PRADESH
+Assam,Assam,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `ASSAM`
+Bihar,Bihar,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `BIHAR`
+Chandigarh,Chandigarh,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `CHANDIGARH`
+Chhattisgarh,Chhattisgarh,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `CHHATTISGARH`
+Dadra and Nagar Haveli,Dadara & Nagar Havelli,Census 2011,explicit_state_alias,confirmed_by_name,explicit boundary spelling alias DADRA AND NAGAR HAVELI
+Daman and Diu,Daman & Diu,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `DAMANANDDIU`
+Delhi,NCT of Delhi,Census 2011,explicit_state_alias,confirmed_by_name,explicit state alias DELHI/NCT OF DELHI
+Goa,Goa,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `GOA`
+Gujarat,Gujarat,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `GUJARAT`
+Haryana,Haryana,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `HARYANA`
+Himachal Pradesh,Himachal Pradesh,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `HIMACHALPRADESH`
+Jammu and Kashmir,Jammu & Kashmir,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `JAMMUANDKASHMIR`
+Jharkhand,Jharkhand,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `JHARKHAND`
+Karnataka,Karnataka,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `KARNATAKA`
+Kerala,Kerala,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `KERALA`
+Madhya Pradesh,Madhya Pradesh,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MADHYAPRADESH`
+Maharashtra,Maharashtra,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MAHARASHTRA`
+Manipur,Manipur,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MANIPUR`
+Meghalaya,Meghalaya,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MEGHALAYA`
+Mizoram,Mizoram,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `MIZORAM`
+Nagaland,Nagaland,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `NAGALAND`
+Odisha,Odisha,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `ODISHA`
+Puducherry,Puducherry,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `PUDUCHERRY`
+Punjab,Punjab,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `PUNJAB`
+Rajasthan,Rajasthan,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `RAJASTHAN`
+Sikkim,Sikkim,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `SIKKIM`
+Tamil Nadu,Tamil Nadu,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `TAMILNADU`
+Telangana,Andhra Pradesh,Census 2011,cross_state_historical_candidate,cross_state_historical_candidate,Telangana districts appear under Andhra Pradesh in this boundary layer
+Tripura,Tripura,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `TRIPURA`
+Uttar Pradesh,Uttar Pradesh,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `UTTARPRADESH`
+Uttarakhand,Uttarakhand,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `UTTARAKHAND`
+West Bengal,West Bengal,Census 2011,unique_exact_normalized,confirmed_by_name,Unique normalized state key `WESTBENGAL`

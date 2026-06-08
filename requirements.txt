@@ -9,3 +9,4 @@ scikit-learn
 matplotlib
 jupyter
 nbconvert
+pytest

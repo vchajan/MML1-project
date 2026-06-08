@@ -1,0 +1,443 @@
+# District Boundary Matching Summary
+
+Crop districts were compared to DataMeet Census 2001 and Census 2011 boundary-name inventories.
+Fuzzy matching was used only to generate candidates. No representative points or coordinates were created.
+
+## Census 2001
+
+- Crop districts: 727
+- Exact unique matches: 514
+- Alias matches: 0
+- Manual override matches: 0
+- Multiple candidates: 0
+- Fuzzy-only candidates: 203
+- Cross-state candidates: 10
+- Unmatched: 0
+
+## Census 2011
+
+- Crop districts: 727
+- Exact unique matches: 545
+- Alias matches: 1
+- Manual override matches: 1
+- Multiple candidates: 0
+- Fuzzy-only candidates: 170
+- Cross-state candidates: 10
+- Unmatched: 0
+
+## Cross-Layer Status
+
+- Matched in both layers: 500
+- Matched only in 2001: 14
+- Matched only in 2011: 47
+- Unresolved in both layers: 166
+
+## Unresolved Districts
+
+- `Census 2001` `Andaman and Nicobar Islands` / `Andaman and Nicobar Islands` as `Andaman and Nicobar Islands` / `Andaman and Nicobar Islands`: `fuzzy_candidate_only`
+- `Census 2001` `Andaman and Nicobar Islands` / `NORTH AND MIDDLE ANDAMAN` as `Andaman and Nicobar Islands` / `NORTH AND MIDDLE ANDAMAN`: `fuzzy_candidate_only`
+- `Census 2001` `Andaman and Nicobar Islands` / `SOUTH ANDAMANS` as `Andaman and Nicobar Islands` / `SOUTH ANDAMANS`: `fuzzy_candidate_only`
+- `Census 2001` `Andhra Pradesh` / `KADAPA` as `Andhra Pradesh` / `KADAPA`: `fuzzy_candidate_only`
+- `Census 2001` `Andhra Pradesh` / `SPSR NELLORE` as `Andhra Pradesh` / `SPSR NELLORE`: `fuzzy_candidate_only`
+- `Census 2001` `Andhra Pradesh` / `VISAKHAPATANAM` as `Andhra Pradesh` / `VISAKHAPATANAM`: `fuzzy_candidate_only`
+- `Census 2001` `Arunachal Pradesh` / `ANJAW` as `Arunachal Pradesh` / `ANJAW`: `fuzzy_candidate_only`
+- `Census 2001` `Arunachal Pradesh` / `KURUNG KUMEY` as `Arunachal Pradesh` / `KURUNG KUMEY`: `fuzzy_candidate_only`
+- `Census 2001` `Arunachal Pradesh` / `LONGDING` as `Arunachal Pradesh` / `LONGDING`: `fuzzy_candidate_only`
+- `Census 2001` `Arunachal Pradesh` / `LOWER DIBANG VALLEY` as `Arunachal Pradesh` / `LOWER DIBANG VALLEY`: `fuzzy_candidate_only`
+- `Census 2001` `Arunachal Pradesh` / `NAMSAI` as `Arunachal Pradesh` / `NAMSAI`: `fuzzy_candidate_only`
+- `Census 2001` `Assam` / `BAKSA` as `Assam` / `BAKSA`: `fuzzy_candidate_only`
+- `Census 2001` `Assam` / `CHIRANG` as `Assam` / `CHIRANG`: `fuzzy_candidate_only`
+- `Census 2001` `Assam` / `DIMA HASAO` as `Assam` / `DIMA HASAO`: `fuzzy_candidate_only`
+- `Census 2001` `Assam` / `KAMRUP METRO` as `Assam` / `KAMRUP METRO`: `fuzzy_candidate_only`
+- `Census 2001` `Assam` / `SIVASAGAR` as `Assam` / `SIVASAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `Assam` / `UDALGURI` as `Assam` / `UDALGURI`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `ARWAL` as `Bihar` / `ARWAL`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `BOKARO` as `Bihar` / `BOKARO`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `CHATRA` as `Bihar` / `CHATRA`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `DEOGHAR` as `Bihar` / `DEOGHAR`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `DHANBAD` as `Bihar` / `DHANBAD`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `DUMKA` as `Bihar` / `DUMKA`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `EAST SINGHBUM` as `Bihar` / `EAST SINGHBUM`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `GARHWA` as `Bihar` / `GARHWA`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `GIRIDIH` as `Bihar` / `GIRIDIH`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `GODDA` as `Bihar` / `GODDA`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `GUMLA` as `Bihar` / `GUMLA`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `HAZARIBAGH` as `Bihar` / `HAZARIBAGH`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `KODERMA` as `Bihar` / `KODERMA`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `LOHARDAGA` as `Bihar` / `LOHARDAGA`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `PAKUR` as `Bihar` / `PAKUR`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `PALAMU` as `Bihar` / `PALAMU`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `PURBI CHAMPARAN` as `Bihar` / `PURBI CHAMPARAN`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `RANCHI` as `Bihar` / `RANCHI`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `SAHEBGANJ` as `Bihar` / `SAHEBGANJ`: `fuzzy_candidate_only`
+- `Census 2001` `Bihar` / `WEST SINGHBHUM` as `Bihar` / `WEST SINGHBHUM`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `BALOD` as `Chhattisgarh` / `BALOD`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `BALODA BAZAR` as `Chhattisgarh` / `BALODA BAZAR`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `BALRAMPUR` as `Chhattisgarh` / `BALRAMPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `BEMETARA` as `Chhattisgarh` / `BEMETARA`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `BIJAPUR` as `Chhattisgarh` / `BIJAPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `GARIYABAND` as `Chhattisgarh` / `GARIYABAND`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `KABIRDHAM` as `Chhattisgarh` / `KABIRDHAM`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `KONDAGAON` as `Chhattisgarh` / `KONDAGAON`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `KOREA` as `Chhattisgarh` / `KOREA`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `MUNGELI` as `Chhattisgarh` / `MUNGELI`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `NARAYANPUR` as `Chhattisgarh` / `NARAYANPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `SUKMA` as `Chhattisgarh` / `SUKMA`: `fuzzy_candidate_only`
+- `Census 2001` `Chhattisgarh` / `SURAJPUR` as `Chhattisgarh` / `SURAJPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Daman and Diu` / `Daman and Diu` as `Daman and Diu` / `Daman and Diu`: `fuzzy_candidate_only`
+- `Census 2001` `Delhi` / `DELHI_TOTAL` as `Delhi` / `DELHI_TOTAL`: `fuzzy_candidate_only`
+- `Census 2001` `Delhi` / `Delhi` as `Delhi` / `Delhi`: `fuzzy_candidate_only`
+- `Census 2001` `Goa` / `Goa` as `Goa` / `Goa`: `fuzzy_candidate_only`
+- `Census 2001` `Gujarat` / `ARAVALLI` as `Gujarat` / `ARAVALLI`: `fuzzy_candidate_only`
+- `Census 2001` `Gujarat` / `BOTAD` as `Gujarat` / `BOTAD`: `fuzzy_candidate_only`
+- `Census 2001` `Gujarat` / `CHHOTAUDEPUR` as `Gujarat` / `CHHOTAUDEPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Gujarat` / `DANG` as `Gujarat` / `DANG`: `fuzzy_candidate_only`
+- `Census 2001` `Gujarat` / `DEVBHUMI DWARKA` as `Gujarat` / `DEVBHUMI DWARKA`: `fuzzy_candidate_only`
+- `Census 2001` `Gujarat` / `GIR SOMNATH` as `Gujarat` / `GIR SOMNATH`: `fuzzy_candidate_only`
+- `Census 2001` `Gujarat` / `MAHISAGAR` as `Gujarat` / `MAHISAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `Gujarat` / `MORBI` as `Gujarat` / `MORBI`: `fuzzy_candidate_only`
+- `Census 2001` `Gujarat` / `TAPI` as `Gujarat` / `TAPI`: `fuzzy_candidate_only`
+- `Census 2001` `Haryana` / `CHARKI DADRI` as `Haryana` / `CHARKI DADRI`: `fuzzy_candidate_only`
+- `Census 2001` `Haryana` / `MEWAT` as `Haryana` / `MEWAT`: `fuzzy_candidate_only`
+- `Census 2001` `Haryana` / `PALWAL` as `Haryana` / `PALWAL`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `BANDIPORA` as `Jammu and Kashmir` / `BANDIPORA`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `BARAMULLA` as `Jammu and Kashmir` / `BARAMULLA`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `GANDERBAL` as `Jammu and Kashmir` / `GANDERBAL`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `KISHTWAR` as `Jammu and Kashmir` / `KISHTWAR`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `KULGAM` as `Jammu and Kashmir` / `KULGAM`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `POONCH` as `Jammu and Kashmir` / `POONCH`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `RAMBAN` as `Jammu and Kashmir` / `RAMBAN`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `REASI` as `Jammu and Kashmir` / `REASI`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `SAMBA` as `Jammu and Kashmir` / `SAMBA`: `fuzzy_candidate_only`
+- `Census 2001` `Jammu and Kashmir` / `SHOPIAN` as `Jammu and Kashmir` / `SHOPIAN`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `EAST SINGHBUM` as `Jharkhand` / `EAST SINGHBUM`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `JAMTARA` as `Jharkhand` / `JAMTARA`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `KHUNTI` as `Jharkhand` / `KHUNTI`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `KODERMA` as `Jharkhand` / `KODERMA`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `LATEHAR` as `Jharkhand` / `LATEHAR`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `PAKUR` as `Jharkhand` / `PAKUR`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `RAMGARH` as `Jharkhand` / `RAMGARH`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `SAHEBGANJ` as `Jharkhand` / `SAHEBGANJ`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `SARAIKELA KHARSAWAN` as `Jharkhand` / `SARAIKELA KHARSAWAN`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `SIMDEGA` as `Jharkhand` / `SIMDEGA`: `fuzzy_candidate_only`
+- `Census 2001` `Jharkhand` / `WEST SINGHBHUM` as `Jharkhand` / `WEST SINGHBHUM`: `fuzzy_candidate_only`
+- `Census 2001` `Karnataka` / `BENGALURU URBAN` as `Karnataka` / `BENGALURU URBAN`: `fuzzy_candidate_only`
+- `Census 2001` `Karnataka` / `CHIKBALLAPUR` as `Karnataka` / `CHIKBALLAPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Karnataka` / `DAKSHIN KANNAD` as `Karnataka` / `DAKSHIN KANNAD`: `fuzzy_candidate_only`
+- `Census 2001` `Karnataka` / `DAVANGERE` as `Karnataka` / `DAVANGERE`: `fuzzy_candidate_only`
+- `Census 2001` `Karnataka` / `RAMANAGARA` as `Karnataka` / `RAMANAGARA`: `fuzzy_candidate_only`
+- `Census 2001` `Karnataka` / `UTTAR KANNAD` as `Karnataka` / `UTTAR KANNAD`: `fuzzy_candidate_only`
+- `Census 2001` `Karnataka` / `YADGIR` as `Karnataka` / `YADGIR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `AGAR MALWA` as `Madhya Pradesh` / `AGAR MALWA`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `ALIRAJPUR` as `Madhya Pradesh` / `ALIRAJPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `ANUPPUR` as `Madhya Pradesh` / `ANUPPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `ASHOKNAGAR` as `Madhya Pradesh` / `ASHOKNAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `BASTAR` as `Madhya Pradesh` / `BASTAR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `BILASPUR` as `Madhya Pradesh` / `BILASPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `BURHANPUR` as `Madhya Pradesh` / `BURHANPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `DANTEWADA` as `Madhya Pradesh` / `DANTEWADA`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `DHAMTARI` as `Madhya Pradesh` / `DHAMTARI`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `DURG` as `Madhya Pradesh` / `DURG`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `JANJGIR-CHAMPA` as `Madhya Pradesh` / `JANJGIR-CHAMPA`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `JASHPUR` as `Madhya Pradesh` / `JASHPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `KABIRDHAM` as `Madhya Pradesh` / `KABIRDHAM`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `KANKER` as `Madhya Pradesh` / `KANKER`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `KHANDWA` as `Madhya Pradesh` / `KHANDWA`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `KHARGONE` as `Madhya Pradesh` / `KHARGONE`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `KORBA` as `Madhya Pradesh` / `KORBA`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `KOREA` as `Madhya Pradesh` / `KOREA`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `MAHASAMUND` as `Madhya Pradesh` / `MAHASAMUND`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `NARSINGHPUR` as `Madhya Pradesh` / `NARSINGHPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `RAIPUR` as `Madhya Pradesh` / `RAIPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `RAJNANDGAON` as `Madhya Pradesh` / `RAJNANDGAON`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `SINGRAULI` as `Madhya Pradesh` / `SINGRAULI`: `fuzzy_candidate_only`
+- `Census 2001` `Madhya Pradesh` / `SURGUJA` as `Madhya Pradesh` / `SURGUJA`: `fuzzy_candidate_only`
+- `Census 2001` `Maharashtra` / `AHMEDNAGAR` as `Maharashtra` / `AHMEDNAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `Maharashtra` / `BEED` as `Maharashtra` / `BEED`: `fuzzy_candidate_only`
+- `Census 2001` `Maharashtra` / `BULDHANA` as `Maharashtra` / `BULDHANA`: `fuzzy_candidate_only`
+- `Census 2001` `Maharashtra` / `GONDIA` as `Maharashtra` / `GONDIA`: `fuzzy_candidate_only`
+- `Census 2001` `Maharashtra` / `PALGHAR` as `Maharashtra` / `PALGHAR`: `fuzzy_candidate_only`
+- `Census 2001` `Maharashtra` / `RAIGAD` as `Maharashtra` / `RAIGAD`: `fuzzy_candidate_only`
+- `Census 2001` `Manipur` / `SENAPATI` as `Manipur` / `SENAPATI`: `fuzzy_candidate_only`
+- `Census 2001` `Meghalaya` / `EAST JAINTIA HILLS` as `Meghalaya` / `EAST JAINTIA HILLS`: `fuzzy_candidate_only`
+- `Census 2001` `Meghalaya` / `NORTH GARO HILLS` as `Meghalaya` / `NORTH GARO HILLS`: `fuzzy_candidate_only`
+- `Census 2001` `Meghalaya` / `SOUTH WEST GARO HILLS` as `Meghalaya` / `SOUTH WEST GARO HILLS`: `fuzzy_candidate_only`
+- `Census 2001` `Meghalaya` / `SOUTH WEST KHASI HILLS` as `Meghalaya` / `SOUTH WEST KHASI HILLS`: `fuzzy_candidate_only`
+- `Census 2001` `Meghalaya` / `WEST JAINTIA HILLS` as `Meghalaya` / `WEST JAINTIA HILLS`: `fuzzy_candidate_only`
+- `Census 2001` `Nagaland` / `KIPHIRE` as `Nagaland` / `KIPHIRE`: `fuzzy_candidate_only`
+- `Census 2001` `Nagaland` / `LONGLENG` as `Nagaland` / `LONGLENG`: `fuzzy_candidate_only`
+- `Census 2001` `Nagaland` / `PEREN` as `Nagaland` / `PEREN`: `fuzzy_candidate_only`
+- `Census 2001` `Odisha` / `BOUDH` as `Odisha` / `BOUDH`: `fuzzy_candidate_only`
+- `Census 2001` `Odisha` / `DEOGARH` as `Odisha` / `DEOGARH`: `fuzzy_candidate_only`
+- `Census 2001` `Odisha` / `NABARANGPUR` as `Odisha` / `NABARANGPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Odisha` / `SONEPUR` as `Odisha` / `SONEPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Punjab` / `BARNALA` as `Punjab` / `BARNALA`: `fuzzy_candidate_only`
+- `Census 2001` `Punjab` / `FAZILKA` as `Punjab` / `FAZILKA`: `fuzzy_candidate_only`
+- `Census 2001` `Punjab` / `FIROZEPUR` as `Punjab` / `FIROZEPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Punjab` / `PATHANKOT` as `Punjab` / `PATHANKOT`: `fuzzy_candidate_only`
+- `Census 2001` `Punjab` / `S` as `Punjab` / `S.A.S NAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `Punjab` / `S.A.S NAGAR` as `Punjab` / `S.A.S NAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `Punjab` / `TARN TARAN` as `Punjab` / `TARN TARAN`: `fuzzy_candidate_only`
+- `Census 2001` `Rajasthan` / `CHITTORGARH` as `Rajasthan` / `CHITTORGARH`: `fuzzy_candidate_only`
+- `Census 2001` `Rajasthan` / `DHOLPUR` as `Rajasthan` / `DHOLPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Rajasthan` / `JALORE` as `Rajasthan` / `JALORE`: `fuzzy_candidate_only`
+- `Census 2001` `Rajasthan` / `JHUNJHUNU` as `Rajasthan` / `JHUNJHUNU`: `fuzzy_candidate_only`
+- `Census 2001` `Rajasthan` / `PRATAPGARH` as `Rajasthan` / `PRATAPGARH`: `fuzzy_candidate_only`
+- `Census 2001` `Sikkim` / `EAST DISTRICT` as `Sikkim` / `EAST DISTRICT`: `fuzzy_candidate_only`
+- `Census 2001` `Sikkim` / `NORTH DISTRICT` as `Sikkim` / `NORTH DISTRICT`: `fuzzy_candidate_only`
+- `Census 2001` `Sikkim` / `SOUTH DISTRICT` as `Sikkim` / `SOUTH DISTRICT`: `fuzzy_candidate_only`
+- `Census 2001` `Sikkim` / `WEST DISTRICT` as `Sikkim` / `WEST DISTRICT`: `fuzzy_candidate_only`
+- `Census 2001` `Tamil Nadu` / `KANCHIPURAM` as `Tamil Nadu` / `KANCHIPURAM`: `fuzzy_candidate_only`
+- `Census 2001` `Tamil Nadu` / `KRISHNAGIRI` as `Tamil Nadu` / `KRISHNAGIRI`: `fuzzy_candidate_only`
+- `Census 2001` `Tamil Nadu` / `THOOTHUKUDI` as `Tamil Nadu` / `THOOTHUKUDI`: `fuzzy_candidate_only`
+- `Census 2001` `Tamil Nadu` / `TIRUPPUR` as `Tamil Nadu` / `TIRUPPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Tamil Nadu` / `TUTICORIN` as `Tamil Nadu` / `TUTICORIN`: `fuzzy_candidate_only`
+- `Census 2001` `Tamil Nadu` / `VILLUPURAM` as `Tamil Nadu` / `VILLUPURAM`: `fuzzy_candidate_only`
+- `Census 2001` `Telangana` / `ADILABAD` as `Telangana` / `ADILABAD`: `cross_state_historical_candidate`
+- `Census 2001` `Telangana` / `HYDERABAD` as `Telangana` / `HYDERABAD`: `cross_state_historical_candidate`
+- `Census 2001` `Telangana` / `KARIMNAGAR` as `Telangana` / `KARIMNAGAR`: `cross_state_historical_candidate`
+- `Census 2001` `Telangana` / `KHAMMAM` as `Telangana` / `KHAMMAM`: `cross_state_historical_candidate`
+- `Census 2001` `Telangana` / `MAHBUBNAGAR` as `Telangana` / `MAHBUBNAGAR`: `cross_state_historical_candidate`
+- `Census 2001` `Telangana` / `MEDAK` as `Telangana` / `MEDAK`: `cross_state_historical_candidate`
+- `Census 2001` `Telangana` / `NALGONDA` as `Telangana` / `NALGONDA`: `cross_state_historical_candidate`
+- `Census 2001` `Telangana` / `NIZAMABAD` as `Telangana` / `NIZAMABAD`: `cross_state_historical_candidate`
+- `Census 2001` `Telangana` / `RANGAREDDI` as `Telangana` / `RANGAREDDI`: `cross_state_historical_candidate`
+- `Census 2001` `Telangana` / `WARANGAL` as `Telangana` / `WARANGAL`: `cross_state_historical_candidate`
+- `Census 2001` `Tripura` / `GOMATI` as `Tripura` / `GOMATI`: `fuzzy_candidate_only`
+- `Census 2001` `Tripura` / `KHOWAI` as `Tripura` / `KHOWAI`: `fuzzy_candidate_only`
+- `Census 2001` `Tripura` / `SEPAHIJALA` as `Tripura` / `SEPAHIJALA`: `fuzzy_candidate_only`
+- `Census 2001` `Tripura` / `UNAKOTI` as `Tripura` / `UNAKOTI`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `ALMORA` as `Uttar Pradesh` / `ALMORA`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `AMETHI` as `Uttar Pradesh` / `AMETHI`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `AMROHA` as `Uttar Pradesh` / `AMROHA`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `BAGESHWAR` as `Uttar Pradesh` / `BAGESHWAR`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `CHAMOLI` as `Uttar Pradesh` / `CHAMOLI`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `CHAMPAWAT` as `Uttar Pradesh` / `CHAMPAWAT`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `DEHRADUN` as `Uttar Pradesh` / `DEHRADUN`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `HAPUR` as `Uttar Pradesh` / `HAPUR`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `HARIDWAR` as `Uttar Pradesh` / `HARIDWAR`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `KASGANJ` as `Uttar Pradesh` / `KASGANJ`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `MAHARAJGANJ` as `Uttar Pradesh` / `MAHARAJGANJ`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `NAINITAL` as `Uttar Pradesh` / `NAINITAL`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `PAURI GARHWAL` as `Uttar Pradesh` / `PAURI GARHWAL`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `PITHORAGARH` as `Uttar Pradesh` / `PITHORAGARH`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `RUDRA PRAYAG` as `Uttar Pradesh` / `RUDRA PRAYAG`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `SAMBHAL` as `Uttar Pradesh` / `SAMBHAL`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `SANT KABEER NAGAR` as `Uttar Pradesh` / `SANT KABEER NAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `SANT RAVIDAS NAGAR` as `Uttar Pradesh` / `SANT RAVIDAS NAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `SHAMLI` as `Uttar Pradesh` / `SHAMLI`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `SHRAVASTI` as `Uttar Pradesh` / `SHRAVASTI`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `TEHRI GARHWAL` as `Uttar Pradesh` / `TEHRI GARHWAL`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `UDAM SINGH NAGAR` as `Uttar Pradesh` / `UDAM SINGH NAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `Uttar Pradesh` / `UTTAR KASHI` as `Uttar Pradesh` / `UTTAR KASHI`: `fuzzy_candidate_only`
+- `Census 2001` `Uttarakhand` / `HARIDWAR` as `Uttarakhand` / `HARIDWAR`: `fuzzy_candidate_only`
+- `Census 2001` `Uttarakhand` / `PAURI GARHWAL` as `Uttarakhand` / `PAURI GARHWAL`: `fuzzy_candidate_only`
+- `Census 2001` `Uttarakhand` / `UDAM SINGH NAGAR` as `Uttarakhand` / `UDAM SINGH NAGAR`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `24 PARAGANAS NORTH` as `West Bengal` / `24 PARAGANAS NORTH`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `24 PARAGANAS SOUTH` as `West Bengal` / `24 PARAGANAS SOUTH`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `ALIPURDUAR` as `West Bengal` / `ALIPURDUAR`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `BARDHAMAN` as `West Bengal` / `BARDHAMAN`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `COOCHBEHAR` as `West Bengal` / `COOCHBEHAR`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `DARJEELING` as `West Bengal` / `DARJEELING`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `DINAJPUR DAKSHIN` as `West Bengal` / `DINAJPUR DAKSHIN`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `DINAJPUR UTTAR` as `West Bengal` / `DINAJPUR UTTAR`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `HOOGHLY` as `West Bengal` / `HOOGHLY`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `HOWRAH` as `West Bengal` / `HOWRAH`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `MEDINIPUR EAST` as `West Bengal` / `MEDINIPUR EAST`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `MEDINIPUR WEST` as `West Bengal` / `MEDINIPUR WEST`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `PURBA BARDHAMAN` as `West Bengal` / `PURBA BARDHAMAN`: `fuzzy_candidate_only`
+- `Census 2001` `West Bengal` / `PURULIA` as `West Bengal` / `PURULIA`: `fuzzy_candidate_only`
+- `Census 2011` `Andaman and Nicobar Islands` / `Andaman and Nicobar Islands` as `Andaman and Nicobar Islands` / `Andaman and Nicobar Islands`: `fuzzy_candidate_only`
+- `Census 2011` `Andaman and Nicobar Islands` / `NICOBARS` as `Andaman and Nicobar Islands` / `NICOBARS`: `fuzzy_candidate_only`
+- `Census 2011` `Andaman and Nicobar Islands` / `SOUTH ANDAMANS` as `Andaman and Nicobar Islands` / `SOUTH ANDAMANS`: `fuzzy_candidate_only`
+- `Census 2011` `Andhra Pradesh` / `KADAPA` as `Andhra Pradesh` / `KADAPA`: `fuzzy_candidate_only`
+- `Census 2011` `Andhra Pradesh` / `RANGAREDDI` as `Andhra Pradesh` / `RANGAREDDI`: `fuzzy_candidate_only`
+- `Census 2011` `Andhra Pradesh` / `SPSR NELLORE` as `Andhra Pradesh` / `SPSR NELLORE`: `fuzzy_candidate_only`
+- `Census 2011` `Andhra Pradesh` / `VISAKHAPATANAM` as `Andhra Pradesh` / `VISAKHAPATANAM`: `fuzzy_candidate_only`
+- `Census 2011` `Arunachal Pradesh` / `LONGDING` as `Arunachal Pradesh` / `LONGDING`: `fuzzy_candidate_only`
+- `Census 2011` `Arunachal Pradesh` / `NAMSAI` as `Arunachal Pradesh` / `NAMSAI`: `fuzzy_candidate_only`
+- `Census 2011` `Assam` / `KAMRUP METRO` as `Assam` / `KAMRUP METRO`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `BOKARO` as `Bihar` / `BOKARO`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `CHATRA` as `Bihar` / `CHATRA`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `DEOGHAR` as `Bihar` / `DEOGHAR`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `DHANBAD` as `Bihar` / `DHANBAD`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `DUMKA` as `Bihar` / `DUMKA`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `EAST SINGHBUM` as `Bihar` / `EAST SINGHBUM`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `GARHWA` as `Bihar` / `GARHWA`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `GIRIDIH` as `Bihar` / `GIRIDIH`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `GODDA` as `Bihar` / `GODDA`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `GUMLA` as `Bihar` / `GUMLA`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `HAZARIBAGH` as `Bihar` / `HAZARIBAGH`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `KODERMA` as `Bihar` / `KODERMA`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `LOHARDAGA` as `Bihar` / `LOHARDAGA`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `PAKUR` as `Bihar` / `PAKUR`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `PALAMU` as `Bihar` / `PALAMU`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `PURBI CHAMPARAN` as `Bihar` / `PURBI CHAMPARAN`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `RANCHI` as `Bihar` / `RANCHI`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `SAHEBGANJ` as `Bihar` / `SAHEBGANJ`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `SARAN` as `Bihar` / `SARAN`: `fuzzy_candidate_only`
+- `Census 2011` `Bihar` / `WEST SINGHBHUM` as `Bihar` / `WEST SINGHBHUM`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `BALOD` as `Chhattisgarh` / `BALOD`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `BALODA BAZAR` as `Chhattisgarh` / `BALODA BAZAR`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `BALRAMPUR` as `Chhattisgarh` / `BALRAMPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `BEMETARA` as `Chhattisgarh` / `BEMETARA`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `DANTEWADA` as `Chhattisgarh` / `DANTEWADA`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `GARIYABAND` as `Chhattisgarh` / `GARIYABAND`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `KABIRDHAM` as `Chhattisgarh` / `KABIRDHAM`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `KANKER` as `Chhattisgarh` / `KANKER`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `KONDAGAON` as `Chhattisgarh` / `KONDAGAON`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `KOREA` as `Chhattisgarh` / `KOREA`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `MUNGELI` as `Chhattisgarh` / `MUNGELI`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `SUKMA` as `Chhattisgarh` / `SUKMA`: `fuzzy_candidate_only`
+- `Census 2011` `Chhattisgarh` / `SURAJPUR` as `Chhattisgarh` / `SURAJPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Daman and Diu` / `Daman and Diu` as `Daman and Diu` / `Daman and Diu`: `fuzzy_candidate_only`
+- `Census 2011` `Delhi` / `DELHI_TOTAL` as `Delhi` / `DELHI_TOTAL`: `fuzzy_candidate_only`
+- `Census 2011` `Delhi` / `Delhi` as `Delhi` / `Delhi`: `fuzzy_candidate_only`
+- `Census 2011` `Goa` / `Goa` as `Goa` / `Goa`: `fuzzy_candidate_only`
+- `Census 2011` `Gujarat` / `ARAVALLI` as `Gujarat` / `ARAVALLI`: `fuzzy_candidate_only`
+- `Census 2011` `Gujarat` / `BOTAD` as `Gujarat` / `BOTAD`: `fuzzy_candidate_only`
+- `Census 2011` `Gujarat` / `CHHOTAUDEPUR` as `Gujarat` / `CHHOTAUDEPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Gujarat` / `DANG` as `Gujarat` / `DANG`: `fuzzy_candidate_only`
+- `Census 2011` `Gujarat` / `DEVBHUMI DWARKA` as `Gujarat` / `DEVBHUMI DWARKA`: `fuzzy_candidate_only`
+- `Census 2011` `Gujarat` / `GIR SOMNATH` as `Gujarat` / `GIR SOMNATH`: `fuzzy_candidate_only`
+- `Census 2011` `Gujarat` / `MAHISAGAR` as `Gujarat` / `MAHISAGAR`: `fuzzy_candidate_only`
+- `Census 2011` `Gujarat` / `MORBI` as `Gujarat` / `MORBI`: `fuzzy_candidate_only`
+- `Census 2011` `Haryana` / `CHARKI DADRI` as `Haryana` / `CHARKI DADRI`: `fuzzy_candidate_only`
+- `Census 2011` `Jammu and Kashmir` / `BANDIPORA` as `Jammu and Kashmir` / `BANDIPORA`: `fuzzy_candidate_only`
+- `Census 2011` `Jammu and Kashmir` / `BARAMULLA` as `Jammu and Kashmir` / `BARAMULLA`: `fuzzy_candidate_only`
+- `Census 2011` `Jammu and Kashmir` / `POONCH` as `Jammu and Kashmir` / `POONCH`: `fuzzy_candidate_only`
+- `Census 2011` `Jammu and Kashmir` / `RAJAURI` as `Jammu and Kashmir` / `RAJAURI`: `fuzzy_candidate_only`
+- `Census 2011` `Jammu and Kashmir` / `SHOPIAN` as `Jammu and Kashmir` / `SHOPIAN`: `fuzzy_candidate_only`
+- `Census 2011` `Jharkhand` / `EAST SINGHBUM` as `Jharkhand` / `EAST SINGHBUM`: `fuzzy_candidate_only`
+- `Census 2011` `Jharkhand` / `KODERMA` as `Jharkhand` / `KODERMA`: `fuzzy_candidate_only`
+- `Census 2011` `Jharkhand` / `SAHEBGANJ` as `Jharkhand` / `SAHEBGANJ`: `fuzzy_candidate_only`
+- `Census 2011` `Jharkhand` / `WEST SINGHBHUM` as `Jharkhand` / `WEST SINGHBHUM`: `fuzzy_candidate_only`
+- `Census 2011` `Karnataka` / `BENGALURU URBAN` as `Karnataka` / `BENGALURU URBAN`: `fuzzy_candidate_only`
+- `Census 2011` `Karnataka` / `CHAMARAJANAGAR` as `Karnataka` / `CHAMARAJANAGAR`: `fuzzy_candidate_only`
+- `Census 2011` `Karnataka` / `CHIKBALLAPUR` as `Karnataka` / `CHIKBALLAPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Karnataka` / `DAKSHIN KANNAD` as `Karnataka` / `DAKSHIN KANNAD`: `fuzzy_candidate_only`
+- `Census 2011` `Karnataka` / `DAVANGERE` as `Karnataka` / `DAVANGERE`: `fuzzy_candidate_only`
+- `Census 2011` `Karnataka` / `UTTAR KANNAD` as `Karnataka` / `UTTAR KANNAD`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `AGAR MALWA` as `Madhya Pradesh` / `AGAR MALWA`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `BASTAR` as `Madhya Pradesh` / `BASTAR`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `BILASPUR` as `Madhya Pradesh` / `BILASPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `DANTEWADA` as `Madhya Pradesh` / `DANTEWADA`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `DHAMTARI` as `Madhya Pradesh` / `DHAMTARI`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `DURG` as `Madhya Pradesh` / `DURG`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `JANJGIR-CHAMPA` as `Madhya Pradesh` / `JANJGIR-CHAMPA`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `JASHPUR` as `Madhya Pradesh` / `JASHPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `KABIRDHAM` as `Madhya Pradesh` / `KABIRDHAM`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `KANKER` as `Madhya Pradesh` / `KANKER`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `KHANDWA` as `Madhya Pradesh` / `KHANDWA`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `KHARGONE` as `Madhya Pradesh` / `KHARGONE`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `KORBA` as `Madhya Pradesh` / `KORBA`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `KOREA` as `Madhya Pradesh` / `KOREA`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `MAHASAMUND` as `Madhya Pradesh` / `MAHASAMUND`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `NARSINGHPUR` as `Madhya Pradesh` / `NARSINGHPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `RAIPUR` as `Madhya Pradesh` / `RAIPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `RAJNANDGAON` as `Madhya Pradesh` / `RAJNANDGAON`: `fuzzy_candidate_only`
+- `Census 2011` `Madhya Pradesh` / `SURGUJA` as `Madhya Pradesh` / `SURGUJA`: `fuzzy_candidate_only`
+- `Census 2011` `Maharashtra` / `AHMEDNAGAR` as `Maharashtra` / `AHMEDNAGAR`: `fuzzy_candidate_only`
+- `Census 2011` `Maharashtra` / `BEED` as `Maharashtra` / `BEED`: `fuzzy_candidate_only`
+- `Census 2011` `Maharashtra` / `BULDHANA` as `Maharashtra` / `BULDHANA`: `fuzzy_candidate_only`
+- `Census 2011` `Maharashtra` / `GADCHIROLI` as `Maharashtra` / `GADCHIROLI`: `fuzzy_candidate_only`
+- `Census 2011` `Maharashtra` / `GONDIA` as `Maharashtra` / `GONDIA`: `fuzzy_candidate_only`
+- `Census 2011` `Maharashtra` / `PALGHAR` as `Maharashtra` / `PALGHAR`: `fuzzy_candidate_only`
+- `Census 2011` `Maharashtra` / `RAIGAD` as `Maharashtra` / `RAIGAD`: `fuzzy_candidate_only`
+- `Census 2011` `Meghalaya` / `EAST JAINTIA HILLS` as `Meghalaya` / `EAST JAINTIA HILLS`: `fuzzy_candidate_only`
+- `Census 2011` `Meghalaya` / `NORTH GARO HILLS` as `Meghalaya` / `NORTH GARO HILLS`: `fuzzy_candidate_only`
+- `Census 2011` `Meghalaya` / `SOUTH WEST GARO HILLS` as `Meghalaya` / `SOUTH WEST GARO HILLS`: `fuzzy_candidate_only`
+- `Census 2011` `Meghalaya` / `SOUTH WEST KHASI HILLS` as `Meghalaya` / `SOUTH WEST KHASI HILLS`: `fuzzy_candidate_only`
+- `Census 2011` `Meghalaya` / `WEST JAINTIA HILLS` as `Meghalaya` / `WEST JAINTIA HILLS`: `fuzzy_candidate_only`
+- `Census 2011` `Mizoram` / `LAWNGTLAI` as `Mizoram` / `LAWNGTLAI`: `fuzzy_candidate_only`
+- `Census 2011` `Odisha` / `BOUDH` as `Odisha` / `BOUDH`: `fuzzy_candidate_only`
+- `Census 2011` `Odisha` / `DEOGARH` as `Odisha` / `DEOGARH`: `fuzzy_candidate_only`
+- `Census 2011` `Odisha` / `NABARANGPUR` as `Odisha` / `NABARANGPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Odisha` / `SONEPUR` as `Odisha` / `SONEPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Puducherry` / `PONDICHERRY` as `Puducherry` / `PONDICHERRY`: `fuzzy_candidate_only`
+- `Census 2011` `Punjab` / `FAZILKA` as `Punjab` / `FAZILKA`: `fuzzy_candidate_only`
+- `Census 2011` `Punjab` / `FIROZEPUR` as `Punjab` / `FIROZEPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Punjab` / `NAWANSHAHR` as `Punjab` / `NAWANSHAHR`: `fuzzy_candidate_only`
+- `Census 2011` `Punjab` / `PATHANKOT` as `Punjab` / `PATHANKOT`: `fuzzy_candidate_only`
+- `Census 2011` `Rajasthan` / `CHITTORGARH` as `Rajasthan` / `CHITTORGARH`: `fuzzy_candidate_only`
+- `Census 2011` `Rajasthan` / `DHOLPUR` as `Rajasthan` / `DHOLPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Rajasthan` / `JALORE` as `Rajasthan` / `JALORE`: `fuzzy_candidate_only`
+- `Census 2011` `Rajasthan` / `JHUNJHUNU` as `Rajasthan` / `JHUNJHUNU`: `fuzzy_candidate_only`
+- `Census 2011` `Sikkim` / `EAST DISTRICT` as `Sikkim` / `EAST DISTRICT`: `fuzzy_candidate_only`
+- `Census 2011` `Sikkim` / `NORTH DISTRICT` as `Sikkim` / `NORTH DISTRICT`: `fuzzy_candidate_only`
+- `Census 2011` `Sikkim` / `SOUTH DISTRICT` as `Sikkim` / `SOUTH DISTRICT`: `fuzzy_candidate_only`
+- `Census 2011` `Sikkim` / `WEST DISTRICT` as `Sikkim` / `WEST DISTRICT`: `fuzzy_candidate_only`
+- `Census 2011` `Tamil Nadu` / `KANCHIPURAM` as `Tamil Nadu` / `KANCHIPURAM`: `fuzzy_candidate_only`
+- `Census 2011` `Tamil Nadu` / `NAGAPATTINAM` as `Tamil Nadu` / `NAGAPATTINAM`: `fuzzy_candidate_only`
+- `Census 2011` `Tamil Nadu` / `THOOTHUKUDI` as `Tamil Nadu` / `THOOTHUKUDI`: `fuzzy_candidate_only`
+- `Census 2011` `Tamil Nadu` / `TUTICORIN` as `Tamil Nadu` / `TUTICORIN`: `fuzzy_candidate_only`
+- `Census 2011` `Tamil Nadu` / `VILLUPURAM` as `Tamil Nadu` / `VILLUPURAM`: `fuzzy_candidate_only`
+- `Census 2011` `Tamil Nadu` / `VIRUDHUNAGAR` as `Tamil Nadu` / `VIRUDHUNAGAR`: `fuzzy_candidate_only`
+- `Census 2011` `Telangana` / `ADILABAD` as `Telangana` / `ADILABAD`: `cross_state_historical_candidate`
+- `Census 2011` `Telangana` / `HYDERABAD` as `Telangana` / `HYDERABAD`: `cross_state_historical_candidate`
+- `Census 2011` `Telangana` / `KARIMNAGAR` as `Telangana` / `KARIMNAGAR`: `cross_state_historical_candidate`
+- `Census 2011` `Telangana` / `KHAMMAM` as `Telangana` / `KHAMMAM`: `cross_state_historical_candidate`
+- `Census 2011` `Telangana` / `MAHBUBNAGAR` as `Telangana` / `MAHBUBNAGAR`: `cross_state_historical_candidate`
+- `Census 2011` `Telangana` / `MEDAK` as `Telangana` / `MEDAK`: `cross_state_historical_candidate`
+- `Census 2011` `Telangana` / `NALGONDA` as `Telangana` / `NALGONDA`: `cross_state_historical_candidate`
+- `Census 2011` `Telangana` / `NIZAMABAD` as `Telangana` / `NIZAMABAD`: `cross_state_historical_candidate`
+- `Census 2011` `Telangana` / `RANGAREDDI` as `Telangana` / `RANGAREDDI`: `cross_state_historical_candidate`
+- `Census 2011` `Telangana` / `WARANGAL` as `Telangana` / `WARANGAL`: `cross_state_historical_candidate`
+- `Census 2011` `Tripura` / `GOMATI` as `Tripura` / `GOMATI`: `fuzzy_candidate_only`
+- `Census 2011` `Tripura` / `KHOWAI` as `Tripura` / `KHOWAI`: `fuzzy_candidate_only`
+- `Census 2011` `Tripura` / `SEPAHIJALA` as `Tripura` / `SEPAHIJALA`: `fuzzy_candidate_only`
+- `Census 2011` `Tripura` / `UNAKOTI` as `Tripura` / `UNAKOTI`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `ALMORA` as `Uttar Pradesh` / `ALMORA`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `AMETHI` as `Uttar Pradesh` / `AMETHI`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `AMROHA` as `Uttar Pradesh` / `AMROHA`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `BAGESHWAR` as `Uttar Pradesh` / `BAGESHWAR`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `CHAMOLI` as `Uttar Pradesh` / `CHAMOLI`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `CHAMPAWAT` as `Uttar Pradesh` / `CHAMPAWAT`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `DEHRADUN` as `Uttar Pradesh` / `DEHRADUN`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `HAPUR` as `Uttar Pradesh` / `HAPUR`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `HARIDWAR` as `Uttar Pradesh` / `HARIDWAR`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `HATHRAS` as `Uttar Pradesh` / `HATHRAS`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `KASGANJ` as `Uttar Pradesh` / `KASGANJ`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `NAINITAL` as `Uttar Pradesh` / `NAINITAL`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `PAURI GARHWAL` as `Uttar Pradesh` / `PAURI GARHWAL`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `PITHORAGARH` as `Uttar Pradesh` / `PITHORAGARH`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `RUDRA PRAYAG` as `Uttar Pradesh` / `RUDRA PRAYAG`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `SAMBHAL` as `Uttar Pradesh` / `SAMBHAL`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `SANT KABEER NAGAR` as `Uttar Pradesh` / `SANT KABEER NAGAR`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `SANT RAVIDAS NAGAR` as `Uttar Pradesh` / `SANT RAVIDAS NAGAR`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `SHAMLI` as `Uttar Pradesh` / `SHAMLI`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `SHRAVASTI` as `Uttar Pradesh` / `SHRAVASTI`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `TEHRI GARHWAL` as `Uttar Pradesh` / `TEHRI GARHWAL`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `UDAM SINGH NAGAR` as `Uttar Pradesh` / `UDAM SINGH NAGAR`: `fuzzy_candidate_only`
+- `Census 2011` `Uttar Pradesh` / `UTTAR KASHI` as `Uttar Pradesh` / `UTTAR KASHI`: `fuzzy_candidate_only`
+- `Census 2011` `Uttarakhand` / `HARIDWAR` as `Uttarakhand` / `HARIDWAR`: `fuzzy_candidate_only`
+- `Census 2011` `Uttarakhand` / `PAURI GARHWAL` as `Uttarakhand` / `PAURI GARHWAL`: `fuzzy_candidate_only`
+- `Census 2011` `Uttarakhand` / `UDAM SINGH NAGAR` as `Uttarakhand` / `UDAM SINGH NAGAR`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `24 PARAGANAS NORTH` as `West Bengal` / `24 PARAGANAS NORTH`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `24 PARAGANAS SOUTH` as `West Bengal` / `24 PARAGANAS SOUTH`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `ALIPURDUAR` as `West Bengal` / `ALIPURDUAR`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `BARDHAMAN` as `West Bengal` / `BARDHAMAN`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `COOCHBEHAR` as `West Bengal` / `COOCHBEHAR`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `DARJEELING` as `West Bengal` / `DARJEELING`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `DINAJPUR DAKSHIN` as `West Bengal` / `DINAJPUR DAKSHIN`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `DINAJPUR UTTAR` as `West Bengal` / `DINAJPUR UTTAR`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `HOOGHLY` as `West Bengal` / `HOOGHLY`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `HOWRAH` as `West Bengal` / `HOWRAH`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `MEDINIPUR EAST` as `West Bengal` / `MEDINIPUR EAST`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `MEDINIPUR WEST` as `West Bengal` / `MEDINIPUR WEST`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `PURBA BARDHAMAN` as `West Bengal` / `PURBA BARDHAMAN`: `fuzzy_candidate_only`
+- `Census 2011` `West Bengal` / `PURULIA` as `West Bengal` / `PURULIA`: `fuzzy_candidate_only`
+
+## Punjab / S
+
+- `Census 2001`: `fuzzy_candidate_only` against `` / ``; method `fuzzy_candidate_only`
+- `Census 2011`: `matched_manual_override` against `Punjab` / `Sahibzada Ajit Singh Nagar`; method `manual_override_strong`
+
+## Telangana
+
+- State crosswalk `Census 2001`: `cross_state_historical_candidate` to `Andhra Pradesh`; Telangana districts appear under Andhra Pradesh in this boundary layer
+- State crosswalk `Census 2011`: `cross_state_historical_candidate` to `Andhra Pradesh`; Telangana districts appear under Andhra Pradesh in this boundary layer
+- District rows `Census 2001` `cross_state_historical_candidate`: 10
+- District rows `Census 2011` `cross_state_historical_candidate`: 10
+
+Coordinates assigned: no.
