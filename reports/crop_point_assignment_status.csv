@@ -1,0 +1,7 @@
+point_assignment_confidence,point_assignment_method,crop_rows
+confirmed,confirmed_alias_unique,73
+confirmed,confirmed_exact_unique,415823
+confirmed,confirmed_manual_override,73
+historical_fallback,historical_state_boundary_fallback,6279
+working_fallback,working_fuzzy_same_state,55823
+working_strong,alternate_layer_confirmed_name,8609

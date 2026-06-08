@@ -1,0 +1,728 @@
+district_id,raw_state_name,raw_district_name,canonical_state_name,canonical_district_name,assignment_confidence_2001,assignment_confidence_2011,assignment_method_2001,assignment_method_2011,geometry_census_version_2001,geometry_census_version_2011,shared_parent_boundary_2001,shared_parent_boundary_2011
+IND_ANDAMAN_AND_NICOBAR_ISLANDS_ANDAMAN_AND_NICOBAR_ISLANDS,Andaman and Nicobar Islands,Andaman and Nicobar Islands,Andaman and Nicobar Islands,Andaman and Nicobar Islands,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,0
+IND_ANDAMAN_AND_NICOBAR_ISLANDS_NICOBARS,Andaman and Nicobar Islands,NICOBARS,Andaman and Nicobar Islands,NICOBARS,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_ANDAMAN_AND_NICOBAR_ISLANDS_NORTH_AND_MIDDLE_ANDAMAN,Andaman and Nicobar Islands,NORTH AND MIDDLE ANDAMAN,Andaman and Nicobar Islands,NORTH AND MIDDLE ANDAMAN,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_ANDAMAN_AND_NICOBAR_ISLANDS_SOUTH_ANDAMANS,Andaman and Nicobar Islands,SOUTH ANDAMANS,Andaman and Nicobar Islands,SOUTH ANDAMANS,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,0
+IND_ANDHRA_PRADESH_ADILABAD,Andhra Pradesh,ADILABAD,Andhra Pradesh,ADILABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_ANANTAPUR,Andhra Pradesh,ANANTAPUR,Andhra Pradesh,ANANTAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_CHITTOOR,Andhra Pradesh,CHITTOOR,Andhra Pradesh,CHITTOOR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_EAST_GODAVARI,Andhra Pradesh,EAST GODAVARI,Andhra Pradesh,EAST GODAVARI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_GUNTUR,Andhra Pradesh,GUNTUR,Andhra Pradesh,GUNTUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_HYDERABAD,Andhra Pradesh,HYDERABAD,Andhra Pradesh,HYDERABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_KADAPA,Andhra Pradesh,KADAPA,Andhra Pradesh,KADAPA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_ANDHRA_PRADESH_KARIMNAGAR,Andhra Pradesh,KARIMNAGAR,Andhra Pradesh,KARIMNAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_KHAMMAM,Andhra Pradesh,KHAMMAM,Andhra Pradesh,KHAMMAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_KRISHNA,Andhra Pradesh,KRISHNA,Andhra Pradesh,KRISHNA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_KURNOOL,Andhra Pradesh,KURNOOL,Andhra Pradesh,KURNOOL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_MAHBUBNAGAR,Andhra Pradesh,MAHBUBNAGAR,Andhra Pradesh,MAHBUBNAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_MEDAK,Andhra Pradesh,MEDAK,Andhra Pradesh,MEDAK,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_NALGONDA,Andhra Pradesh,NALGONDA,Andhra Pradesh,NALGONDA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_NIZAMABAD,Andhra Pradesh,NIZAMABAD,Andhra Pradesh,NIZAMABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_PRAKASAM,Andhra Pradesh,PRAKASAM,Andhra Pradesh,PRAKASAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_RANGAREDDI,Andhra Pradesh,RANGAREDDI,Andhra Pradesh,RANGAREDDI,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_ANDHRA_PRADESH_SPSR_NELLORE,Andhra Pradesh,SPSR NELLORE,Andhra Pradesh,SPSR NELLORE,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_SRIKAKULAM,Andhra Pradesh,SRIKAKULAM,Andhra Pradesh,SRIKAKULAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_VISAKHAPATANAM,Andhra Pradesh,VISAKHAPATANAM,Andhra Pradesh,VISAKHAPATANAM,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_VIZIANAGARAM,Andhra Pradesh,VIZIANAGARAM,Andhra Pradesh,VIZIANAGARAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_WARANGAL,Andhra Pradesh,WARANGAL,Andhra Pradesh,WARANGAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ANDHRA_PRADESH_WEST_GODAVARI,Andhra Pradesh,WEST GODAVARI,Andhra Pradesh,WEST GODAVARI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_ANJAW,Arunachal Pradesh,ANJAW,Arunachal Pradesh,ANJAW,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_CHANGLANG,Arunachal Pradesh,CHANGLANG,Arunachal Pradesh,CHANGLANG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_DIBANG_VALLEY,Arunachal Pradesh,DIBANG VALLEY,Arunachal Pradesh,DIBANG VALLEY,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_EAST_KAMENG,Arunachal Pradesh,EAST KAMENG,Arunachal Pradesh,EAST KAMENG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_EAST_SIANG,Arunachal Pradesh,EAST SIANG,Arunachal Pradesh,EAST SIANG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_KURUNG_KUMEY,Arunachal Pradesh,KURUNG KUMEY,Arunachal Pradesh,KURUNG KUMEY,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_LOHIT,Arunachal Pradesh,LOHIT,Arunachal Pradesh,LOHIT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_LONGDING,Arunachal Pradesh,LONGDING,Arunachal Pradesh,LONGDING,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_LOWER_DIBANG_VALLEY,Arunachal Pradesh,LOWER DIBANG VALLEY,Arunachal Pradesh,LOWER DIBANG VALLEY,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_LOWER_SUBANSIRI,Arunachal Pradesh,LOWER SUBANSIRI,Arunachal Pradesh,LOWER SUBANSIRI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_NAMSAI,Arunachal Pradesh,NAMSAI,Arunachal Pradesh,NAMSAI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_PAPUM_PARE,Arunachal Pradesh,PAPUM PARE,Arunachal Pradesh,PAPUM PARE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_TAWANG,Arunachal Pradesh,TAWANG,Arunachal Pradesh,TAWANG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_TIRAP,Arunachal Pradesh,TIRAP,Arunachal Pradesh,TIRAP,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_UPPER_SIANG,Arunachal Pradesh,UPPER SIANG,Arunachal Pradesh,UPPER SIANG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_UPPER_SUBANSIRI,Arunachal Pradesh,UPPER SUBANSIRI,Arunachal Pradesh,UPPER SUBANSIRI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_WEST_KAMENG,Arunachal Pradesh,WEST KAMENG,Arunachal Pradesh,WEST KAMENG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ARUNACHAL_PRADESH_WEST_SIANG,Arunachal Pradesh,WEST SIANG,Arunachal Pradesh,WEST SIANG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_BAKSA,Assam,BAKSA,Assam,BAKSA,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_ASSAM_BARPETA,Assam,BARPETA,Assam,BARPETA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_BONGAIGAON,Assam,BONGAIGAON,Assam,BONGAIGAON,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_CACHAR,Assam,CACHAR,Assam,CACHAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_CHIRANG,Assam,CHIRANG,Assam,CHIRANG,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_ASSAM_DARRANG,Assam,DARRANG,Assam,DARRANG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_DHEMAJI,Assam,DHEMAJI,Assam,DHEMAJI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_DHUBRI,Assam,DHUBRI,Assam,DHUBRI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_DIBRUGARH,Assam,DIBRUGARH,Assam,DIBRUGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_DIMA_HASAO,Assam,DIMA HASAO,Assam,DIMA HASAO,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_ASSAM_GOALPARA,Assam,GOALPARA,Assam,GOALPARA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_GOLAGHAT,Assam,GOLAGHAT,Assam,GOLAGHAT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_HAILAKANDI,Assam,HAILAKANDI,Assam,HAILAKANDI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_JORHAT,Assam,JORHAT,Assam,JORHAT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_KAMRUP,Assam,KAMRUP,Assam,KAMRUP,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_KAMRUP_METRO,Assam,KAMRUP METRO,Assam,KAMRUP METRO,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_ASSAM_KARBI_ANGLONG,Assam,KARBI ANGLONG,Assam,KARBI ANGLONG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_KARIMGANJ,Assam,KARIMGANJ,Assam,KARIMGANJ,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_KOKRAJHAR,Assam,KOKRAJHAR,Assam,KOKRAJHAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_LAKHIMPUR,Assam,LAKHIMPUR,Assam,LAKHIMPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_MARIGAON,Assam,MARIGAON,Assam,MARIGAON,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_NAGAON,Assam,NAGAON,Assam,NAGAON,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_NALBARI,Assam,NALBARI,Assam,NALBARI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_SIVASAGAR,Assam,SIVASAGAR,Assam,SIVASAGAR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_ASSAM_SONITPUR,Assam,SONITPUR,Assam,SONITPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_TINSUKIA,Assam,TINSUKIA,Assam,TINSUKIA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ASSAM_UDALGURI,Assam,UDALGURI,Assam,UDALGURI,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_BIHAR_ARARIA,Bihar,ARARIA,Bihar,ARARIA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_ARWAL,Bihar,ARWAL,Bihar,ARWAL,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_BIHAR_AURANGABAD,Bihar,AURANGABAD,Bihar,AURANGABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_BANKA,Bihar,BANKA,Bihar,BANKA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_BEGUSARAI,Bihar,BEGUSARAI,Bihar,BEGUSARAI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_BHAGALPUR,Bihar,BHAGALPUR,Bihar,BHAGALPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_BHOJPUR,Bihar,BHOJPUR,Bihar,BHOJPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_BOKARO,Bihar,BOKARO,Bihar,BOKARO,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_BUXAR,Bihar,BUXAR,Bihar,BUXAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_CHATRA,Bihar,CHATRA,Bihar,CHATRA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_DARBHANGA,Bihar,DARBHANGA,Bihar,DARBHANGA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_DEOGHAR,Bihar,DEOGHAR,Bihar,DEOGHAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_DHANBAD,Bihar,DHANBAD,Bihar,DHANBAD,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_DUMKA,Bihar,DUMKA,Bihar,DUMKA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_EAST_SINGHBUM,Bihar,EAST SINGHBUM,Bihar,EAST SINGHBUM,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_BIHAR_GARHWA,Bihar,GARHWA,Bihar,GARHWA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,0
+IND_BIHAR_GAYA,Bihar,GAYA,Bihar,GAYA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_GIRIDIH,Bihar,GIRIDIH,Bihar,GIRIDIH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_BIHAR_GODDA,Bihar,GODDA,Bihar,GODDA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_BIHAR_GOPALGANJ,Bihar,GOPALGANJ,Bihar,GOPALGANJ,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_GUMLA,Bihar,GUMLA,Bihar,GUMLA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_BIHAR_HAZARIBAGH,Bihar,HAZARIBAGH,Bihar,HAZARIBAGH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_BIHAR_JAMUI,Bihar,JAMUI,Bihar,JAMUI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_JEHANABAD,Bihar,JEHANABAD,Bihar,JEHANABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_KAIMUR_BHABUA,Bihar,KAIMUR (BHABUA),Bihar,KAIMUR (BHABUA),confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_KATIHAR,Bihar,KATIHAR,Bihar,KATIHAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_KHAGARIA,Bihar,KHAGARIA,Bihar,KHAGARIA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_KISHANGANJ,Bihar,KISHANGANJ,Bihar,KISHANGANJ,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_KODERMA,Bihar,KODERMA,Bihar,KODERMA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_BIHAR_LAKHISARAI,Bihar,LAKHISARAI,Bihar,LAKHISARAI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_LOHARDAGA,Bihar,LOHARDAGA,Bihar,LOHARDAGA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_MADHEPURA,Bihar,MADHEPURA,Bihar,MADHEPURA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_MADHUBANI,Bihar,MADHUBANI,Bihar,MADHUBANI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_MUNGER,Bihar,MUNGER,Bihar,MUNGER,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_MUZAFFARPUR,Bihar,MUZAFFARPUR,Bihar,MUZAFFARPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_NALANDA,Bihar,NALANDA,Bihar,NALANDA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_NAWADA,Bihar,NAWADA,Bihar,NAWADA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_PAKUR,Bihar,PAKUR,Bihar,PAKUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_PALAMU,Bihar,PALAMU,Bihar,PALAMU,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_PASHCHIM_CHAMPARAN,Bihar,PASHCHIM CHAMPARAN,Bihar,PASHCHIM CHAMPARAN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_PATNA,Bihar,PATNA,Bihar,PATNA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_PURBI_CHAMPARAN,Bihar,PURBI CHAMPARAN,Bihar,PURBI CHAMPARAN,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_PURNIA,Bihar,PURNIA,Bihar,PURNIA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_RANCHI,Bihar,RANCHI,Bihar,RANCHI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_ROHTAS,Bihar,ROHTAS,Bihar,ROHTAS,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_SAHARSA,Bihar,SAHARSA,Bihar,SAHARSA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_SAHEBGANJ,Bihar,SAHEBGANJ,Bihar,SAHEBGANJ,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_BIHAR_SAMASTIPUR,Bihar,SAMASTIPUR,Bihar,SAMASTIPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_SARAN,Bihar,SARAN,Bihar,SARAN,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_BIHAR_SHEIKHPURA,Bihar,SHEIKHPURA,Bihar,SHEIKHPURA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_SHEOHAR,Bihar,SHEOHAR,Bihar,SHEOHAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_SITAMARHI,Bihar,SITAMARHI,Bihar,SITAMARHI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_SIWAN,Bihar,SIWAN,Bihar,SIWAN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_SUPAUL,Bihar,SUPAUL,Bihar,SUPAUL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_VAISHALI,Bihar,VAISHALI,Bihar,VAISHALI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_BIHAR_WEST_SINGHBHUM,Bihar,WEST SINGHBHUM,Bihar,WEST SINGHBHUM,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_CHANDIGARH_CHANDIGARH,Chandigarh,CHANDIGARH,Chandigarh,CHANDIGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_BALOD,Chhattisgarh,BALOD,Chhattisgarh,BALOD,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_CHHATTISGARH_BALODA_BAZAR,Chhattisgarh,BALODA BAZAR,Chhattisgarh,BALODA BAZAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_CHHATTISGARH_BALRAMPUR,Chhattisgarh,BALRAMPUR,Chhattisgarh,BALRAMPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_CHHATTISGARH_BASTAR,Chhattisgarh,BASTAR,Chhattisgarh,BASTAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_BEMETARA,Chhattisgarh,BEMETARA,Chhattisgarh,BEMETARA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_CHHATTISGARH_BIJAPUR,Chhattisgarh,BIJAPUR,Chhattisgarh,BIJAPUR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_CHHATTISGARH_BILASPUR,Chhattisgarh,BILASPUR,Chhattisgarh,BILASPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_DANTEWADA,Chhattisgarh,DANTEWADA,Chhattisgarh,DANTEWADA,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_CHHATTISGARH_DHAMTARI,Chhattisgarh,DHAMTARI,Chhattisgarh,DHAMTARI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_DURG,Chhattisgarh,DURG,Chhattisgarh,DURG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_GARIYABAND,Chhattisgarh,GARIYABAND,Chhattisgarh,GARIYABAND,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_JANJGIR_CHAMPA,Chhattisgarh,JANJGIR-CHAMPA,Chhattisgarh,JANJGIR-CHAMPA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_JASHPUR,Chhattisgarh,JASHPUR,Chhattisgarh,JASHPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_KABIRDHAM,Chhattisgarh,KABIRDHAM,Chhattisgarh,KABIRDHAM,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_KANKER,Chhattisgarh,KANKER,Chhattisgarh,KANKER,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_CHHATTISGARH_KONDAGAON,Chhattisgarh,KONDAGAON,Chhattisgarh,KONDAGAON,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_KORBA,Chhattisgarh,KORBA,Chhattisgarh,KORBA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_KOREA,Chhattisgarh,KOREA,Chhattisgarh,KOREA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_CHHATTISGARH_MAHASAMUND,Chhattisgarh,MAHASAMUND,Chhattisgarh,MAHASAMUND,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_MUNGELI,Chhattisgarh,MUNGELI,Chhattisgarh,MUNGELI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_NARAYANPUR,Chhattisgarh,NARAYANPUR,Chhattisgarh,NARAYANPUR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_CHHATTISGARH_RAIGARH,Chhattisgarh,RAIGARH,Chhattisgarh,RAIGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_RAIPUR,Chhattisgarh,RAIPUR,Chhattisgarh,RAIPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_RAJNANDGAON,Chhattisgarh,RAJNANDGAON,Chhattisgarh,RAJNANDGAON,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_SUKMA,Chhattisgarh,SUKMA,Chhattisgarh,SUKMA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_CHHATTISGARH_SURAJPUR,Chhattisgarh,SURAJPUR,Chhattisgarh,SURAJPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_CHHATTISGARH_SURGUJA,Chhattisgarh,SURGUJA,Chhattisgarh,SURGUJA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_DADRA_AND_NAGAR_HAVELI_DADRA_AND_NAGAR_HAVELI,Dadra and Nagar Haveli,DADRA AND NAGAR HAVELI,Dadra and Nagar Haveli,DADRA AND NAGAR HAVELI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_DAMAN_AND_DIU_DAMAN,Daman and Diu,DAMAN,Daman and Diu,DAMAN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_DAMAN_AND_DIU_DAMAN_AND_DIU,Daman and Diu,Daman and Diu,Daman and Diu,Daman and Diu,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_DAMAN_AND_DIU_DIU,Daman and Diu,DIU,Daman and Diu,DIU,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_DELHI_DELHI,Delhi,Delhi,Delhi,Delhi,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_DELHI_DELHI_TOTAL,Delhi,DELHI_TOTAL,Delhi,DELHI_TOTAL,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_GOA_GOA,Goa,Goa,Goa,Goa,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_GOA_NORTH_GOA,Goa,NORTH GOA,Goa,NORTH GOA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GOA_SOUTH_GOA,Goa,SOUTH GOA,Goa,SOUTH GOA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_AHMADABAD,Gujarat,AHMADABAD,Gujarat,AHMADABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_AMRELI,Gujarat,AMRELI,Gujarat,AMRELI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_ANAND,Gujarat,ANAND,Gujarat,ANAND,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_ARAVALLI,Gujarat,ARAVALLI,Gujarat,ARAVALLI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_GUJARAT_BANAS_KANTHA,Gujarat,BANAS KANTHA,Gujarat,BANAS KANTHA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_BHARUCH,Gujarat,BHARUCH,Gujarat,BHARUCH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_BHAVNAGAR,Gujarat,BHAVNAGAR,Gujarat,BHAVNAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_BOTAD,Gujarat,BOTAD,Gujarat,BOTAD,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_GUJARAT_CHHOTAUDEPUR,Gujarat,CHHOTAUDEPUR,Gujarat,CHHOTAUDEPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_GUJARAT_DANG,Gujarat,DANG,Gujarat,DANG,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_GUJARAT_DEVBHUMI_DWARKA,Gujarat,DEVBHUMI DWARKA,Gujarat,DEVBHUMI DWARKA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_GUJARAT_DOHAD,Gujarat,DOHAD,Gujarat,DOHAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_GANDHINAGAR,Gujarat,GANDHINAGAR,Gujarat,GANDHINAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_GIR_SOMNATH,Gujarat,GIR SOMNATH,Gujarat,GIR SOMNATH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_GUJARAT_JAMNAGAR,Gujarat,JAMNAGAR,Gujarat,JAMNAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_JUNAGADH,Gujarat,JUNAGADH,Gujarat,JUNAGADH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_KACHCHH,Gujarat,KACHCHH,Gujarat,KACHCHH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_KHEDA,Gujarat,KHEDA,Gujarat,KHEDA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_MAHESANA,Gujarat,MAHESANA,Gujarat,MAHESANA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_MAHISAGAR,Gujarat,MAHISAGAR,Gujarat,MAHISAGAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_GUJARAT_MORBI,Gujarat,MORBI,Gujarat,MORBI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_GUJARAT_NARMADA,Gujarat,NARMADA,Gujarat,NARMADA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_NAVSARI,Gujarat,NAVSARI,Gujarat,NAVSARI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_PANCH_MAHALS,Gujarat,PANCH MAHALS,Gujarat,PANCH MAHALS,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_PATAN,Gujarat,PATAN,Gujarat,PATAN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_PORBANDAR,Gujarat,PORBANDAR,Gujarat,PORBANDAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_RAJKOT,Gujarat,RAJKOT,Gujarat,RAJKOT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_SABAR_KANTHA,Gujarat,SABAR KANTHA,Gujarat,SABAR KANTHA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_SURAT,Gujarat,SURAT,Gujarat,SURAT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_SURENDRANAGAR,Gujarat,SURENDRANAGAR,Gujarat,SURENDRANAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_TAPI,Gujarat,TAPI,Gujarat,TAPI,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_GUJARAT_VADODARA,Gujarat,VADODARA,Gujarat,VADODARA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_GUJARAT_VALSAD,Gujarat,VALSAD,Gujarat,VALSAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_AMBALA,Haryana,AMBALA,Haryana,AMBALA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_BHIWANI,Haryana,BHIWANI,Haryana,BHIWANI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_CHARKI_DADRI,Haryana,CHARKI DADRI,Haryana,CHARKI DADRI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_HARYANA_FARIDABAD,Haryana,FARIDABAD,Haryana,FARIDABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_FATEHABAD,Haryana,FATEHABAD,Haryana,FATEHABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_GURGAON,Haryana,GURGAON,Haryana,GURGAON,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_HISAR,Haryana,HISAR,Haryana,HISAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_JHAJJAR,Haryana,JHAJJAR,Haryana,JHAJJAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_JIND,Haryana,JIND,Haryana,JIND,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_KAITHAL,Haryana,KAITHAL,Haryana,KAITHAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_KARNAL,Haryana,KARNAL,Haryana,KARNAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_KURUKSHETRA,Haryana,KURUKSHETRA,Haryana,KURUKSHETRA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_MAHENDRAGARH,Haryana,MAHENDRAGARH,Haryana,MAHENDRAGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_MEWAT,Haryana,MEWAT,Haryana,MEWAT,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_HARYANA_PALWAL,Haryana,PALWAL,Haryana,PALWAL,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_HARYANA_PANCHKULA,Haryana,PANCHKULA,Haryana,PANCHKULA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_PANIPAT,Haryana,PANIPAT,Haryana,PANIPAT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_REWARI,Haryana,REWARI,Haryana,REWARI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_ROHTAK,Haryana,ROHTAK,Haryana,ROHTAK,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_SIRSA,Haryana,SIRSA,Haryana,SIRSA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_SONIPAT,Haryana,SONIPAT,Haryana,SONIPAT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HARYANA_YAMUNANAGAR,Haryana,YAMUNANAGAR,Haryana,YAMUNANAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_BILASPUR,Himachal Pradesh,BILASPUR,Himachal Pradesh,BILASPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_CHAMBA,Himachal Pradesh,CHAMBA,Himachal Pradesh,CHAMBA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_HAMIRPUR,Himachal Pradesh,HAMIRPUR,Himachal Pradesh,HAMIRPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_KANGRA,Himachal Pradesh,KANGRA,Himachal Pradesh,KANGRA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_KINNAUR,Himachal Pradesh,KINNAUR,Himachal Pradesh,KINNAUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_KULLU,Himachal Pradesh,KULLU,Himachal Pradesh,KULLU,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_LAHUL_AND_SPITI,Himachal Pradesh,LAHUL AND SPITI,Himachal Pradesh,LAHUL AND SPITI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_MANDI,Himachal Pradesh,MANDI,Himachal Pradesh,MANDI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_SHIMLA,Himachal Pradesh,SHIMLA,Himachal Pradesh,SHIMLA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_SIRMAUR,Himachal Pradesh,SIRMAUR,Himachal Pradesh,SIRMAUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_SOLAN,Himachal Pradesh,SOLAN,Himachal Pradesh,SOLAN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_HIMACHAL_PRADESH_UNA,Himachal Pradesh,UNA,Himachal Pradesh,UNA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_ANANTNAG,Jammu and Kashmir,ANANTNAG,Jammu and Kashmir,ANANTNAG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_BADGAM,Jammu and Kashmir,BADGAM,Jammu and Kashmir,BADGAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_BANDIPORA,Jammu and Kashmir,BANDIPORA,Jammu and Kashmir,BANDIPORA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_BARAMULLA,Jammu and Kashmir,BARAMULLA,Jammu and Kashmir,BARAMULLA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_DODA,Jammu and Kashmir,DODA,Jammu and Kashmir,DODA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_GANDERBAL,Jammu and Kashmir,GANDERBAL,Jammu and Kashmir,GANDERBAL,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_JAMMU,Jammu and Kashmir,JAMMU,Jammu and Kashmir,JAMMU,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_KARGIL,Jammu and Kashmir,KARGIL,Jammu and Kashmir,KARGIL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_KATHUA,Jammu and Kashmir,KATHUA,Jammu and Kashmir,KATHUA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_KISHTWAR,Jammu and Kashmir,KISHTWAR,Jammu and Kashmir,KISHTWAR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_KULGAM,Jammu and Kashmir,KULGAM,Jammu and Kashmir,KULGAM,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_KUPWARA,Jammu and Kashmir,KUPWARA,Jammu and Kashmir,KUPWARA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_LEH_LADAKH,Jammu and Kashmir,LEH LADAKH,Jammu and Kashmir,LEH LADAKH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_POONCH,Jammu and Kashmir,POONCH,Jammu and Kashmir,POONCH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_PULWAMA,Jammu and Kashmir,PULWAMA,Jammu and Kashmir,PULWAMA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_RAJAURI,Jammu and Kashmir,RAJAURI,Jammu and Kashmir,RAJAURI,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_JAMMU_AND_KASHMIR_RAMBAN,Jammu and Kashmir,RAMBAN,Jammu and Kashmir,RAMBAN,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_REASI,Jammu and Kashmir,REASI,Jammu and Kashmir,REASI,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_SAMBA,Jammu and Kashmir,SAMBA,Jammu and Kashmir,SAMBA,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_SHOPIAN,Jammu and Kashmir,SHOPIAN,Jammu and Kashmir,SHOPIAN,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_SRINAGAR,Jammu and Kashmir,SRINAGAR,Jammu and Kashmir,SRINAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JAMMU_AND_KASHMIR_UDHAMPUR,Jammu and Kashmir,UDHAMPUR,Jammu and Kashmir,UDHAMPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_BOKARO,Jharkhand,BOKARO,Jharkhand,BOKARO,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_CHATRA,Jharkhand,CHATRA,Jharkhand,CHATRA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_DEOGHAR,Jharkhand,DEOGHAR,Jharkhand,DEOGHAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_DHANBAD,Jharkhand,DHANBAD,Jharkhand,DHANBAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_DUMKA,Jharkhand,DUMKA,Jharkhand,DUMKA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_EAST_SINGHBUM,Jharkhand,EAST SINGHBUM,Jharkhand,EAST SINGHBUM,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_JHARKHAND_GARHWA,Jharkhand,GARHWA,Jharkhand,GARHWA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_GIRIDIH,Jharkhand,GIRIDIH,Jharkhand,GIRIDIH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_GODDA,Jharkhand,GODDA,Jharkhand,GODDA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_GUMLA,Jharkhand,GUMLA,Jharkhand,GUMLA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_HAZARIBAGH,Jharkhand,HAZARIBAGH,Jharkhand,HAZARIBAGH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_JAMTARA,Jharkhand,JAMTARA,Jharkhand,JAMTARA,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JHARKHAND_KHUNTI,Jharkhand,KHUNTI,Jharkhand,KHUNTI,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JHARKHAND_KODERMA,Jharkhand,KODERMA,Jharkhand,KODERMA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_JHARKHAND_LATEHAR,Jharkhand,LATEHAR,Jharkhand,LATEHAR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JHARKHAND_LOHARDAGA,Jharkhand,LOHARDAGA,Jharkhand,LOHARDAGA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_PAKUR,Jharkhand,PAKUR,Jharkhand,PAKUR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JHARKHAND_PALAMU,Jharkhand,PALAMU,Jharkhand,PALAMU,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_RAMGARH,Jharkhand,RAMGARH,Jharkhand,RAMGARH,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JHARKHAND_RANCHI,Jharkhand,RANCHI,Jharkhand,RANCHI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_JHARKHAND_SAHEBGANJ,Jharkhand,SAHEBGANJ,Jharkhand,SAHEBGANJ,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_JHARKHAND_SARAIKELA_KHARSAWAN,Jharkhand,SARAIKELA KHARSAWAN,Jharkhand,SARAIKELA KHARSAWAN,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JHARKHAND_SIMDEGA,Jharkhand,SIMDEGA,Jharkhand,SIMDEGA,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_JHARKHAND_WEST_SINGHBHUM,Jharkhand,WEST SINGHBHUM,Jharkhand,WEST SINGHBHUM,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_KARNATAKA_BAGALKOT,Karnataka,BAGALKOT,Karnataka,BAGALKOT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_BANGALORE_RURAL,Karnataka,BANGALORE RURAL,Karnataka,BANGALORE RURAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_BELGAUM,Karnataka,BELGAUM,Karnataka,BELGAUM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_BELLARY,Karnataka,BELLARY,Karnataka,BELLARY,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_BENGALURU_URBAN,Karnataka,BENGALURU URBAN,Karnataka,BENGALURU URBAN,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_KARNATAKA_BIDAR,Karnataka,BIDAR,Karnataka,BIDAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_BIJAPUR,Karnataka,BIJAPUR,Karnataka,BIJAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_CHAMARAJANAGAR,Karnataka,CHAMARAJANAGAR,Karnataka,CHAMARAJANAGAR,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_KARNATAKA_CHIKBALLAPUR,Karnataka,CHIKBALLAPUR,Karnataka,CHIKBALLAPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_KARNATAKA_CHIKMAGALUR,Karnataka,CHIKMAGALUR,Karnataka,CHIKMAGALUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_CHITRADURGA,Karnataka,CHITRADURGA,Karnataka,CHITRADURGA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_DAKSHIN_KANNAD,Karnataka,DAKSHIN KANNAD,Karnataka,DAKSHIN KANNAD,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_KARNATAKA_DAVANGERE,Karnataka,DAVANGERE,Karnataka,DAVANGERE,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_KARNATAKA_DHARWAD,Karnataka,DHARWAD,Karnataka,DHARWAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_GADAG,Karnataka,GADAG,Karnataka,GADAG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_GULBARGA,Karnataka,GULBARGA,Karnataka,GULBARGA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_HASSAN,Karnataka,HASSAN,Karnataka,HASSAN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_HAVERI,Karnataka,HAVERI,Karnataka,HAVERI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_KODAGU,Karnataka,KODAGU,Karnataka,KODAGU,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_KOLAR,Karnataka,KOLAR,Karnataka,KOLAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_KOPPAL,Karnataka,KOPPAL,Karnataka,KOPPAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_MANDYA,Karnataka,MANDYA,Karnataka,MANDYA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_MYSORE,Karnataka,MYSORE,Karnataka,MYSORE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_RAICHUR,Karnataka,RAICHUR,Karnataka,RAICHUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_RAMANAGARA,Karnataka,RAMANAGARA,Karnataka,RAMANAGARA,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_KARNATAKA_SHIMOGA,Karnataka,SHIMOGA,Karnataka,SHIMOGA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_TUMKUR,Karnataka,TUMKUR,Karnataka,TUMKUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_UDUPI,Karnataka,UDUPI,Karnataka,UDUPI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KARNATAKA_UTTAR_KANNAD,Karnataka,UTTAR KANNAD,Karnataka,UTTAR KANNAD,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_KARNATAKA_YADGIR,Karnataka,YADGIR,Karnataka,YADGIR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_KERALA_ALAPPUZHA,Kerala,ALAPPUZHA,Kerala,ALAPPUZHA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_ERNAKULAM,Kerala,ERNAKULAM,Kerala,ERNAKULAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_IDUKKI,Kerala,IDUKKI,Kerala,IDUKKI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_KANNUR,Kerala,KANNUR,Kerala,KANNUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_KASARAGOD,Kerala,KASARAGOD,Kerala,KASARAGOD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_KOLLAM,Kerala,KOLLAM,Kerala,KOLLAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_KOTTAYAM,Kerala,KOTTAYAM,Kerala,KOTTAYAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_KOZHIKODE,Kerala,KOZHIKODE,Kerala,KOZHIKODE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_MALAPPURAM,Kerala,MALAPPURAM,Kerala,MALAPPURAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_PALAKKAD,Kerala,PALAKKAD,Kerala,PALAKKAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_PATHANAMTHITTA,Kerala,PATHANAMTHITTA,Kerala,PATHANAMTHITTA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_THIRUVANANTHAPURAM,Kerala,THIRUVANANTHAPURAM,Kerala,THIRUVANANTHAPURAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_THRISSUR,Kerala,THRISSUR,Kerala,THRISSUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_KERALA_WAYANAD,Kerala,WAYANAD,Kerala,WAYANAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_AGAR_MALWA,Madhya Pradesh,AGAR MALWA,Madhya Pradesh,AGAR MALWA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_ALIRAJPUR,Madhya Pradesh,ALIRAJPUR,Madhya Pradesh,ALIRAJPUR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_MADHYA_PRADESH_ANUPPUR,Madhya Pradesh,ANUPPUR,Madhya Pradesh,ANUPPUR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_MADHYA_PRADESH_ASHOKNAGAR,Madhya Pradesh,ASHOKNAGAR,Madhya Pradesh,ASHOKNAGAR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_MADHYA_PRADESH_BALAGHAT,Madhya Pradesh,BALAGHAT,Madhya Pradesh,BALAGHAT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_BARWANI,Madhya Pradesh,BARWANI,Madhya Pradesh,BARWANI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_BASTAR,Madhya Pradesh,BASTAR,Madhya Pradesh,BASTAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_BETUL,Madhya Pradesh,BETUL,Madhya Pradesh,BETUL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_BHIND,Madhya Pradesh,BHIND,Madhya Pradesh,BHIND,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_BHOPAL,Madhya Pradesh,BHOPAL,Madhya Pradesh,BHOPAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_BILASPUR,Madhya Pradesh,BILASPUR,Madhya Pradesh,BILASPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_BURHANPUR,Madhya Pradesh,BURHANPUR,Madhya Pradesh,BURHANPUR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_MADHYA_PRADESH_CHHATARPUR,Madhya Pradesh,CHHATARPUR,Madhya Pradesh,CHHATARPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_CHHINDWARA,Madhya Pradesh,CHHINDWARA,Madhya Pradesh,CHHINDWARA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_DAMOH,Madhya Pradesh,DAMOH,Madhya Pradesh,DAMOH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_DANTEWADA,Madhya Pradesh,DANTEWADA,Madhya Pradesh,DANTEWADA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_DATIA,Madhya Pradesh,DATIA,Madhya Pradesh,DATIA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_DEWAS,Madhya Pradesh,DEWAS,Madhya Pradesh,DEWAS,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_DHAMTARI,Madhya Pradesh,DHAMTARI,Madhya Pradesh,DHAMTARI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MADHYA_PRADESH_DHAR,Madhya Pradesh,DHAR,Madhya Pradesh,DHAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_DINDORI,Madhya Pradesh,DINDORI,Madhya Pradesh,DINDORI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_DURG,Madhya Pradesh,DURG,Madhya Pradesh,DURG,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MADHYA_PRADESH_GUNA,Madhya Pradesh,GUNA,Madhya Pradesh,GUNA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_GWALIOR,Madhya Pradesh,GWALIOR,Madhya Pradesh,GWALIOR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_HARDA,Madhya Pradesh,HARDA,Madhya Pradesh,HARDA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_HOSHANGABAD,Madhya Pradesh,HOSHANGABAD,Madhya Pradesh,HOSHANGABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_INDORE,Madhya Pradesh,INDORE,Madhya Pradesh,INDORE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_JABALPUR,Madhya Pradesh,JABALPUR,Madhya Pradesh,JABALPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_JANJGIR_CHAMPA,Madhya Pradesh,JANJGIR-CHAMPA,Madhya Pradesh,JANJGIR-CHAMPA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MADHYA_PRADESH_JASHPUR,Madhya Pradesh,JASHPUR,Madhya Pradesh,JASHPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_JHABUA,Madhya Pradesh,JHABUA,Madhya Pradesh,JHABUA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_KABIRDHAM,Madhya Pradesh,KABIRDHAM,Madhya Pradesh,KABIRDHAM,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MADHYA_PRADESH_KANKER,Madhya Pradesh,KANKER,Madhya Pradesh,KANKER,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_KATNI,Madhya Pradesh,KATNI,Madhya Pradesh,KATNI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_KHANDWA,Madhya Pradesh,KHANDWA,Madhya Pradesh,KHANDWA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MADHYA_PRADESH_KHARGONE,Madhya Pradesh,KHARGONE,Madhya Pradesh,KHARGONE,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MADHYA_PRADESH_KORBA,Madhya Pradesh,KORBA,Madhya Pradesh,KORBA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MADHYA_PRADESH_KOREA,Madhya Pradesh,KOREA,Madhya Pradesh,KOREA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MADHYA_PRADESH_MAHASAMUND,Madhya Pradesh,MAHASAMUND,Madhya Pradesh,MAHASAMUND,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_MANDLA,Madhya Pradesh,MANDLA,Madhya Pradesh,MANDLA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_MANDSAUR,Madhya Pradesh,MANDSAUR,Madhya Pradesh,MANDSAUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_MORENA,Madhya Pradesh,MORENA,Madhya Pradesh,MORENA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_NARSINGHPUR,Madhya Pradesh,NARSINGHPUR,Madhya Pradesh,NARSINGHPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,0
+IND_MADHYA_PRADESH_NEEMUCH,Madhya Pradesh,NEEMUCH,Madhya Pradesh,NEEMUCH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_PANNA,Madhya Pradesh,PANNA,Madhya Pradesh,PANNA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_RAIPUR,Madhya Pradesh,RAIPUR,Madhya Pradesh,RAIPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,0
+IND_MADHYA_PRADESH_RAISEN,Madhya Pradesh,RAISEN,Madhya Pradesh,RAISEN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_RAJGARH,Madhya Pradesh,RAJGARH,Madhya Pradesh,RAJGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_RAJNANDGAON,Madhya Pradesh,RAJNANDGAON,Madhya Pradesh,RAJNANDGAON,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MADHYA_PRADESH_RATLAM,Madhya Pradesh,RATLAM,Madhya Pradesh,RATLAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_REWA,Madhya Pradesh,REWA,Madhya Pradesh,REWA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SAGAR,Madhya Pradesh,SAGAR,Madhya Pradesh,SAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SATNA,Madhya Pradesh,SATNA,Madhya Pradesh,SATNA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SEHORE,Madhya Pradesh,SEHORE,Madhya Pradesh,SEHORE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SEONI,Madhya Pradesh,SEONI,Madhya Pradesh,SEONI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SHAHDOL,Madhya Pradesh,SHAHDOL,Madhya Pradesh,SHAHDOL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SHAJAPUR,Madhya Pradesh,SHAJAPUR,Madhya Pradesh,SHAJAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SHEOPUR,Madhya Pradesh,SHEOPUR,Madhya Pradesh,SHEOPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SHIVPURI,Madhya Pradesh,SHIVPURI,Madhya Pradesh,SHIVPURI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SIDHI,Madhya Pradesh,SIDHI,Madhya Pradesh,SIDHI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_SINGRAULI,Madhya Pradesh,SINGRAULI,Madhya Pradesh,SINGRAULI,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_MADHYA_PRADESH_SURGUJA,Madhya Pradesh,SURGUJA,Madhya Pradesh,SURGUJA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_TIKAMGARH,Madhya Pradesh,TIKAMGARH,Madhya Pradesh,TIKAMGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_UJJAIN,Madhya Pradesh,UJJAIN,Madhya Pradesh,UJJAIN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_UMARIA,Madhya Pradesh,UMARIA,Madhya Pradesh,UMARIA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MADHYA_PRADESH_VIDISHA,Madhya Pradesh,VIDISHA,Madhya Pradesh,VIDISHA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_AHMEDNAGAR,Maharashtra,AHMEDNAGAR,Maharashtra,AHMEDNAGAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_AKOLA,Maharashtra,AKOLA,Maharashtra,AKOLA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_AMRAVATI,Maharashtra,AMRAVATI,Maharashtra,AMRAVATI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_AURANGABAD,Maharashtra,AURANGABAD,Maharashtra,AURANGABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_BEED,Maharashtra,BEED,Maharashtra,BEED,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_BHANDARA,Maharashtra,BHANDARA,Maharashtra,BHANDARA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_BULDHANA,Maharashtra,BULDHANA,Maharashtra,BULDHANA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_CHANDRAPUR,Maharashtra,CHANDRAPUR,Maharashtra,CHANDRAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_DHULE,Maharashtra,DHULE,Maharashtra,DHULE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_GADCHIROLI,Maharashtra,GADCHIROLI,Maharashtra,GADCHIROLI,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_MAHARASHTRA_GONDIA,Maharashtra,GONDIA,Maharashtra,GONDIA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_HINGOLI,Maharashtra,HINGOLI,Maharashtra,HINGOLI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_JALGAON,Maharashtra,JALGAON,Maharashtra,JALGAON,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_JALNA,Maharashtra,JALNA,Maharashtra,JALNA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_KOLHAPUR,Maharashtra,KOLHAPUR,Maharashtra,KOLHAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_LATUR,Maharashtra,LATUR,Maharashtra,LATUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_MUMBAI,Maharashtra,MUMBAI,Maharashtra,MUMBAI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_NAGPUR,Maharashtra,NAGPUR,Maharashtra,NAGPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_NANDED,Maharashtra,NANDED,Maharashtra,NANDED,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_NANDURBAR,Maharashtra,NANDURBAR,Maharashtra,NANDURBAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_NASHIK,Maharashtra,NASHIK,Maharashtra,NASHIK,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_OSMANABAD,Maharashtra,OSMANABAD,Maharashtra,OSMANABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_PALGHAR,Maharashtra,PALGHAR,Maharashtra,PALGHAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_PARBHANI,Maharashtra,PARBHANI,Maharashtra,PARBHANI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_PUNE,Maharashtra,PUNE,Maharashtra,PUNE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_RAIGAD,Maharashtra,RAIGAD,Maharashtra,RAIGAD,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_RATNAGIRI,Maharashtra,RATNAGIRI,Maharashtra,RATNAGIRI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_SANGLI,Maharashtra,SANGLI,Maharashtra,SANGLI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_SATARA,Maharashtra,SATARA,Maharashtra,SATARA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_SINDHUDURG,Maharashtra,SINDHUDURG,Maharashtra,SINDHUDURG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_SOLAPUR,Maharashtra,SOLAPUR,Maharashtra,SOLAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_THANE,Maharashtra,THANE,Maharashtra,THANE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_WARDHA,Maharashtra,WARDHA,Maharashtra,WARDHA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_WASHIM,Maharashtra,WASHIM,Maharashtra,WASHIM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MAHARASHTRA_YAVATMAL,Maharashtra,YAVATMAL,Maharashtra,YAVATMAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MANIPUR_BISHNUPUR,Manipur,BISHNUPUR,Manipur,BISHNUPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MANIPUR_CHANDEL,Manipur,CHANDEL,Manipur,CHANDEL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MANIPUR_CHURACHANDPUR,Manipur,CHURACHANDPUR,Manipur,CHURACHANDPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MANIPUR_IMPHAL_EAST,Manipur,IMPHAL EAST,Manipur,IMPHAL EAST,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MANIPUR_IMPHAL_WEST,Manipur,IMPHAL WEST,Manipur,IMPHAL WEST,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MANIPUR_SENAPATI,Manipur,SENAPATI,Manipur,SENAPATI,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_MANIPUR_TAMENGLONG,Manipur,TAMENGLONG,Manipur,TAMENGLONG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MANIPUR_THOUBAL,Manipur,THOUBAL,Manipur,THOUBAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MANIPUR_UKHRUL,Manipur,UKHRUL,Manipur,UKHRUL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MEGHALAYA_EAST_GARO_HILLS,Meghalaya,EAST GARO HILLS,Meghalaya,EAST GARO HILLS,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MEGHALAYA_EAST_JAINTIA_HILLS,Meghalaya,EAST JAINTIA HILLS,Meghalaya,EAST JAINTIA HILLS,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MEGHALAYA_EAST_KHASI_HILLS,Meghalaya,EAST KHASI HILLS,Meghalaya,EAST KHASI HILLS,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MEGHALAYA_NORTH_GARO_HILLS,Meghalaya,NORTH GARO HILLS,Meghalaya,NORTH GARO HILLS,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MEGHALAYA_RI_BHOI,Meghalaya,RI BHOI,Meghalaya,RI BHOI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MEGHALAYA_SOUTH_GARO_HILLS,Meghalaya,SOUTH GARO HILLS,Meghalaya,SOUTH GARO HILLS,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MEGHALAYA_SOUTH_WEST_GARO_HILLS,Meghalaya,SOUTH WEST GARO HILLS,Meghalaya,SOUTH WEST GARO HILLS,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MEGHALAYA_SOUTH_WEST_KHASI_HILLS,Meghalaya,SOUTH WEST KHASI HILLS,Meghalaya,SOUTH WEST KHASI HILLS,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_MEGHALAYA_WEST_GARO_HILLS,Meghalaya,WEST GARO HILLS,Meghalaya,WEST GARO HILLS,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MEGHALAYA_WEST_JAINTIA_HILLS,Meghalaya,WEST JAINTIA HILLS,Meghalaya,WEST JAINTIA HILLS,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_MEGHALAYA_WEST_KHASI_HILLS,Meghalaya,WEST KHASI HILLS,Meghalaya,WEST KHASI HILLS,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MIZORAM_AIZAWL,Mizoram,AIZAWL,Mizoram,AIZAWL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MIZORAM_CHAMPHAI,Mizoram,CHAMPHAI,Mizoram,CHAMPHAI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MIZORAM_KOLASIB,Mizoram,KOLASIB,Mizoram,KOLASIB,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MIZORAM_LAWNGTLAI,Mizoram,LAWNGTLAI,Mizoram,LAWNGTLAI,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_MIZORAM_LUNGLEI,Mizoram,LUNGLEI,Mizoram,LUNGLEI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MIZORAM_MAMIT,Mizoram,MAMIT,Mizoram,MAMIT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MIZORAM_SAIHA,Mizoram,SAIHA,Mizoram,SAIHA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_MIZORAM_SERCHHIP,Mizoram,SERCHHIP,Mizoram,SERCHHIP,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_NAGALAND_DIMAPUR,Nagaland,DIMAPUR,Nagaland,DIMAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_NAGALAND_KIPHIRE,Nagaland,KIPHIRE,Nagaland,KIPHIRE,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_NAGALAND_KOHIMA,Nagaland,KOHIMA,Nagaland,KOHIMA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_NAGALAND_LONGLENG,Nagaland,LONGLENG,Nagaland,LONGLENG,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_NAGALAND_MOKOKCHUNG,Nagaland,MOKOKCHUNG,Nagaland,MOKOKCHUNG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_NAGALAND_MON,Nagaland,MON,Nagaland,MON,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_NAGALAND_PEREN,Nagaland,PEREN,Nagaland,PEREN,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_NAGALAND_PHEK,Nagaland,PHEK,Nagaland,PHEK,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_NAGALAND_TUENSANG,Nagaland,TUENSANG,Nagaland,TUENSANG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_NAGALAND_WOKHA,Nagaland,WOKHA,Nagaland,WOKHA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_NAGALAND_ZUNHEBOTO,Nagaland,ZUNHEBOTO,Nagaland,ZUNHEBOTO,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_ANUGUL,Odisha,ANUGUL,Odisha,ANUGUL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_BALANGIR,Odisha,BALANGIR,Odisha,BALANGIR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_BALESHWAR,Odisha,BALESHWAR,Odisha,BALESHWAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_BARGARH,Odisha,BARGARH,Odisha,BARGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_BHADRAK,Odisha,BHADRAK,Odisha,BHADRAK,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_BOUDH,Odisha,BOUDH,Odisha,BOUDH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_ODISHA_CUTTACK,Odisha,CUTTACK,Odisha,CUTTACK,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_DEOGARH,Odisha,DEOGARH,Odisha,DEOGARH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_ODISHA_DHENKANAL,Odisha,DHENKANAL,Odisha,DHENKANAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_GAJAPATI,Odisha,GAJAPATI,Odisha,GAJAPATI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_GANJAM,Odisha,GANJAM,Odisha,GANJAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_JAGATSINGHAPUR,Odisha,JAGATSINGHAPUR,Odisha,JAGATSINGHAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_JAJAPUR,Odisha,JAJAPUR,Odisha,JAJAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_JHARSUGUDA,Odisha,JHARSUGUDA,Odisha,JHARSUGUDA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_KALAHANDI,Odisha,KALAHANDI,Odisha,KALAHANDI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_KANDHAMAL,Odisha,KANDHAMAL,Odisha,KANDHAMAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_KENDRAPARA,Odisha,KENDRAPARA,Odisha,KENDRAPARA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_KENDUJHAR,Odisha,KENDUJHAR,Odisha,KENDUJHAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_KHORDHA,Odisha,KHORDHA,Odisha,KHORDHA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_KORAPUT,Odisha,KORAPUT,Odisha,KORAPUT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_MALKANGIRI,Odisha,MALKANGIRI,Odisha,MALKANGIRI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_MAYURBHANJ,Odisha,MAYURBHANJ,Odisha,MAYURBHANJ,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_NABARANGPUR,Odisha,NABARANGPUR,Odisha,NABARANGPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_ODISHA_NAYAGARH,Odisha,NAYAGARH,Odisha,NAYAGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_NUAPADA,Odisha,NUAPADA,Odisha,NUAPADA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_PURI,Odisha,PURI,Odisha,PURI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_RAYAGADA,Odisha,RAYAGADA,Odisha,RAYAGADA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_SAMBALPUR,Odisha,SAMBALPUR,Odisha,SAMBALPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_ODISHA_SONEPUR,Odisha,SONEPUR,Odisha,SONEPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_ODISHA_SUNDARGARH,Odisha,SUNDARGARH,Odisha,SUNDARGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUDUCHERRY_KARAIKAL,Puducherry,KARAIKAL,Puducherry,KARAIKAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUDUCHERRY_MAHE,Puducherry,MAHE,Puducherry,MAHE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUDUCHERRY_PONDICHERRY,Puducherry,PONDICHERRY,Puducherry,PONDICHERRY,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_PUDUCHERRY_YANAM,Puducherry,YANAM,Puducherry,YANAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_AMRITSAR,Punjab,AMRITSAR,Punjab,AMRITSAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_BARNALA,Punjab,BARNALA,Punjab,BARNALA,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_PUNJAB_BATHINDA,Punjab,BATHINDA,Punjab,BATHINDA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_FARIDKOT,Punjab,FARIDKOT,Punjab,FARIDKOT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_FATEHGARH_SAHIB,Punjab,FATEHGARH SAHIB,Punjab,FATEHGARH SAHIB,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_FAZILKA,Punjab,FAZILKA,Punjab,FAZILKA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_PUNJAB_FIROZEPUR,Punjab,FIROZEPUR,Punjab,FIROZEPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_PUNJAB_GURDASPUR,Punjab,GURDASPUR,Punjab,GURDASPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_HOSHIARPUR,Punjab,HOSHIARPUR,Punjab,HOSHIARPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_JALANDHAR,Punjab,JALANDHAR,Punjab,JALANDHAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_KAPURTHALA,Punjab,KAPURTHALA,Punjab,KAPURTHALA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_LUDHIANA,Punjab,LUDHIANA,Punjab,LUDHIANA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_MANSA,Punjab,MANSA,Punjab,MANSA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_MOGA,Punjab,MOGA,Punjab,MOGA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_MUKTSAR,Punjab,MUKTSAR,Punjab,MUKTSAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_NAWANSHAHR,Punjab,NAWANSHAHR,Punjab,NAWANSHAHR,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_PUNJAB_PATHANKOT,Punjab,PATHANKOT,Punjab,PATHANKOT,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_PUNJAB_PATIALA,Punjab,PATIALA,Punjab,PATIALA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_RUPNAGAR,Punjab,RUPNAGAR,Punjab,RUPNAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_S,Punjab,S,Punjab,S.A.S NAGAR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_manual_override,Census 2011,Census 2011,1,1
+IND_PUNJAB_SANGRUR,Punjab,SANGRUR,Punjab,SANGRUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_PUNJAB_S_A_S_NAGAR,Punjab,S.A.S NAGAR,Punjab,S.A.S NAGAR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_alias_unique,Census 2011,Census 2011,1,1
+IND_PUNJAB_TARN_TARAN,Punjab,TARN TARAN,Punjab,TARN TARAN,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_RAJASTHAN_AJMER,Rajasthan,AJMER,Rajasthan,AJMER,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_ALWAR,Rajasthan,ALWAR,Rajasthan,ALWAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_BANSWARA,Rajasthan,BANSWARA,Rajasthan,BANSWARA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_BARAN,Rajasthan,BARAN,Rajasthan,BARAN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_BARMER,Rajasthan,BARMER,Rajasthan,BARMER,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_BHARATPUR,Rajasthan,BHARATPUR,Rajasthan,BHARATPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_BHILWARA,Rajasthan,BHILWARA,Rajasthan,BHILWARA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_BIKANER,Rajasthan,BIKANER,Rajasthan,BIKANER,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_BUNDI,Rajasthan,BUNDI,Rajasthan,BUNDI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_CHITTORGARH,Rajasthan,CHITTORGARH,Rajasthan,CHITTORGARH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_CHURU,Rajasthan,CHURU,Rajasthan,CHURU,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_DAUSA,Rajasthan,DAUSA,Rajasthan,DAUSA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_DHOLPUR,Rajasthan,DHOLPUR,Rajasthan,DHOLPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_DUNGARPUR,Rajasthan,DUNGARPUR,Rajasthan,DUNGARPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_GANGANAGAR,Rajasthan,GANGANAGAR,Rajasthan,GANGANAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_HANUMANGARH,Rajasthan,HANUMANGARH,Rajasthan,HANUMANGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_JAIPUR,Rajasthan,JAIPUR,Rajasthan,JAIPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_JAISALMER,Rajasthan,JAISALMER,Rajasthan,JAISALMER,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_JALORE,Rajasthan,JALORE,Rajasthan,JALORE,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_JHALAWAR,Rajasthan,JHALAWAR,Rajasthan,JHALAWAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_JHUNJHUNU,Rajasthan,JHUNJHUNU,Rajasthan,JHUNJHUNU,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_JODHPUR,Rajasthan,JODHPUR,Rajasthan,JODHPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_KARAULI,Rajasthan,KARAULI,Rajasthan,KARAULI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_KOTA,Rajasthan,KOTA,Rajasthan,KOTA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_NAGAUR,Rajasthan,NAGAUR,Rajasthan,NAGAUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_PALI,Rajasthan,PALI,Rajasthan,PALI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_PRATAPGARH,Rajasthan,PRATAPGARH,Rajasthan,PRATAPGARH,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_RAJASTHAN_RAJSAMAND,Rajasthan,RAJSAMAND,Rajasthan,RAJSAMAND,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_SAWAI_MADHOPUR,Rajasthan,SAWAI MADHOPUR,Rajasthan,SAWAI MADHOPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_SIKAR,Rajasthan,SIKAR,Rajasthan,SIKAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_SIROHI,Rajasthan,SIROHI,Rajasthan,SIROHI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_TONK,Rajasthan,TONK,Rajasthan,TONK,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_RAJASTHAN_UDAIPUR,Rajasthan,UDAIPUR,Rajasthan,UDAIPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_SIKKIM_EAST_DISTRICT,Sikkim,EAST DISTRICT,Sikkim,EAST DISTRICT,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_SIKKIM_NORTH_DISTRICT,Sikkim,NORTH DISTRICT,Sikkim,NORTH DISTRICT,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_SIKKIM_SOUTH_DISTRICT,Sikkim,SOUTH DISTRICT,Sikkim,SOUTH DISTRICT,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_SIKKIM_WEST_DISTRICT,Sikkim,WEST DISTRICT,Sikkim,WEST DISTRICT,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_ARIYALUR,Tamil Nadu,ARIYALUR,Tamil Nadu,ARIYALUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_COIMBATORE,Tamil Nadu,COIMBATORE,Tamil Nadu,COIMBATORE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_CUDDALORE,Tamil Nadu,CUDDALORE,Tamil Nadu,CUDDALORE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_DHARMAPURI,Tamil Nadu,DHARMAPURI,Tamil Nadu,DHARMAPURI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_DINDIGUL,Tamil Nadu,DINDIGUL,Tamil Nadu,DINDIGUL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_ERODE,Tamil Nadu,ERODE,Tamil Nadu,ERODE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_KANCHIPURAM,Tamil Nadu,KANCHIPURAM,Tamil Nadu,KANCHIPURAM,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_KANNIYAKUMARI,Tamil Nadu,KANNIYAKUMARI,Tamil Nadu,KANNIYAKUMARI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_KARUR,Tamil Nadu,KARUR,Tamil Nadu,KARUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_KRISHNAGIRI,Tamil Nadu,KRISHNAGIRI,Tamil Nadu,KRISHNAGIRI,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_TAMIL_NADU_MADURAI,Tamil Nadu,MADURAI,Tamil Nadu,MADURAI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_NAGAPATTINAM,Tamil Nadu,NAGAPATTINAM,Tamil Nadu,NAGAPATTINAM,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_TAMIL_NADU_NAMAKKAL,Tamil Nadu,NAMAKKAL,Tamil Nadu,NAMAKKAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_PERAMBALUR,Tamil Nadu,PERAMBALUR,Tamil Nadu,PERAMBALUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_PUDUKKOTTAI,Tamil Nadu,PUDUKKOTTAI,Tamil Nadu,PUDUKKOTTAI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_RAMANATHAPURAM,Tamil Nadu,RAMANATHAPURAM,Tamil Nadu,RAMANATHAPURAM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_SALEM,Tamil Nadu,SALEM,Tamil Nadu,SALEM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_SIVAGANGA,Tamil Nadu,SIVAGANGA,Tamil Nadu,SIVAGANGA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_THANJAVUR,Tamil Nadu,THANJAVUR,Tamil Nadu,THANJAVUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_THENI,Tamil Nadu,THENI,Tamil Nadu,THENI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_THE_NILGIRIS,Tamil Nadu,THE NILGIRIS,Tamil Nadu,THE NILGIRIS,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_THIRUVALLUR,Tamil Nadu,THIRUVALLUR,Tamil Nadu,THIRUVALLUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_THIRUVARUR,Tamil Nadu,THIRUVARUR,Tamil Nadu,THIRUVARUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_THOOTHUKUDI,Tamil Nadu,THOOTHUKUDI,Tamil Nadu,THOOTHUKUDI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_TIRUCHIRAPPALLI,Tamil Nadu,TIRUCHIRAPPALLI,Tamil Nadu,TIRUCHIRAPPALLI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_TIRUNELVELI,Tamil Nadu,TIRUNELVELI,Tamil Nadu,TIRUNELVELI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_TIRUPPUR,Tamil Nadu,TIRUPPUR,Tamil Nadu,TIRUPPUR,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_TAMIL_NADU_TIRUVANNAMALAI,Tamil Nadu,TIRUVANNAMALAI,Tamil Nadu,TIRUVANNAMALAI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_TUTICORIN,Tamil Nadu,TUTICORIN,Tamil Nadu,TUTICORIN,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_VELLORE,Tamil Nadu,VELLORE,Tamil Nadu,VELLORE,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_VILLUPURAM,Tamil Nadu,VILLUPURAM,Tamil Nadu,VILLUPURAM,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_TAMIL_NADU_VIRUDHUNAGAR,Tamil Nadu,VIRUDHUNAGAR,Tamil Nadu,VIRUDHUNAGAR,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_TELANGANA_ADILABAD,Telangana,ADILABAD,Telangana,ADILABAD,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,1,1
+IND_TELANGANA_HYDERABAD,Telangana,HYDERABAD,Telangana,HYDERABAD,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,0,0
+IND_TELANGANA_KARIMNAGAR,Telangana,KARIMNAGAR,Telangana,KARIMNAGAR,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,0,0
+IND_TELANGANA_KHAMMAM,Telangana,KHAMMAM,Telangana,KHAMMAM,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,0,0
+IND_TELANGANA_MAHBUBNAGAR,Telangana,MAHBUBNAGAR,Telangana,MAHBUBNAGAR,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,0,0
+IND_TELANGANA_MEDAK,Telangana,MEDAK,Telangana,MEDAK,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,0,0
+IND_TELANGANA_NALGONDA,Telangana,NALGONDA,Telangana,NALGONDA,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,0,0
+IND_TELANGANA_NIZAMABAD,Telangana,NIZAMABAD,Telangana,NIZAMABAD,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,0,0
+IND_TELANGANA_RANGAREDDI,Telangana,RANGAREDDI,Telangana,RANGAREDDI,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,0,0
+IND_TELANGANA_WARANGAL,Telangana,WARANGAL,Telangana,WARANGAL,historical_fallback,historical_fallback,historical_state_boundary_fallback,historical_state_boundary_fallback,Census 2001,Census 2011,0,0
+IND_TRIPURA_DHALAI,Tripura,DHALAI,Tripura,DHALAI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TRIPURA_GOMATI,Tripura,GOMATI,Tripura,GOMATI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_TRIPURA_KHOWAI,Tripura,KHOWAI,Tripura,KHOWAI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_TRIPURA_NORTH_TRIPURA,Tripura,NORTH TRIPURA,Tripura,NORTH TRIPURA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TRIPURA_SEPAHIJALA,Tripura,SEPAHIJALA,Tripura,SEPAHIJALA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_TRIPURA_SOUTH_TRIPURA,Tripura,SOUTH TRIPURA,Tripura,SOUTH TRIPURA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_TRIPURA_UNAKOTI,Tripura,UNAKOTI,Tripura,UNAKOTI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_TRIPURA_WEST_TRIPURA,Tripura,WEST TRIPURA,Tripura,WEST TRIPURA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_ALMORA,Uttarakhand,ALMORA,Uttarakhand,ALMORA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_BAGESHWAR,Uttarakhand,BAGESHWAR,Uttarakhand,BAGESHWAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_CHAMOLI,Uttarakhand,CHAMOLI,Uttarakhand,CHAMOLI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_CHAMPAWAT,Uttarakhand,CHAMPAWAT,Uttarakhand,CHAMPAWAT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_DEHRADUN,Uttarakhand,DEHRADUN,Uttarakhand,DEHRADUN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_HARIDWAR,Uttarakhand,HARIDWAR,Uttarakhand,HARIDWAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_NAINITAL,Uttarakhand,NAINITAL,Uttarakhand,NAINITAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_PAURI_GARHWAL,Uttarakhand,PAURI GARHWAL,Uttarakhand,PAURI GARHWAL,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_PITHORAGARH,Uttarakhand,PITHORAGARH,Uttarakhand,PITHORAGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_RUDRA_PRAYAG,Uttarakhand,RUDRA PRAYAG,Uttarakhand,RUDRA PRAYAG,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_TEHRI_GARHWAL,Uttarakhand,TEHRI GARHWAL,Uttarakhand,TEHRI GARHWAL,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_UDAM_SINGH_NAGAR,Uttarakhand,UDAM SINGH NAGAR,Uttarakhand,UDAM SINGH NAGAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTARAKHAND_UTTAR_KASHI,Uttarakhand,UTTAR KASHI,Uttarakhand,UTTAR KASHI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_AGRA,Uttar Pradesh,AGRA,Uttar Pradesh,AGRA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_ALIGARH,Uttar Pradesh,ALIGARH,Uttar Pradesh,ALIGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_ALLAHABAD,Uttar Pradesh,ALLAHABAD,Uttar Pradesh,ALLAHABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_ALMORA,Uttar Pradesh,ALMORA,Uttar Pradesh,ALMORA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_UTTAR_PRADESH_AMBEDKAR_NAGAR,Uttar Pradesh,AMBEDKAR NAGAR,Uttar Pradesh,AMBEDKAR NAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_AMETHI,Uttar Pradesh,AMETHI,Uttar Pradesh,AMETHI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_AMROHA,Uttar Pradesh,AMROHA,Uttar Pradesh,AMROHA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_UTTAR_PRADESH_AURAIYA,Uttar Pradesh,AURAIYA,Uttar Pradesh,AURAIYA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_AZAMGARH,Uttar Pradesh,AZAMGARH,Uttar Pradesh,AZAMGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BAGESHWAR,Uttar Pradesh,BAGESHWAR,Uttar Pradesh,BAGESHWAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BAGHPAT,Uttar Pradesh,BAGHPAT,Uttar Pradesh,BAGHPAT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BAHRAICH,Uttar Pradesh,BAHRAICH,Uttar Pradesh,BAHRAICH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BALLIA,Uttar Pradesh,BALLIA,Uttar Pradesh,BALLIA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BALRAMPUR,Uttar Pradesh,BALRAMPUR,Uttar Pradesh,BALRAMPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BANDA,Uttar Pradesh,BANDA,Uttar Pradesh,BANDA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BARABANKI,Uttar Pradesh,BARABANKI,Uttar Pradesh,BARABANKI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BAREILLY,Uttar Pradesh,BAREILLY,Uttar Pradesh,BAREILLY,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BASTI,Uttar Pradesh,BASTI,Uttar Pradesh,BASTI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BIJNOR,Uttar Pradesh,BIJNOR,Uttar Pradesh,BIJNOR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BUDAUN,Uttar Pradesh,BUDAUN,Uttar Pradesh,BUDAUN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_BULANDSHAHR,Uttar Pradesh,BULANDSHAHR,Uttar Pradesh,BULANDSHAHR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_CHAMOLI,Uttar Pradesh,CHAMOLI,Uttar Pradesh,CHAMOLI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_CHAMPAWAT,Uttar Pradesh,CHAMPAWAT,Uttar Pradesh,CHAMPAWAT,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_UTTAR_PRADESH_CHANDAULI,Uttar Pradesh,CHANDAULI,Uttar Pradesh,CHANDAULI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_CHITRAKOOT,Uttar Pradesh,CHITRAKOOT,Uttar Pradesh,CHITRAKOOT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_DEHRADUN,Uttar Pradesh,DEHRADUN,Uttar Pradesh,DEHRADUN,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_DEORIA,Uttar Pradesh,DEORIA,Uttar Pradesh,DEORIA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_ETAH,Uttar Pradesh,ETAH,Uttar Pradesh,ETAH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_ETAWAH,Uttar Pradesh,ETAWAH,Uttar Pradesh,ETAWAH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_FAIZABAD,Uttar Pradesh,FAIZABAD,Uttar Pradesh,FAIZABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_FARRUKHABAD,Uttar Pradesh,FARRUKHABAD,Uttar Pradesh,FARRUKHABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_FATEHPUR,Uttar Pradesh,FATEHPUR,Uttar Pradesh,FATEHPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_FIROZABAD,Uttar Pradesh,FIROZABAD,Uttar Pradesh,FIROZABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_GAUTAM_BUDDHA_NAGAR,Uttar Pradesh,GAUTAM BUDDHA NAGAR,Uttar Pradesh,GAUTAM BUDDHA NAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_GHAZIABAD,Uttar Pradesh,GHAZIABAD,Uttar Pradesh,GHAZIABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_GHAZIPUR,Uttar Pradesh,GHAZIPUR,Uttar Pradesh,GHAZIPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_GONDA,Uttar Pradesh,GONDA,Uttar Pradesh,GONDA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_GORAKHPUR,Uttar Pradesh,GORAKHPUR,Uttar Pradesh,GORAKHPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_HAMIRPUR,Uttar Pradesh,HAMIRPUR,Uttar Pradesh,HAMIRPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_HAPUR,Uttar Pradesh,HAPUR,Uttar Pradesh,HAPUR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_HARDOI,Uttar Pradesh,HARDOI,Uttar Pradesh,HARDOI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_HARIDWAR,Uttar Pradesh,HARIDWAR,Uttar Pradesh,HARIDWAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_HATHRAS,Uttar Pradesh,HATHRAS,Uttar Pradesh,HATHRAS,confirmed,working_strong,confirmed_exact_unique,alternate_layer_confirmed_name,Census 2001,Census 2001,0,0
+IND_UTTAR_PRADESH_JALAUN,Uttar Pradesh,JALAUN,Uttar Pradesh,JALAUN,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_JAUNPUR,Uttar Pradesh,JAUNPUR,Uttar Pradesh,JAUNPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_JHANSI,Uttar Pradesh,JHANSI,Uttar Pradesh,JHANSI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_KANNAUJ,Uttar Pradesh,KANNAUJ,Uttar Pradesh,KANNAUJ,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_KANPUR_DEHAT,Uttar Pradesh,KANPUR DEHAT,Uttar Pradesh,KANPUR DEHAT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_KANPUR_NAGAR,Uttar Pradesh,KANPUR NAGAR,Uttar Pradesh,KANPUR NAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_KASGANJ,Uttar Pradesh,KASGANJ,Uttar Pradesh,KASGANJ,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_KAUSHAMBI,Uttar Pradesh,KAUSHAMBI,Uttar Pradesh,KAUSHAMBI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_KHERI,Uttar Pradesh,KHERI,Uttar Pradesh,KHERI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_KUSHI_NAGAR,Uttar Pradesh,KUSHI NAGAR,Uttar Pradesh,KUSHI NAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_LALITPUR,Uttar Pradesh,LALITPUR,Uttar Pradesh,LALITPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_LUCKNOW,Uttar Pradesh,LUCKNOW,Uttar Pradesh,LUCKNOW,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_MAHARAJGANJ,Uttar Pradesh,MAHARAJGANJ,Uttar Pradesh,MAHARAJGANJ,working_strong,confirmed,alternate_layer_confirmed_name,confirmed_exact_unique,Census 2011,Census 2011,0,0
+IND_UTTAR_PRADESH_MAHOBA,Uttar Pradesh,MAHOBA,Uttar Pradesh,MAHOBA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_MAINPURI,Uttar Pradesh,MAINPURI,Uttar Pradesh,MAINPURI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_MATHURA,Uttar Pradesh,MATHURA,Uttar Pradesh,MATHURA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_MAU,Uttar Pradesh,MAU,Uttar Pradesh,MAU,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_MEERUT,Uttar Pradesh,MEERUT,Uttar Pradesh,MEERUT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_MIRZAPUR,Uttar Pradesh,MIRZAPUR,Uttar Pradesh,MIRZAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_MORADABAD,Uttar Pradesh,MORADABAD,Uttar Pradesh,MORADABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_MUZAFFARNAGAR,Uttar Pradesh,MUZAFFARNAGAR,Uttar Pradesh,MUZAFFARNAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_NAINITAL,Uttar Pradesh,NAINITAL,Uttar Pradesh,NAINITAL,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_PAURI_GARHWAL,Uttar Pradesh,PAURI GARHWAL,Uttar Pradesh,PAURI GARHWAL,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_UTTAR_PRADESH_PILIBHIT,Uttar Pradesh,PILIBHIT,Uttar Pradesh,PILIBHIT,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_PITHORAGARH,Uttar Pradesh,PITHORAGARH,Uttar Pradesh,PITHORAGARH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_PRATAPGARH,Uttar Pradesh,PRATAPGARH,Uttar Pradesh,PRATAPGARH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_RAE_BARELI,Uttar Pradesh,RAE BARELI,Uttar Pradesh,RAE BARELI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_RAMPUR,Uttar Pradesh,RAMPUR,Uttar Pradesh,RAMPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_RUDRA_PRAYAG,Uttar Pradesh,RUDRA PRAYAG,Uttar Pradesh,RUDRA PRAYAG,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_SAHARANPUR,Uttar Pradesh,SAHARANPUR,Uttar Pradesh,SAHARANPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_SAMBHAL,Uttar Pradesh,SAMBHAL,Uttar Pradesh,SAMBHAL,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_UTTAR_PRADESH_SANT_KABEER_NAGAR,Uttar Pradesh,SANT KABEER NAGAR,Uttar Pradesh,SANT KABEER NAGAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,1
+IND_UTTAR_PRADESH_SANT_RAVIDAS_NAGAR,Uttar Pradesh,SANT RAVIDAS NAGAR,Uttar Pradesh,SANT RAVIDAS NAGAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,1
+IND_UTTAR_PRADESH_SHAHJAHANPUR,Uttar Pradesh,SHAHJAHANPUR,Uttar Pradesh,SHAHJAHANPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_SHAMLI,Uttar Pradesh,SHAMLI,Uttar Pradesh,SHAMLI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_UTTAR_PRADESH_SHRAVASTI,Uttar Pradesh,SHRAVASTI,Uttar Pradesh,SHRAVASTI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_UTTAR_PRADESH_SIDDHARTH_NAGAR,Uttar Pradesh,SIDDHARTH NAGAR,Uttar Pradesh,SIDDHARTH NAGAR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_SITAPUR,Uttar Pradesh,SITAPUR,Uttar Pradesh,SITAPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_SONBHADRA,Uttar Pradesh,SONBHADRA,Uttar Pradesh,SONBHADRA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_SULTANPUR,Uttar Pradesh,SULTANPUR,Uttar Pradesh,SULTANPUR,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_TEHRI_GARHWAL,Uttar Pradesh,TEHRI GARHWAL,Uttar Pradesh,TEHRI GARHWAL,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_UTTAR_PRADESH_UDAM_SINGH_NAGAR,Uttar Pradesh,UDAM SINGH NAGAR,Uttar Pradesh,UDAM SINGH NAGAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_UNNAO,Uttar Pradesh,UNNAO,Uttar Pradesh,UNNAO,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_UTTAR_KASHI,Uttar Pradesh,UTTAR KASHI,Uttar Pradesh,UTTAR KASHI,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_UTTAR_PRADESH_VARANASI,Uttar Pradesh,VARANASI,Uttar Pradesh,VARANASI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_24_PARAGANAS_NORTH,West Bengal,24 PARAGANAS NORTH,West Bengal,24 PARAGANAS NORTH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_24_PARAGANAS_SOUTH,West Bengal,24 PARAGANAS SOUTH,West Bengal,24 PARAGANAS SOUTH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_ALIPURDUAR,West Bengal,ALIPURDUAR,West Bengal,ALIPURDUAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_WEST_BENGAL_BANKURA,West Bengal,BANKURA,West Bengal,BANKURA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_BARDHAMAN,West Bengal,BARDHAMAN,West Bengal,BARDHAMAN,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,0
+IND_WEST_BENGAL_BIRBHUM,West Bengal,BIRBHUM,West Bengal,BIRBHUM,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_COOCHBEHAR,West Bengal,COOCHBEHAR,West Bengal,COOCHBEHAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_DARJEELING,West Bengal,DARJEELING,West Bengal,DARJEELING,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_DINAJPUR_DAKSHIN,West Bengal,DINAJPUR DAKSHIN,West Bengal,DINAJPUR DAKSHIN,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_DINAJPUR_UTTAR,West Bengal,DINAJPUR UTTAR,West Bengal,DINAJPUR UTTAR,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_HOOGHLY,West Bengal,HOOGHLY,West Bengal,HOOGHLY,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_HOWRAH,West Bengal,HOWRAH,West Bengal,HOWRAH,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_JALPAIGURI,West Bengal,JALPAIGURI,West Bengal,JALPAIGURI,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_MALDAH,West Bengal,MALDAH,West Bengal,MALDAH,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_MEDINIPUR_EAST,West Bengal,MEDINIPUR EAST,West Bengal,MEDINIPUR EAST,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_WEST_BENGAL_MEDINIPUR_WEST,West Bengal,MEDINIPUR WEST,West Bengal,MEDINIPUR WEST,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_WEST_BENGAL_MURSHIDABAD,West Bengal,MURSHIDABAD,West Bengal,MURSHIDABAD,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_NADIA,West Bengal,NADIA,West Bengal,NADIA,confirmed,confirmed,confirmed_exact_unique,confirmed_exact_unique,Census 2001,Census 2011,0,0
+IND_WEST_BENGAL_PURBA_BARDHAMAN,West Bengal,PURBA BARDHAMAN,West Bengal,PURBA BARDHAMAN,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
+IND_WEST_BENGAL_PURULIA,West Bengal,PURULIA,West Bengal,PURULIA,working_fallback,working_fallback,working_fuzzy_same_state,working_fuzzy_same_state,Census 2001,Census 2011,1,1
