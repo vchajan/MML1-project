@@ -15,6 +15,7 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 - Stará geografická a weather pipeline se už nepoužívá.
 - Audit názvů okresů byl vytvořen; souřadnice zatím nebyly přiřazeny.
 - District-name anomaly review completed; no geographic matching or coordinate assignment has been performed yet.
+- District name override stage is complete; boundaries and coordinates have not been assigned yet.
 
 Nová geography, weather ani soil pipeline zatím nejsou dokončené.
 

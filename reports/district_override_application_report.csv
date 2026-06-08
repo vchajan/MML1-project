@@ -1,0 +1,2 @@
+district_id,raw_state_name,raw_district_name,canonical_state_name,canonical_district_name,override_type,override_confidence,override_review_status,match_method,match_status,override_evidence
+IND_PUNJAB_S,Punjab,S,Punjab,S.A.S NAGAR,truncated_name,strong,ready_for_crosswalk_override_review,manual_override_strong,pending_boundary_confirmation,73 shared Crop_Year+Season+Crop rows; 55 same Area; 0 same Production; 0 same yield; 0 exact data-row matches; ratio hits x10/x100/x1000 = 17/72/0; candidate name contains one of the requested Punjab review terms

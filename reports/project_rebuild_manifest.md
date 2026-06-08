@@ -79,6 +79,7 @@ The large interim CSV remains local and ignored by Git.
 
 - District-name audit completed; geographic matching not yet performed.
 - District-name anomaly review completed; no geographic matching or coordinate assignment has been performed yet.
+- District name override stage completed; boundaries and coordinates have not been assigned yet.
 
 ## Next Step
 
