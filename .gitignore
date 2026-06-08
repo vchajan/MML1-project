@@ -1,30 +1,26 @@
-# Python cache
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-
-# Virtual environments
 .venv/
 venv/
-env/
-
-# Jupyter
+__pycache__/
+*.pyc
 .ipynb_checkpoints/
 
-# Editor / OS files
-.vscode/
-.idea/
+data/interim/crop_with_calendar_dates_1997_2014.csv
+data/interim/weather_daily/
+data/interim/**/*.parquet
+
+*.zip
 .DS_Store
 Thumbs.db
 
-# Weather/API cache and temporary files
+# Local cache and backups
 weather_cache/
 weather_cache_district_full/
 data/weather_cache/
-*.tmp
-*.log
-
-# Local backups
 *_backup/
 MML1-project-HW2_backup*/
+
+# Local/editor files
+.vscode/
+.idea/
+*.tmp
+*.log

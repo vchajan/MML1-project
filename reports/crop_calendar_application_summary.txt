@@ -1,0 +1,46 @@
+CROP CALENDAR APPLICATION SUMMARY
+=================================
+
+Input crop file:
+Indian_crop_production_yield_dataset.csv
+
+Calendar file:
+crop_calendar_rules_1997_2014_v1.csv
+
+Period:
+1997–2014
+
+Source rows in period:
+486,680
+
+Rows successfully assigned dates:
+486,680
+
+Unmatched rows:
+0
+
+Invalid date rows:
+0
+
+Rows with end before start:
+0
+
+Unexpected window differences:
+0
+
+Valid leap-day adjustments:
+49,473
+
+Coverage:
+100.0000 %
+
+Output:
+crop_with_calendar_dates_1997_2014.csv
+
+Validation:
+crop_calendar_application_validation.csv
+
+Interpretation:
+Each source row remains a separate State + District + Crop_Year + Season + Crop
+observation. The calendar only adds the explicit weather aggregation window.
+No seasonal or annual aggregation has been performed.

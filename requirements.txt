@@ -1,7 +1,11 @@
 pandas
 numpy
+pyarrow
+requests
+geopandas
+shapely
+folium
 scikit-learn
 matplotlib
-requests
 jupyter
 nbconvert

@@ -1,0 +1,47 @@
+DISTRICT REQUIREMENTS SUMMARY
+=============================
+
+Input:
+crop_with_calendar_dates_1997_2014.csv
+
+Period represented:
+1997–2014
+
+Unique State + District combinations:
+727
+
+Unique states:
+35
+
+Crop rows represented:
+486,680
+
+Files created:
+- required_districts_1997_2014.csv
+- district_crosswalk_template_1997_2014.csv
+
+Purpose:
+required_districts_1997_2014.csv is the authoritative list of geographic
+entities required by the rebuilt project.
+
+district_crosswalk_template_1997_2014.csv is the working table that will be
+completed with canonical district names, verified representative points,
+matching provenance and status.
+
+Top states by number of district names:
+State_Name
+Uttar Pradesh     88
+Madhya Pradesh    66
+Bihar             56
+Maharashtra       35
+Gujarat           33
+Rajasthan         33
+Tamil Nadu        32
+Odisha            30
+Karnataka         30
+Assam             27
+Chhattisgarh      27
+Jharkhand         24
+Punjab            23
+Andhra Pradesh    23
+Haryana           22

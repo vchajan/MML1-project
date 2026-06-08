@@ -1,0 +1,9 @@
+﻿check,count,status,details
+source_rows_1997_2014,486680,INFO,All source rows whose Crop_Year is between 1997 and 2014.
+matched_rows,486680,PASS,Rows assigned a rule and valid start/end dates.
+unmatched_rows,0,PASS,Rows with no State + Crop + Season rule.
+invalid_date_rows,0,PASS,Rows whose components could not form a valid date.
+invalid_order_rows,0,PASS,Rows where end_date precedes start_date.
+unexpected_window_rows,0,PASS,Rows differing from nominal rule length by more than one leap-day adjustment.
+leap_day_adjusted_rows,49473,INFO,Valid rows whose actual duration differs by one day because of leap-year placement.
+output_rows,486680,PASS,Rows written to the dated crop dataset.
