@@ -14,6 +14,7 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 - Půdní vlastnosti budou později získané ze SoilGrids.
 - Stará geografická a weather pipeline se už nepoužívá.
 - Audit názvů okresů byl vytvořen; souřadnice zatím nebyly přiřazeny.
+- District-name anomaly review completed; no geographic matching or coordinate assignment has been performed yet.
 
 Nová geography, weather ani soil pipeline zatím nejsou dokončené.
 
