@@ -80,6 +80,7 @@ The large interim CSV remains local and ignored by Git.
 - District-name audit completed; geographic matching not yet performed.
 - District-name anomaly review completed; no geographic matching or coordinate assignment has been performed yet.
 - District name override stage completed; boundaries and coordinates have not been assigned yet.
+- DataMeet Census 2001 and Census 2011 district boundary layers downloaded and technically audited at source commit `b3fbbde595310b397a55d718e0958ce249a4fa1f`; raw map files remain local and ignored by Git, source/license notes are in `data/reference/boundary_sources/datameet_district_boundaries.json`, and district matching plus representative points have not been performed yet.
 
 ## Next Step
 

@@ -16,6 +16,7 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 - Audit názvů okresů byl vytvořen; souřadnice zatím nebyly přiřazeny.
 - District-name anomaly review completed; no geographic matching or coordinate assignment has been performed yet.
 - District name override stage is complete; boundaries and coordinates have not been assigned yet.
+- Census 2001 and Census 2011 district boundary layers were downloaded and audited; raw map files are local and ignored by Git, source commit and license notes are stored in the boundary source manifest, and district matching plus representative points have not been performed yet.
 
 Nová geography, weather ani soil pipeline zatím nejsou dokončené.
 

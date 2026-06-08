@@ -1,0 +1,95 @@
+{
+  "source_name": "DataMeet maps historical district boundaries",
+  "repository_url": "https://github.com/datameet/maps",
+  "source_commit_sha": "b3fbbde595310b397a55d718e0958ce249a4fa1f",
+  "download_date_utc": "2026-06-08T19:48:48+00:00",
+  "source_paths": {
+    "census_2001": "Districts/Census_2001",
+    "census_2011": "Districts/Census_2011"
+  },
+  "local_paths": {
+    "census_2001": "data/external/datameet_districts/census_2001",
+    "census_2011": "data/external/datameet_districts/census_2011"
+  },
+  "license_name": "DataMeet maps attribution license; see source Districts folder",
+  "license_reference": "https://github.com/datameet/maps/tree/b3fbbde595310b397a55d718e0958ce249a4fa1f/Districts",
+  "attribution_text": "District names and extents are derived from Administrative Atlas of India, Census of India; geometries are assembled using taluk boundaries and Bhuvan/GeoCommons-derived data as described by the DataMeet maps project.",
+  "geometry_caveat": "These layers are a working historical reference assembled from multiple sources and are not legally authoritative administrative boundaries.",
+  "intended_project_use": "Historical district-name matching and generation of representative points for weather queries.",
+  "required_shapefile_extensions": [
+    ".dbf",
+    ".shp",
+    ".shx"
+  ],
+  "optional_shapefile_extensions": [
+    ".cpg",
+    ".prj"
+  ],
+  "file_manifest": [
+    {
+      "local_path": "data/external/datameet_districts/census_2001/2001_Dist.dbf",
+      "size_bytes": 77382,
+      "sha256": "FFD532BE92E38EF9D8B75630BE650BAADF4586D1889E965E83108B1643C68EE1"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2001/2001_Dist.prj",
+      "size_bytes": 145,
+      "sha256": "A02A27B1D1982C8516D83398E85A3C8B1AEF1713C13EF4D84D7BDE17430C07C4"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2001/2001_Dist.sbn",
+      "size_bytes": 6324,
+      "sha256": "0E170F94406123A9B34A681CB10C690B3676C0CDE1BEAC472BBD23B5F008F149"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2001/2001_Dist.sbx",
+      "size_bytes": 604,
+      "sha256": "B0483D35DB4E71330C9B3BE617C94AB60CE2F70985E7397018BA418024AAA57D"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2001/2001_Dist.shp",
+      "size_bytes": 10088504,
+      "sha256": "2DE4A9E21553C193FF2936F7A8412402E74DCC5D45D8100CD556B356D8AEE623"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2001/2001_Dist.shp.xml",
+      "size_bytes": 1182,
+      "sha256": "B0AAEA8DE5CBAEBC3AE934F086668CFBC183E117B7C9675C2EF5AB791549E63B"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2001/2001_Dist.shx",
+      "size_bytes": 4852,
+      "sha256": "21FDE25D8874AAECE7A158449A70F50789E308FE56E5A128871B9D0D45ACB0A6"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2011/2011_Dist.dbf",
+      "size_bytes": 54678,
+      "sha256": "2C7B03578FDF41A4C4E29941A564FA90BF0B0E4F865F5E54481EF7AC8494EB7D"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2011/2011_Dist.prj",
+      "size_bytes": 145,
+      "sha256": "A02A27B1D1982C8516D83398E85A3C8B1AEF1713C13EF4D84D7BDE17430C07C4"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2011/2011_Dist.sbn",
+      "size_bytes": 6700,
+      "sha256": "5F9FC6F63F7F3AFBB00213E9EC5D9E0F5614ACB5EC4B09FB7D8E226AC9A131BE"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2011/2011_Dist.sbx",
+      "size_bytes": 604,
+      "sha256": "4CFA7E863894118BF929E9EB4B4D97652481CE0F58359F2BB27848A1AE76ABCD"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2011/2011_Dist.shp",
+      "size_bytes": 10220732,
+      "sha256": "3636E627A519F67B4615B6A97DF48C2B279E8C7B2566D3BFBC3EDA1D06E33206"
+    },
+    {
+      "local_path": "data/external/datameet_districts/census_2011/2011_Dist.shx",
+      "size_bytes": 5228,
+      "sha256": "12B6028DFAC9E3F20686B3D0A44F9D3989ACFDB3F3CDA853881D1CF2D8579EAB"
+    }
+  ]
+}
