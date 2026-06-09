@@ -13,7 +13,7 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 - Základní modelový dataset má 267 150 řádků.
 - Coconut a agregované crop kategorie zůstávají v úplném kanonickém datasetu zdokumentované, ale nejsou v základním modelovém datasetu.
 - Weather pipeline nebyla při reconciliaci přepočítaná; byly zachované již vytvořené weather features.
-- Outlier treatment a train/validation/test split ještě nebyly vykonané.
+- Chronologický train/validation/test split je hotový. Outlier treatment a modelování ještě nebyly vykonané.
 - Půdní vlastnosti budou později získané ze SoilGrids.
 
 ## Hotové mezikroky
@@ -63,6 +63,30 @@ Z úplného kanonického datasetu jsou pro základní modelování vynechané po
 
 Nevyřazují se další target outliery. Outlier treatment se musí později fitovat pouze na train období.
 
+## Chronologický Modelovací Dataset
+
+Modelovací dataset je vytvořený z lokálního `data/interim/crop_weather_model_base_1997_2014.parquet` bez změny vstupních řádků:
+
+- model dataset: 267 150 řádků
+- train 1997-2010: 202 166 řádků
+- validation 2011-2012: 32 388 řádků
+- test 2013-2014: 32 596 řádků
+- target `target_yield`: 0 missing hodnot
+- weather feature missing hodnoty: 0
+
+Schválené feature sety jsou uložené v `data/reference/model_feature_manifest.json`:
+
+- `core_without_lag`: 31 features
+- `core_with_lag`: 33 features
+- 4 kategorické features, 4 numerické core features a 23 weather features
+
+Lag feature `lag_yield_1y` je vytvořený explicitním self-joinem na stejný district, crop a season s `Crop_Year = Y - 1`. Nejedná se o `groupby().shift()` nad seřazenou tabulkou.
+
+- řádky s dostupným lagem: 213 187
+- řádky bez dostupného lagu: 53 963
+
+Žádný imputer, encoder, scaler, outlier threshold ani model se při stavbě datasetu nefituje. Tyto kroky musí být později fitované pouze na train splitu. Test split 2013-2014 nebyl použitý pro model selection ani preprocessing rozhodnutí.
+
 ## Geografické Přiřazení
 
 Okresní body jsou vytvořené z Census 2001 a Census 2011 polygonů přes representative point. Pro každý crop řádek se používá census verze podle `Crop_Year`.
@@ -80,11 +104,12 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 
 - Úloha je regresní predikce `target_yield`.
 - `Production` nebude použité jako modelová feature.
-- Split bude chronologický:
+- Split je chronologický:
   - train: 1997-2010
   - validation: 2011-2012
   - test: 2013-2014
-- Test set nebude použitý před finální evaluací.
+- Test set nebyl použitý před finální evaluací ani pro model selection.
+- Baseline modely zatím nebyly vytvořené.
 
 ## Důležité Soubory
 
@@ -101,10 +126,20 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 - `data/interim/crop_weather_dataset_1997_2014.parquet` - lokální spojený crop-weather dataset ignorovaný Gitem.
 - `data/interim/crop_weather_canonical_1997_2014.parquet` - lokální úplný kanonický dataset ignorovaný Gitem.
 - `data/interim/crop_weather_model_base_1997_2014.parquet` - lokální základní modelový dataset ignorovaný Gitem.
+- `data/processed/model_dataset_1997_2014.parquet` - lokální modelovací dataset ignorovaný Gitem.
+- `data/processed/train_1997_2010.parquet` - lokální train split ignorovaný Gitem.
+- `data/processed/validation_2011_2012.parquet` - lokální validation split ignorovaný Gitem.
+- `data/processed/test_2013_2014.parquet` - lokální test split ignorovaný Gitem.
+- `data/reference/model_feature_manifest.json` - schválené feature sety a modeling zásady.
 - `reports/crop_source_reconciliation_summary.md` - shrnutí source reconciliace.
 - `reports/crop_source_conflicts.csv` - konflikty mezi zdroji, kde byl vybraný legacy zdroj.
 - `reports/crop_basic_model_exclusions.csv` - řádky vynechané ze základního modelového datasetu.
 - `reports/crop_canonical_dataset_validation.csv` - validační kontroly kanonického datasetu.
+- `reports/modeling_dataset_summary.md` - shrnutí modeling datasetu a splitu.
+- `reports/chronological_split_validation.csv` - validační kontroly splitu.
+- `reports/modeling_feature_schema.csv` - schema modelovacích sloupců a missing counts.
+- `reports/modeling_unseen_categories.csv` - kategorie ve validation/test, které nejsou v train.
+- `reports/modeling_lag_summary.csv` - dostupnost lag feature podle splitu.
 
 ## Spuštění
 
@@ -118,6 +153,12 @@ Weather pipeline bez nového stahování:
 
 ```powershell
 python src\run_geography_weather_pipeline.py --skip-download
+```
+
+Modelovací dataset a chronologický split:
+
+```powershell
+python src\build_modeling_dataset.py
 ```
 
 Testy:

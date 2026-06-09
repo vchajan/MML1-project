@@ -1,6 +1,6 @@
 # Project Rebuild Manifest
 
-Date: 2026-06-08
+Date: 2026-06-09
 
 Original HW2 commit SHA: `318dd27a043afe7b661ec5535d42d475f7d33644`
 
@@ -77,8 +77,12 @@ The archived `Indian_crop_production_yield_dataset_old_4493186c.csv` is the old 
 - `data/interim/crop_weather_dataset_1997_2014.parquet`
 - `data/interim/crop_weather_canonical_1997_2014.parquet`
 - `data/interim/crop_weather_model_base_1997_2014.parquet`
+- `data/processed/model_dataset_1997_2014.parquet`
+- `data/processed/train_1997_2010.parquet`
+- `data/processed/validation_2011_2012.parquet`
+- `data/processed/test_2013_2014.parquet`
 
-The large interim CSV, NASA POWER cache, and derived Parquet files remain local and ignored by Git.
+The large interim CSV, NASA POWER cache, and derived interim/processed Parquet files remain local and ignored by Git.
 
 ## Rebuild Steps
 
@@ -98,6 +102,10 @@ The large interim CSV, NASA POWER cache, and derived Parquet files remain local 
 - Coconut and aggregate crop categories are documented and excluded from the basic model dataset, but retained in the complete canonical dataset.
 - Weather features were preserved from the existing crop-weather dataset; weather aggregation was not recomputed during source reconciliation.
 - Source reconciliation rules are stored in `data/reference/crop_source_reconciliation_rules.json`.
+- Chronological modeling dataset and train/validation/test splits completed from the local model-base Parquet.
+- Feature sets are recorded in `data/reference/model_feature_manifest.json`.
+- One-year lag yield is built with an explicit self-join on the same district, crop and season with `Crop_Year = Y - 1`.
+- No preprocessing, target outlier treatment, baseline model, hyperparameter tuning or test evaluation has been performed.
 
 ## Crop Source Reconciliation Counts
 
@@ -115,6 +123,37 @@ The large interim CSV, NASA POWER cache, and derived Parquet files remain local 
 - Aggregate-category exclusions: 890
 - Missing weather values after reconciliation: 0
 
+## Modeling Dataset Counts
+
+- Input model-base rows: 267,150
+- Model dataset rows: 267,150
+- Train rows, 1997-2010: 202,166
+- Validation rows, 2011-2012: 32,388
+- Test rows, 2013-2014: 32,596
+- Rows with `lag_yield_1y`: 213,187
+- Rows without `lag_yield_1y`: 53,963
+- Train rows with lag: 156,369
+- Validation rows with lag: 28,001
+- Test rows with lag: 28,817
+- Feature columns without lag: 31
+- Feature columns with lag: 33
+- Categorical features: 4
+- Numeric core features: 4
+- Weather features: 23
+- Missing target values: 0
+- Missing weather feature values: 0
+- Validation unseen categories: 19
+- Test unseen categories: 43
+
+Generated reports:
+
+- `reports/modeling_dataset_summary.md`
+- `reports/chronological_split_validation.csv`
+- `reports/modeling_feature_schema.csv`
+- `reports/modeling_unseen_categories.csv`
+- `reports/modeling_lag_summary.csv`
+- `reports/modeling_dataset_sample.csv`
+
 ## Next Step
 
-Prepare the train/validation/test split and fit any target outlier treatment only on the train period. Modeling and outlier treatment have not been performed yet.
+Fit preprocessing and any target outlier treatment only on the train period, then build baseline models. The 2013-2014 test split must stay unused until final evaluation.

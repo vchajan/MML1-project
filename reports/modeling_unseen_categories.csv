@@ -1,0 +1,63 @@
+data_split,categorical_column,unseen_value,rows_with_unseen_value
+validation,canonical_district_name,BALOD,70
+validation,canonical_district_name,BALODA BAZAR,76
+validation,canonical_district_name,BEMETARA,72
+validation,canonical_district_name,FAZILKA,11
+validation,canonical_district_name,GARIYABAND,77
+validation,canonical_district_name,GOMATI,21
+validation,canonical_district_name,HAPUR,17
+validation,canonical_district_name,KHOWAI,21
+validation,canonical_district_name,KONDAGAON,73
+validation,canonical_district_name,MUNGELI,63
+validation,canonical_district_name,PATHANKOT,11
+validation,canonical_district_name,SAMBHAL,25
+validation,canonical_district_name,SEPAHIJALA,19
+validation,canonical_district_name,SHAMLI,25
+validation,canonical_district_name,SUKMA,51
+validation,canonical_district_name,SURAJPUR,74
+validation,canonical_district_name,UNAKOTI,21
+test,canonical_district_name,AGAR MALWA,41
+test,canonical_district_name,ARAVALLI,27
+test,canonical_district_name,BALOD,63
+test,canonical_district_name,BALODA BAZAR,76
+test,canonical_district_name,BEMETARA,70
+test,canonical_district_name,BOTAD,18
+test,canonical_district_name,CHARKI DADRI,2
+test,canonical_district_name,CHHOTAUDEPUR,30
+test,canonical_district_name,DAMAN,2
+test,canonical_district_name,DEVBHUMI DWARKA,20
+test,canonical_district_name,DIU,2
+test,canonical_district_name,FAZILKA,15
+test,canonical_district_name,GARIYABAND,76
+test,canonical_district_name,GIR SOMNATH,23
+test,canonical_district_name,GOMATI,40
+test,canonical_district_name,HAPUR,39
+test,canonical_district_name,KHOWAI,40
+test,canonical_district_name,KONDAGAON,69
+test,canonical_district_name,LONGDING,13
+test,canonical_district_name,MAHISAGAR,33
+test,canonical_district_name,MORBI,23
+test,canonical_district_name,MUNGELI,61
+test,canonical_district_name,NAMSAI,1
+test,canonical_district_name,NORTH GARO HILLS,62
+test,canonical_district_name,PATHANKOT,15
+test,canonical_district_name,SAMBHAL,58
+test,canonical_district_name,SEPAHIJALA,38
+test,canonical_district_name,SHAMLI,41
+test,canonical_district_name,SOUTH WEST GARO HILLS,64
+test,canonical_district_name,SOUTH WEST KHASI HILLS,40
+test,canonical_district_name,SUKMA,56
+test,canonical_district_name,SURAJPUR,76
+test,canonical_district_name,UNAKOTI,41
+test,canonical_district_name,WEST JAINTIA HILLS,42
+validation,Crop_canonical,Lemon,13
+validation,Crop_canonical,Sapota,13
+test,Crop_canonical,Bean,20
+test,Crop_canonical,Colocosia,11
+test,Crop_canonical,Jobster,9
+test,Crop_canonical,Lemon,26
+test,Crop_canonical,Lentil,31
+test,Crop_canonical,Perilla,9
+test,Crop_canonical,Rajmash Kholar,18
+test,Crop_canonical,Ricebean (nagadal),10
+test,Crop_canonical,Sapota,26

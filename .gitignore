@@ -9,6 +9,9 @@ data/interim/weather_daily/
 data/interim/*.parquet
 data/interim/**/*.parquet
 data/external/datameet_districts/
+data/processed/*.parquet
+data/processed/**/*.parquet
+.pytest_cache/
 
 *.zip
 .DS_Store
