@@ -6,6 +6,7 @@ __pycache__/
 
 data/interim/crop_with_calendar_dates_1997_2014.csv
 data/interim/weather_daily/
+data/interim/*.parquet
 data/interim/**/*.parquet
 data/external/datameet_districts/
 

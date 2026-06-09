@@ -1,0 +1,21 @@
+{
+  "endpoint": "https://power.larc.nasa.gov/api/temporal/daily/point",
+  "community": "AG",
+  "time_standard": "LST",
+  "parameters": [
+    "PRECTOTCORR",
+    "T2M",
+    "T2M_MAX",
+    "T2M_MIN",
+    "RH2M",
+    "ALLSKY_SFC_SW_DWN",
+    "WS2M"
+  ],
+  "date_range": {
+    "start_date": "1997-03-01",
+    "end_date": "2015-10-14"
+  },
+  "download_timestamp": "2026-06-09T07:04:24+00:00",
+  "point_count": 701,
+  "cache_directory": "data/interim/weather_daily"
+}
