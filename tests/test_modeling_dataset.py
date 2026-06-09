@@ -63,11 +63,117 @@ def build_processed() -> pd.DataFrame:
     return modeling.build_processed_dataset(synthetic_frame(), expected_rows=None)
 
 
+def quality_exclusions(*row_ids: str) -> pd.DataFrame:
+    return pd.DataFrame(
+        [
+            {
+                "canonical_crop_row_id": row_id,
+                "exclusion_scope": "modeling_only",
+                "exclusion_reason": "Synthetic confirmed source record corruption.",
+                "evidence": "Synthetic train-period evidence.",
+                "identified_from_period": "train_1997_2010",
+                "review_status": "confirmed_source_record_corruption",
+            }
+            for row_id in row_ids
+        ],
+        columns=modeling.MODEL_QUALITY_EXCLUSION_COLUMNS,
+    )
+
+
+def frame_with_quality_exclusion_source() -> pd.DataFrame:
+    frame = synthetic_frame()
+    extra = pd.DataFrame(
+        [
+            row("bad_source_2008", "B", "D9", "Onion", "Whole Year", 2008, 9999.0),
+            row("lag_consumer_2009", "B", "D9", "Onion", "Whole Year", 2009, 20.0),
+        ]
+    )
+    return pd.concat([frame, extra], ignore_index=True)
+
+
 def test_exact_previous_year_creates_lag() -> None:
     processed = build_processed()
     current = processed[processed["canonical_crop_row_id"].eq("r1998")].iloc[0]
     assert current["lag_available"] == 1
     assert current["lag_yield_1y"] == 1.0
+
+
+def test_quality_exclusion_id_is_removed_from_modeling_dataset() -> None:
+    frame = synthetic_frame()
+    processed = modeling.build_processed_dataset(
+        frame,
+        expected_rows=None,
+        quality_exclusions=quality_exclusions("r1998"),
+    )
+    assert "r1998" not in set(processed["canonical_crop_row_id"])
+
+
+def test_unlisted_high_target_is_not_automatically_removed() -> None:
+    frame = synthetic_frame()
+    frame.loc[frame["canonical_crop_row_id"].eq("r1998"), "target_yield"] = 999_999.0
+    processed = modeling.build_processed_dataset(frame, expected_rows=None, quality_exclusions=quality_exclusions())
+    assert "r1998" in set(processed["canonical_crop_row_id"])
+
+
+def test_quality_exclusion_does_not_use_general_target_threshold() -> None:
+    frame = synthetic_frame()
+    frame.loc[frame["canonical_crop_row_id"].eq("r1998"), "target_yield"] = 999_999.0
+    processed = modeling.build_processed_dataset(
+        frame,
+        expected_rows=None,
+        quality_exclusions=quality_exclusions("train2010"),
+    )
+    assert "r1998" in set(processed["canonical_crop_row_id"])
+    assert "train2010" not in set(processed["canonical_crop_row_id"])
+
+
+def test_quality_exclusion_is_applied_before_lag_self_join() -> None:
+    frame = frame_with_quality_exclusion_source()
+    processed, audit = modeling.build_processed_dataset(
+        frame,
+        expected_rows=None,
+        quality_exclusions=quality_exclusions("bad_source_2008"),
+        return_quality_audit=True,
+    )
+    assert "bad_source_2008" not in set(processed["canonical_crop_row_id"])
+    assert "lag_consumer_2009" in set(audit.lag_affected_rows["canonical_crop_row_id"])
+
+
+def test_removed_lag_source_does_not_create_following_year_lag() -> None:
+    frame = frame_with_quality_exclusion_source()
+    processed = modeling.build_processed_dataset(
+        frame,
+        expected_rows=None,
+        quality_exclusions=quality_exclusions("bad_source_2008"),
+    )
+    current = processed[processed["canonical_crop_row_id"].eq("lag_consumer_2009")].iloc[0]
+    assert current["lag_available"] == 0
+    assert pd.isna(current["lag_yield_1y"])
+
+
+def test_quality_exclusion_does_not_change_validation_or_test_rows() -> None:
+    frame = frame_with_quality_exclusion_source()
+    before = modeling.build_processed_dataset(frame, expected_rows=None, quality_exclusions=quality_exclusions())
+    after = modeling.build_processed_dataset(
+        frame,
+        expected_rows=None,
+        quality_exclusions=quality_exclusions("bad_source_2008"),
+    )
+    before_splits = modeling.split_datasets(before)
+    after_splits = modeling.split_datasets(after)
+    assert len(after_splits["validation"]) == len(before_splits["validation"])
+    assert len(after_splits["test"]) == len(before_splits["test"])
+
+
+def test_quality_exclusion_does_not_mutate_canonical_input_frame() -> None:
+    frame = frame_with_quality_exclusion_source()
+    original = frame.copy(deep=True)
+    modeling.build_processed_dataset(
+        frame,
+        expected_rows=None,
+        quality_exclusions=quality_exclusions("bad_source_2008"),
+    )
+    pd.testing.assert_frame_equal(frame, original)
 
 
 def test_two_year_gap_does_not_create_lag() -> None:

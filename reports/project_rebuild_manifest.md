@@ -106,6 +106,7 @@ The large interim CSV, NASA POWER cache, and derived interim/processed Parquet f
 - Weather features were preserved from the existing crop-weather dataset; weather aggregation was not recomputed during source reconciliation.
 - Source reconciliation rules are stored in `data/reference/crop_source_reconciliation_rules.json`.
 - Chronological modeling dataset and train/validation/test splits completed from the local model-base Parquet.
+- Two confirmed source-corroborated but internally corrupted train-period records are retained in the full canonical/model-base datasets and excluded only from the processed modeling dataset before lag self-join.
 - Feature sets are recorded in `data/reference/model_feature_manifest.json`.
 - One-year lag yield is built with an explicit self-join on the same district, crop and season with `Crop_Year = Y - 1`.
 - Validation benchmark completed using only train 1997-2010 and validation 2011-2012.
@@ -114,7 +115,7 @@ The large interim CSV, NASA POWER cache, and derived interim/processed Parquet f
 - The winning validation configuration was frozen in `data/reference/frozen_model_configuration.json`.
 - No target outlier treatment or final test evaluation has been performed.
 - The 2013-2014 test split was not loaded or used for preprocessing, feature selection, hyperparameter tuning, model selection or evaluation.
-- The processed modeling dataset and validation benchmark artifacts predate the unit-correction rebuild and must be regenerated before further modeling or final test evaluation.
+- The processed modeling dataset has been regenerated after unit corrections and modeling-only quality exclusions. Existing validation benchmark, time-aware tuning cache and final test evaluation artifacts must be regenerated before further model selection or test evaluation.
 
 ## Crop Source Reconciliation Counts
 
@@ -163,13 +164,15 @@ Unit correction reports:
 ## Modeling Dataset Counts
 
 - Input model-base rows: 267,150
-- Model dataset rows: 267,150
-- Train rows, 1997-2010: 202,166
+- Model dataset rows before quality exclusions: 267,150
+- Modeling-only quality exclusions: 2
+- Model dataset rows: 267,148
+- Train rows, 1997-2010: 202,164
 - Validation rows, 2011-2012: 32,388
 - Test rows, 2013-2014: 32,596
-- Rows with `lag_yield_1y`: 213,187
-- Rows without `lag_yield_1y`: 53,963
-- Train rows with lag: 156,369
+- Rows with `lag_yield_1y`: 213,184
+- Rows without `lag_yield_1y`: 53,964
+- Train rows with lag: 156,366
 - Validation rows with lag: 28,001
 - Test rows with lag: 28,817
 - Feature columns without lag: 31
@@ -190,8 +193,24 @@ Generated reports:
 - `reports/modeling_unseen_categories.csv`
 - `reports/modeling_lag_summary.csv`
 - `reports/modeling_dataset_sample.csv`
+- `reports/model_quality_exclusions.csv`
+- `reports/model_quality_exclusion_summary.md`
+
+## Model Quality Exclusions
+
+- Exclusion scope: `modeling_only`
+- Reference file: `data/reference/model_quality_exclusions.csv`
+- Excluded IDs:
+  - `CCR_D813C3DC43AF694A5EF8` - Haryana / KARNAL / 2008 / Whole Year / Onion
+  - `CCR_1D8AB7669408410FDFD9` - Tamil Nadu / PERAMBALUR / 2008 / Whole Year / Cashewnut
+- Both rows remain in the full canonical and model-base interim datasets.
+- Exclusions are applied before lag self-join in the processed modeling dataset.
+- No numeric target correction, winsorization, general target threshold or validation/test target analysis was used.
+- Lag rows affected: 1 (`CCR_D28BD19892E28C79012D`, Tamil Nadu / PERAMBALUR / 2009 / Whole Year / Cashewnut lost invalid `lag_yield_1y = 9801`).
 
 ## Validation Benchmark Results
+
+These validation benchmark artifacts predate the modeling-only quality exclusion rebuild and must be regenerated before further model selection or final test evaluation.
 
 - Train rows: 202,166
 - Validation rows: 32,388
@@ -233,4 +252,4 @@ Validation benchmark artifacts:
 
 ## Next Step
 
-Regenerate `src/build_modeling_dataset.py` outputs from the corrected model-base Parquet, then rerun the validation benchmark phases. The 2013-2014 test split remains unused so far and final test evaluation must stay a separate later step.
+Remove stale time-aware tuning cache if present, then rerun validation/time-aware model selection phases from the regenerated modeling dataset. The 2013-2014 test split remains unused for model selection and final test evaluation must stay a separate later step.

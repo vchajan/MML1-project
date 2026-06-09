@@ -13,7 +13,7 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 - Základní modelový dataset má 267 150 řádků.
 - Coconut a agregované crop kategorie zůstávají v úplném kanonickém datasetu zdokumentované, ale nejsou v základním modelovém datasetu.
 - Weather pipeline nebyla při reconciliaci přepočítaná; byly zachované již vytvořené weather features.
-- Chronologický train/validation/test split a validation benchmark byly vytvořené před poslední unit-correction opravou a musí být znovu vygenerované před dalším modelováním. Finální testovací evaluace ještě nebyla vykonaná.
+- Chronologický train/validation/test split byl znovu vytvořen po unit-correction opravě a po explicitních modeling-only quality exclusions. Validation benchmark, time-aware tuning cache a finální testovací evaluace musí být vytvořené znovu nad aktuálním modeling datasetem.
 - Půdní vlastnosti budou později získané ze SoilGrids.
 
 ## Hotové mezikroky
@@ -72,12 +72,12 @@ Nevyřazují se další target outliery. Outlier treatment se musí později fit
 
 ## Chronologický Modelovací Dataset
 
-Poznámka: tato sekce popisuje poslední vytvořený processed modeling dataset a validation benchmark před unit-correction opravou crop source reconciliation. Po této opravě je potřeba znovu spustit `src\build_modeling_dataset.py` a poté validation benchmark fáze, než se budou používat nové modeling výsledky.
+Modelovací dataset je vytvořený z lokálního `data/interim/crop_weather_model_base_1997_2014.parquet`. Úplný kanonický dataset a model-base interim dataset zůstávají beze změny; explicitní quality exclusions se aplikují pouze na processed modeling dataset před vytvořením lag feature.
 
-Modelovací dataset je vytvořený z lokálního `data/interim/crop_weather_model_base_1997_2014.parquet` bez změny vstupních řádků:
-
-- model dataset: 267 150 řádků
-- train 1997-2010: 202 166 řádků
+- model-base input: 267 150 řádků
+- modeling-only quality exclusions: 2 řádky
+- model dataset: 267 148 řádků
+- train 1997-2010: 202 164 řádků
 - validation 2011-2012: 32 388 řádků
 - test 2013-2014: 32 596 řádků
 - target `target_yield`: 0 missing hodnot
@@ -91,14 +91,21 @@ Schválené feature sety jsou uložené v `data/reference/model_feature_manifest
 
 Lag feature `lag_yield_1y` je vytvořený explicitním self-joinem na stejný district, crop a season s `Crop_Year = Y - 1`. Nejedná se o `groupby().shift()` nad seřazenou tabulkou.
 
-- řádky s dostupným lagem: 213 187
-- řádky bez dostupného lagu: 53 963
+- řádky s dostupným lagem: 213 184
+- řádky bez dostupného lagu: 53 964
+
+Explicitní modeling-only exclusions jsou uložené v `data/reference/model_quality_exclusions.csv`:
+
+- `CCR_D813C3DC43AF694A5EF8` - Haryana / KARNAL / 2008 / Whole Year / Onion
+- `CCR_1D8AB7669408410FDFD9` - Tamil Nadu / PERAMBALUR / 2008 / Whole Year / Cashewnut
+
+Tyto záznamy jsou source-corroborated, ale interně poškozené. Neprovádí se numerická oprava, winsorizace ani obecný target threshold. Odstranění Perambalur 2008 zamezilo vytvoření chybného 2009 one-year lag záznamu.
 
 Žádný imputer, encoder, scaler, outlier threshold ani model se při stavbě datasetu nefituje. Tyto kroky musí být později fitované pouze na train splitu. Test split 2013-2014 nebyl použitý pro model selection ani preprocessing rozhodnutí.
 
 ## Validation Benchmark
 
-Validation benchmark používá pouze train období 1997-2010 a validation období 2011-2012. Test split 2013-2014 nebyl načtený, vyhodnocený ani použitý pro feature selection, preprocessing, hyperparametry nebo model selection.
+Poznámka: následující validation benchmark artefakty předcházejí aktuálnímu modeling-only quality exclusion rebuildu. Musí být znovu vygenerované před dalším model selection nebo finální test evaluací. Test split 2013-2014 nebyl načtený, vyhodnocený ani použitý pro feature selection, preprocessing, hyperparametry nebo model selection.
 
 - train rows: 202 166
 - validation rows: 32 388
@@ -165,6 +172,7 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 - `data/processed/validation_2011_2012.parquet` - lokální validation split ignorovaný Gitem.
 - `data/processed/test_2013_2014.parquet` - lokální test split ignorovaný Gitem.
 - `data/reference/model_feature_manifest.json` - schválené feature sety a modeling zásady.
+- `data/reference/model_quality_exclusions.csv` - explicitní modeling-only exclusions aplikované před lag self-joinem.
 - `data/reference/selected_validation_feature_set.json` - validation-only výběr feature setu.
 - `data/reference/frozen_model_configuration.json` - zmrazená vítězná konfigurace před test evaluací.
 - `reports/crop_source_reconciliation_summary.md` - shrnutí source reconciliace.
@@ -182,6 +190,8 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 - `reports/modeling_feature_schema.csv` - schema modelovacích sloupců a missing counts.
 - `reports/modeling_unseen_categories.csv` - kategorie ve validation/test, které nejsou v train.
 - `reports/modeling_lag_summary.csv` - dostupnost lag feature podle splitu.
+- `reports/model_quality_exclusions.csv` - excluded modeling rows with original Area, Production and target values.
+- `reports/model_quality_exclusion_summary.md` - summary of modeling-only exclusions and affected lag rows.
 - `reports/validation_baseline_results.csv` - výsledky baseline modelů na validation sadě.
 - `reports/validation_feature_set_comparison.csv` - porovnání feature setů pomocí Ridge a DecisionTree anchor modelů.
 - `reports/validation_model_results.csv` - výsledky validation benchmarku.

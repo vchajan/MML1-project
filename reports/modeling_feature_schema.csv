@@ -33,8 +33,8 @@ first_25pct_longest_dry_spell_days,weather_feature,int64,core_without_lag;core_w
 last_25pct_rain_sum_mm,weather_feature,float64,core_without_lag;core_with_lag,0,0,0,0,True,
 last_25pct_temp_mean_c,weather_feature,float64,core_without_lag;core_with_lag,0,0,0,0,True,
 last_25pct_heavy_rain_days,weather_feature,int64,core_without_lag;core_with_lag,0,0,0,0,True,
-lag_yield_1y,lag_feature,float64,core_with_lag,53963,45797,4387,3779,True,
+lag_yield_1y,lag_feature,float64,core_with_lag,53964,45798,4387,3779,True,
 lag_available,lag_feature,int64,core_with_lag,0,0,0,0,True,
-lag_source_crop_year,lag_metadata,Int64,,53963,45797,4387,3779,False,
-lag_source_canonical_crop_row_id,identifier,str,,53963,45797,4387,3779,False,
+lag_source_crop_year,lag_metadata,Int64,,53964,45798,4387,3779,False,
+lag_source_canonical_crop_row_id,identifier,str,,53964,45798,4387,3779,False,
 target_yield,target,float64,,0,0,0,0,False,target column

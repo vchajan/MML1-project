@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import sys
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
@@ -17,6 +18,7 @@ TRAIN_PATH = REPO_ROOT / "data" / "processed" / "train_1997_2010.parquet"
 VALIDATION_PATH = REPO_ROOT / "data" / "processed" / "validation_2011_2012.parquet"
 TEST_PATH = REPO_ROOT / "data" / "processed" / "test_2013_2014.parquet"
 FEATURE_MANIFEST_PATH = REPO_ROOT / "data" / "reference" / "model_feature_manifest.json"
+MODEL_QUALITY_EXCLUSIONS_PATH = REPO_ROOT / "data" / "reference" / "model_quality_exclusions.csv"
 
 SUMMARY_PATH = REPO_ROOT / "reports" / "modeling_dataset_summary.md"
 SPLIT_VALIDATION_PATH = REPO_ROOT / "reports" / "chronological_split_validation.csv"
@@ -24,10 +26,20 @@ FEATURE_SCHEMA_PATH = REPO_ROOT / "reports" / "modeling_feature_schema.csv"
 UNSEEN_CATEGORIES_PATH = REPO_ROOT / "reports" / "modeling_unseen_categories.csv"
 LAG_SUMMARY_PATH = REPO_ROOT / "reports" / "modeling_lag_summary.csv"
 SAMPLE_PATH = REPO_ROOT / "reports" / "modeling_dataset_sample.csv"
+MODEL_QUALITY_EXCLUSION_REPORT_PATH = REPO_ROOT / "reports" / "model_quality_exclusions.csv"
+MODEL_QUALITY_EXCLUSION_SUMMARY_PATH = REPO_ROOT / "reports" / "model_quality_exclusion_summary.md"
 
 EXPECTED_INPUT_ROWS = 267_150
+EXPECTED_MODEL_ROWS_AFTER_QUALITY_EXCLUSION = 267_148
+EXPECTED_TRAIN_ROWS_AFTER_QUALITY_EXCLUSION = 202_164
+EXPECTED_VALIDATION_ROWS = 32_388
+EXPECTED_TEST_ROWS = 32_596
 EXPECTED_YEAR_MIN = 1997
 EXPECTED_YEAR_MAX = 2014
+CONFIRMED_MODEL_QUALITY_EXCLUSION_IDS = {
+    "CCR_D813C3DC43AF694A5EF8",
+    "CCR_1D8AB7669408410FDFD9",
+}
 
 CANONICAL_KEY_COLUMNS = [
     "canonical_state_name",
@@ -142,6 +154,23 @@ REQUIRED_INPUT_COLUMNS = {
     *NUMERIC_CORE_FEATURES,
     *WEATHER_FEATURES,
 }
+MODEL_QUALITY_EXCLUSION_COLUMNS = [
+    "canonical_crop_row_id",
+    "exclusion_scope",
+    "exclusion_reason",
+    "evidence",
+    "identified_from_period",
+    "review_status",
+]
+
+
+@dataclass(frozen=True)
+class QualityExclusionAudit:
+    exclusions: pd.DataFrame
+    excluded_rows: pd.DataFrame
+    lag_affected_rows: pd.DataFrame
+    rows_before_exclusion: int
+    rows_after_exclusion: int
 
 
 def require_columns(frame: pd.DataFrame, required: Iterable[str], label: str) -> None:
@@ -179,6 +208,63 @@ def validate_input_frame(frame: pd.DataFrame, expected_rows: int | None = EXPECT
         raise ValueError("Canonical modeling key must be unique")
 
 
+def empty_quality_exclusions() -> pd.DataFrame:
+    return pd.DataFrame(columns=MODEL_QUALITY_EXCLUSION_COLUMNS)
+
+
+def load_quality_exclusions(path: Path = MODEL_QUALITY_EXCLUSIONS_PATH) -> pd.DataFrame:
+    if not path.exists():
+        raise ValueError(f"Model quality exclusions file does not exist: {path}")
+    exclusions = pd.read_csv(path, dtype=str)
+    require_columns(exclusions, MODEL_QUALITY_EXCLUSION_COLUMNS, "model quality exclusions")
+    exclusions = exclusions[MODEL_QUALITY_EXCLUSION_COLUMNS].copy()
+    ids = set(exclusions["canonical_crop_row_id"].astype(str))
+    if ids != CONFIRMED_MODEL_QUALITY_EXCLUSION_IDS:
+        expected = ", ".join(sorted(CONFIRMED_MODEL_QUALITY_EXCLUSION_IDS))
+        raise ValueError(f"model_quality_exclusions.csv must contain exactly the confirmed IDs: {expected}")
+    return exclusions
+
+
+def validate_quality_exclusions(frame: pd.DataFrame, exclusions: pd.DataFrame) -> None:
+    require_columns(exclusions, MODEL_QUALITY_EXCLUSION_COLUMNS, "model quality exclusions")
+    if exclusions.empty:
+        return
+    if exclusions["canonical_crop_row_id"].duplicated().any():
+        raise ValueError("model quality exclusions contain duplicate canonical_crop_row_id values")
+    if not exclusions["exclusion_scope"].eq("modeling_only").all():
+        raise ValueError("model quality exclusions must use exclusion_scope=modeling_only")
+    if not exclusions["identified_from_period"].eq("train_1997_2010").all():
+        raise ValueError("model quality exclusions must be identified from train_1997_2010")
+    if not exclusions["review_status"].eq("confirmed_source_record_corruption").all():
+        raise ValueError("model quality exclusions must have confirmed_source_record_corruption review_status")
+
+    require_columns(frame, ["canonical_crop_row_id", "Crop_Year"], "model-base input")
+    indexed = frame.set_index("canonical_crop_row_id", drop=False)
+    missing = sorted(set(exclusions["canonical_crop_row_id"].astype(str)) - set(indexed.index.astype(str)))
+    if missing:
+        raise ValueError(f"model quality exclusion IDs missing from model-base input: {', '.join(missing)}")
+    matched = indexed.loc[exclusions["canonical_crop_row_id"].astype(str)]
+    outside_train = matched[~matched["Crop_Year"].astype(int).between(1997, 2010)]
+    if not outside_train.empty:
+        ids = ", ".join(outside_train["canonical_crop_row_id"].astype(str))
+        raise ValueError(f"model quality exclusions must belong to train years 1997-2010: {ids}")
+
+
+def apply_model_quality_exclusions(
+    frame: pd.DataFrame,
+    exclusions: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    validate_quality_exclusions(frame, exclusions)
+    if exclusions.empty:
+        return frame.copy(), pd.DataFrame(columns=list(frame.columns))
+    excluded_ids = set(exclusions["canonical_crop_row_id"].astype(str))
+    excluded_rows = frame[frame["canonical_crop_row_id"].astype(str).isin(excluded_ids)].copy()
+    filtered = frame[~frame["canonical_crop_row_id"].astype(str).isin(excluded_ids)].copy()
+    if len(filtered) != len(frame) - len(excluded_ids):
+        raise ValueError("model quality exclusion row count mismatch")
+    return filtered, excluded_rows
+
+
 def add_lag_features(frame: pd.DataFrame) -> pd.DataFrame:
     require_columns(frame, [*LAG_KEY_COLUMNS, "Crop_Year", TARGET_COLUMN, "canonical_crop_row_id"], "lag input")
     lag_duplicates = frame.duplicated([*LAG_KEY_COLUMNS, "Crop_Year"], keep=False)
@@ -209,6 +295,74 @@ def add_lag_features(frame: pd.DataFrame) -> pd.DataFrame:
     return merged.drop(columns=["_lag_lookup_year"])
 
 
+def lag_values_differ(left: pd.Series, right: pd.Series) -> pd.Series:
+    left_text = left.astype("string").fillna("<NA>")
+    right_text = right.astype("string").fillna("<NA>")
+    return ~left_text.eq(right_text)
+
+
+def lag_affected_rows(before: pd.DataFrame, after: pd.DataFrame) -> pd.DataFrame:
+    columns = [
+        "canonical_crop_row_id",
+        "Crop_Year",
+        "canonical_state_name",
+        "canonical_district_name",
+        "Crop_canonical",
+        "Season_canonical",
+        "lag_available",
+        "lag_yield_1y",
+        "lag_source_crop_year",
+        "lag_source_canonical_crop_row_id",
+    ]
+    require_columns(before, columns, "pre-exclusion lag dataset")
+    require_columns(after, columns, "post-exclusion lag dataset")
+    merged = before[columns].merge(
+        after[columns],
+        on="canonical_crop_row_id",
+        how="inner",
+        suffixes=("_before", "_after"),
+        validate="one_to_one",
+    )
+    changed = (
+        lag_values_differ(merged["lag_available_before"], merged["lag_available_after"])
+        | lag_values_differ(merged["lag_yield_1y_before"], merged["lag_yield_1y_after"])
+        | lag_values_differ(merged["lag_source_crop_year_before"], merged["lag_source_crop_year_after"])
+        | lag_values_differ(
+            merged["lag_source_canonical_crop_row_id_before"],
+            merged["lag_source_canonical_crop_row_id_after"],
+        )
+    )
+    output = merged.loc[changed].copy()
+    keep = [
+        "canonical_crop_row_id",
+        "Crop_Year",
+        "canonical_state_name",
+        "canonical_district_name",
+        "Crop_canonical",
+        "Season_canonical",
+        "lag_available_before",
+        "lag_available_after",
+        "lag_yield_1y_before",
+        "lag_yield_1y_after",
+        "lag_source_crop_year_before",
+        "lag_source_crop_year_after",
+        "lag_source_canonical_crop_row_id_before",
+        "lag_source_canonical_crop_row_id_after",
+    ]
+    if output.empty:
+        return pd.DataFrame(columns=keep)
+    output = output.rename(
+        columns={
+            "Crop_Year_before": "Crop_Year",
+            "canonical_state_name_before": "canonical_state_name",
+            "canonical_district_name_before": "canonical_district_name",
+            "Crop_canonical_before": "Crop_canonical",
+            "Season_canonical_before": "Season_canonical",
+        }
+    )
+    return output[keep].sort_values(["Crop_Year", "canonical_crop_row_id"]).reset_index(drop=True)
+
+
 def add_chronological_split(frame: pd.DataFrame) -> pd.DataFrame:
     result = frame.copy()
     result["data_split"] = result["Crop_Year"].map(split_for_year)
@@ -235,10 +389,25 @@ def validate_feature_sets(sets: dict[str, list[str]] | None = None) -> None:
         raise ValueError("target_yield must not be included in model features")
 
 
-def build_processed_dataset(frame: pd.DataFrame, expected_rows: int | None = EXPECTED_INPUT_ROWS) -> pd.DataFrame:
+def build_processed_dataset(
+    frame: pd.DataFrame,
+    expected_rows: int | None = EXPECTED_INPUT_ROWS,
+    quality_exclusions: pd.DataFrame | None = None,
+    return_quality_audit: bool = False,
+) -> pd.DataFrame | tuple[pd.DataFrame, QualityExclusionAudit]:
     validate_feature_sets()
     validate_input_frame(frame, expected_rows=expected_rows)
-    processed = add_chronological_split(add_lag_features(frame))
+    quality_exclusions = quality_exclusions.copy() if quality_exclusions is not None else empty_quality_exclusions()
+    pre_exclusion_processed = add_chronological_split(add_lag_features(frame))
+    filtered, excluded_rows = apply_model_quality_exclusions(frame, quality_exclusions)
+    processed = add_chronological_split(add_lag_features(filtered))
+    quality_audit = QualityExclusionAudit(
+        exclusions=quality_exclusions.copy(),
+        excluded_rows=excluded_rows.copy(),
+        lag_affected_rows=lag_affected_rows(pre_exclusion_processed, processed),
+        rows_before_exclusion=len(frame),
+        rows_after_exclusion=len(filtered),
+    )
     require_columns(processed, PROCESSED_COLUMNS, "processed dataset")
     processed = processed[PROCESSED_COLUMNS].copy()
     processed = processed.sort_values(
@@ -252,10 +421,12 @@ def build_processed_dataset(frame: pd.DataFrame, expected_rows: int | None = EXP
         ],
         kind="mergesort",
     ).reset_index(drop=True)
-    if len(processed) != len(frame):
+    if len(processed) != len(filtered):
         raise ValueError("Processed dataset row count changed")
     if not processed["canonical_crop_row_id"].is_unique:
         raise ValueError("Processed dataset row identifiers are not unique")
+    if return_quality_audit:
+        return processed, quality_audit
     return processed
 
 
@@ -320,18 +491,52 @@ def lag_summary(processed: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def validation_rows(input_frame: pd.DataFrame, processed: pd.DataFrame) -> pd.DataFrame:
+def validation_rows(
+    input_frame: pd.DataFrame,
+    processed: pd.DataFrame,
+    quality_audit: QualityExclusionAudit | None = None,
+) -> pd.DataFrame:
     splits = split_datasets(processed)
     train_ids = set(splits["train"]["canonical_crop_row_id"])
     validation_ids = set(splits["validation"]["canonical_crop_row_id"])
     test_ids = set(splits["test"]["canonical_crop_row_id"])
     feature_columns = set().union(*[set(columns) for columns in feature_sets().values()])
+    expected_input_rows = EXPECTED_INPUT_ROWS if len(input_frame) == EXPECTED_INPUT_ROWS else len(input_frame)
+    expected_model_rows = len(input_frame) - (len(quality_audit.excluded_rows) if quality_audit else 0)
+    expected_train_rows: int | str = "> 0"
+    expected_validation_rows: int | str = "> 0"
+    expected_test_rows: int | str = "> 0"
+    if len(input_frame) == EXPECTED_INPUT_ROWS:
+        expected_model_rows = EXPECTED_MODEL_ROWS_AFTER_QUALITY_EXCLUSION
+        expected_train_rows = EXPECTED_TRAIN_ROWS_AFTER_QUALITY_EXCLUSION
+        expected_validation_rows = EXPECTED_VALIDATION_ROWS
+        expected_test_rows = EXPECTED_TEST_ROWS
     rows = [
-        ("input_row_count", len(input_frame) == EXPECTED_INPUT_ROWS, len(input_frame), EXPECTED_INPUT_ROWS, ""),
-        ("model_dataset_row_count", len(processed) == EXPECTED_INPUT_ROWS, len(processed), EXPECTED_INPUT_ROWS, ""),
-        ("train_row_count", len(splits["train"]) > 0, len(splits["train"]), "> 0", ""),
-        ("validation_row_count", len(splits["validation"]) > 0, len(splits["validation"]), "> 0", ""),
-        ("test_row_count", len(splits["test"]) > 0, len(splits["test"]), "> 0", ""),
+        ("input_row_count", len(input_frame) == expected_input_rows, len(input_frame), expected_input_rows, ""),
+        ("model_dataset_row_count", len(processed) == expected_model_rows, len(processed), expected_model_rows, ""),
+        (
+            "train_row_count",
+            len(splits["train"]) == expected_train_rows if isinstance(expected_train_rows, int) else len(splits["train"]) > 0,
+            len(splits["train"]),
+            expected_train_rows,
+            "",
+        ),
+        (
+            "validation_row_count",
+            len(splits["validation"]) == expected_validation_rows
+            if isinstance(expected_validation_rows, int)
+            else len(splits["validation"]) > 0,
+            len(splits["validation"]),
+            expected_validation_rows,
+            "",
+        ),
+        (
+            "test_row_count",
+            len(splits["test"]) == expected_test_rows if isinstance(expected_test_rows, int) else len(splits["test"]) > 0,
+            len(splits["test"]),
+            expected_test_rows,
+            "",
+        ),
         (
             "split_union_preserves_rows",
             sum(len(split) for split in splits.values()) == len(processed),
@@ -423,6 +628,37 @@ def validation_rows(input_frame: pd.DataFrame, processed: pd.DataFrame) -> pd.Da
             ("raw_input_unchanged", True, "not modified by script", "not modified by script", ""),
         ]
     )
+    if quality_audit is not None:
+        rows.extend(
+            [
+                (
+                    "model_quality_exclusions_applied_before_lag",
+                    len(quality_audit.excluded_rows) == len(quality_audit.exclusions),
+                    len(quality_audit.excluded_rows),
+                    len(quality_audit.exclusions),
+                    "",
+                ),
+                (
+                    "model_quality_exclusions_train_only",
+                    bool(quality_audit.excluded_rows["Crop_Year"].astype(int).between(1997, 2010).all())
+                    if not quality_audit.excluded_rows.empty
+                    else True,
+                    sorted(quality_audit.excluded_rows["Crop_Year"].astype(int).unique().tolist())
+                    if not quality_audit.excluded_rows.empty
+                    else [],
+                    "1997..2010",
+                    "",
+                ),
+                (
+                    "validation_and_test_counts_unchanged_by_exclusion",
+                    len(splits["validation"]) + len(splits["test"])
+                    == int(input_frame["Crop_Year"].astype(int).between(2011, 2014).sum()),
+                    len(splits["validation"]) + len(splits["test"]),
+                    int(input_frame["Crop_Year"].astype(int).between(2011, 2014).sum()),
+                    "",
+                ),
+            ]
+        )
     return pd.DataFrame(
         [
             {
@@ -478,7 +714,11 @@ def feature_schema(processed: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def modeling_summary(processed: pd.DataFrame, unseen_summary: pd.DataFrame) -> str:
+def modeling_summary(
+    processed: pd.DataFrame,
+    unseen_summary: pd.DataFrame,
+    quality_audit: QualityExclusionAudit | None = None,
+) -> str:
     splits = split_datasets(processed)
     sets = feature_sets()
     lag = lag_summary(processed)
@@ -486,10 +726,22 @@ def modeling_summary(processed: pd.DataFrame, unseen_summary: pd.DataFrame) -> s
     target = processed[TARGET_COLUMN]
     unseen_validation = int(unseen_summary["validation_unseen_count"].sum()) if not unseen_summary.empty else 0
     unseen_test = int(unseen_summary["test_unseen_count"].sum()) if not unseen_summary.empty else 0
+    quality_lines: list[str] = []
+    if quality_audit is not None:
+        quality_lines = [
+            "",
+            "## Model Quality Exclusions",
+            "",
+            f"- Modeling rows before quality exclusion: {quality_audit.rows_before_exclusion}",
+            f"- Modeling rows after quality exclusion: {quality_audit.rows_after_exclusion}",
+            f"- Modeling-only excluded rows: {len(quality_audit.excluded_rows)}",
+            f"- Rows with changed lag availability/source after exclusion: {len(quality_audit.lag_affected_rows)}",
+            "- Full canonical and model-base interim datasets are not modified by this script.",
+        ]
     lines = [
         "# Modeling Dataset Summary",
         "",
-        f"- Input rows: {len(processed)}",
+        f"- Input rows: {quality_audit.rows_before_exclusion if quality_audit else len(processed)}",
         f"- Output rows: {len(processed)}",
         f"- Train rows: {len(splits['train'])}",
         f"- Validation rows: {len(splits['validation'])}",
@@ -534,6 +786,7 @@ def modeling_summary(processed: pd.DataFrame, unseen_summary: pd.DataFrame) -> s
         "",
         "No preprocessing has been fitted during dataset construction.",
         "The 2013-2014 test split has not been used for modeling, feature selection, preprocessing decisions, hyperparameter tuning, or model selection.",
+        *quality_lines,
         "",
     ]
     return "\n".join(lines)
@@ -551,10 +804,23 @@ def deterministic_sample(processed: pd.DataFrame, max_rows: int = 200) -> pd.Dat
     return sample.head(max_rows)
 
 
-def write_feature_manifest(input_row_count: int, unseen_summary: pd.DataFrame) -> None:
+def write_feature_manifest(
+    input_row_count: int,
+    unseen_summary: pd.DataFrame,
+    quality_audit: QualityExclusionAudit | None = None,
+) -> None:
     manifest = {
         "input_dataset": str(INPUT_PATH.relative_to(REPO_ROOT)),
         "input_row_count": input_row_count,
+        "model_quality_exclusions": {
+            "reference_file": str(MODEL_QUALITY_EXCLUSIONS_PATH.relative_to(REPO_ROOT)),
+            "scope": "modeling_only",
+            "excluded_row_count": len(quality_audit.excluded_rows) if quality_audit else 0,
+            "excluded_ids": quality_audit.excluded_rows["canonical_crop_row_id"].astype(str).tolist()
+            if quality_audit is not None and not quality_audit.excluded_rows.empty
+            else [],
+            "applied_before_lag_self_join": True,
+        },
         "target_column": TARGET_COLUMN,
         "identifier_columns": IDENTIFIER_COLUMNS,
         "categorical_features": CATEGORICAL_FEATURES,
@@ -584,10 +850,103 @@ def write_feature_manifest(input_row_count: int, unseen_summary: pd.DataFrame) -
     FEATURE_MANIFEST_PATH.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 
 
-def write_outputs(input_frame: pd.DataFrame, processed: pd.DataFrame) -> None:
+def original_value(frame: pd.DataFrame, preferred: str, fallback: str | None = None) -> pd.Series:
+    if preferred in frame.columns:
+        return frame[preferred]
+    if fallback is not None and fallback in frame.columns:
+        return frame[fallback]
+    return pd.Series(pd.NA, index=frame.index)
+
+
+def markdown_table(frame: pd.DataFrame) -> str:
+    if frame.empty:
+        return "_No rows._"
+    text = frame.copy()
+    for column in text.columns:
+        text[column] = text[column].map(lambda value: "" if pd.isna(value) else str(value))
+    headers = list(text.columns)
+    rows = text.values.tolist()
+    lines = [
+        "| " + " | ".join(headers) + " |",
+        "| " + " | ".join("---" for _ in headers) + " |",
+    ]
+    lines.extend("| " + " | ".join(row) + " |" for row in rows)
+    return "\n".join(lines)
+
+
+def write_model_quality_reports(input_frame: pd.DataFrame, quality_audit: QualityExclusionAudit) -> None:
+    if quality_audit.exclusions.empty:
+        report = pd.DataFrame(columns=[*MODEL_QUALITY_EXCLUSION_COLUMNS, "Area", "Production", TARGET_COLUMN])
+    else:
+        report = quality_audit.exclusions.merge(
+            quality_audit.excluded_rows,
+            on="canonical_crop_row_id",
+            how="left",
+            validate="one_to_one",
+        )
+        report["Area"] = original_value(report, "Area", "Area_corrected")
+        report["Production"] = original_value(report, "Production", "Production_corrected")
+        report_columns = [
+            "canonical_crop_row_id",
+            "canonical_state_name",
+            "canonical_district_name",
+            "Crop_Year",
+            "Season_canonical",
+            "Crop_canonical",
+            "Area",
+            "Area_corrected",
+            "Production",
+            "Production_corrected",
+            TARGET_COLUMN,
+            "exclusion_scope",
+            "exclusion_reason",
+            "evidence",
+            "identified_from_period",
+            "review_status",
+        ]
+        for column in report_columns:
+            if column not in report.columns:
+                report[column] = pd.NA
+        report = report[report_columns]
+
+    MODEL_QUALITY_EXCLUSION_REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    report.to_csv(MODEL_QUALITY_EXCLUSION_REPORT_PATH, index=False, lineterminator="\n")
+
+    excluded_table = markdown_table(report) if not report.empty else "_No excluded rows._"
+    lag_table = markdown_table(quality_audit.lag_affected_rows)
+    summary = [
+        "# Model Quality Exclusion Summary",
+        "",
+        "Two source-corroborated records are retained in the full canonical and model-base interim datasets, but excluded from the modeling dataset before lag feature construction.",
+        "",
+        "- Canonical/model-base rows unchanged by this script: true",
+        f"- Modeling rows before exclusion: {quality_audit.rows_before_exclusion}",
+        f"- Modeling rows after exclusion: {quality_audit.rows_after_exclusion}",
+        f"- Excluded modeling rows: {len(quality_audit.excluded_rows)}",
+        f"- Lag rows affected by removing the source rows before self-join: {len(quality_audit.lag_affected_rows)}",
+        "",
+        "## Excluded Rows",
+        "",
+        excluded_table,
+        "",
+        "## Lag Availability/Source Changes",
+        "",
+        lag_table,
+        "",
+        "No numeric target correction, winsorization, target-threshold filtering, validation target analysis, or test target analysis was performed.",
+        "",
+    ]
+    MODEL_QUALITY_EXCLUSION_SUMMARY_PATH.write_text("\n".join(summary), encoding="utf-8")
+
+
+def write_outputs(
+    input_frame: pd.DataFrame,
+    processed: pd.DataFrame,
+    quality_audit: QualityExclusionAudit | None = None,
+) -> None:
     splits = split_datasets(processed)
     unseen_rows, unseen_summary = audit_unseen_categories(processed)
-    validation = validation_rows(input_frame, processed)
+    validation = validation_rows(input_frame, processed, quality_audit)
     if not validation["status"].eq("passed").all():
         SPLIT_VALIDATION_PATH.parent.mkdir(parents=True, exist_ok=True)
         validation.to_csv(SPLIT_VALIDATION_PATH, index=False, lineterminator="\n")
@@ -600,22 +959,33 @@ def write_outputs(input_frame: pd.DataFrame, processed: pd.DataFrame) -> None:
     splits["validation"].to_parquet(VALIDATION_PATH, index=False)
     splits["test"].to_parquet(TEST_PATH, index=False)
 
-    write_feature_manifest(len(input_frame), unseen_summary)
+    write_feature_manifest(len(input_frame), unseen_summary, quality_audit)
     SUMMARY_PATH.parent.mkdir(parents=True, exist_ok=True)
-    SUMMARY_PATH.write_text(modeling_summary(processed, unseen_summary), encoding="utf-8")
+    SUMMARY_PATH.write_text(modeling_summary(processed, unseen_summary, quality_audit), encoding="utf-8")
     validation.to_csv(SPLIT_VALIDATION_PATH, index=False, lineterminator="\n")
     feature_schema(processed).to_csv(FEATURE_SCHEMA_PATH, index=False, lineterminator="\n")
     unseen_rows.to_csv(UNSEEN_CATEGORIES_PATH, index=False, lineterminator="\n")
     lag_summary(processed).to_csv(LAG_SUMMARY_PATH, index=False, lineterminator="\n")
     deterministic_sample(processed).to_csv(SAMPLE_PATH, index=False, lineterminator="\n")
+    if quality_audit is not None:
+        write_model_quality_reports(input_frame, quality_audit)
 
 
 def main() -> int:
     input_frame = pd.read_parquet(INPUT_PATH)
-    processed = build_processed_dataset(input_frame, expected_rows=EXPECTED_INPUT_ROWS)
-    write_outputs(input_frame, processed)
+    quality_exclusions = load_quality_exclusions()
+    processed, quality_audit = build_processed_dataset(
+        input_frame,
+        expected_rows=EXPECTED_INPUT_ROWS,
+        quality_exclusions=quality_exclusions,
+        return_quality_audit=True,
+    )
+    write_outputs(input_frame, processed, quality_audit)
     splits = split_datasets(processed)
     print(f"input_rows={len(input_frame)}")
+    print(f"model_quality_exclusion_rows={len(quality_audit.excluded_rows)}")
+    print(f"rows_before_quality_exclusion={quality_audit.rows_before_exclusion}")
+    print(f"rows_after_quality_exclusion={quality_audit.rows_after_exclusion}")
     print(f"model_dataset_rows={len(processed)}")
     print(f"train_rows={len(splits['train'])}")
     print(f"validation_rows={len(splits['validation'])}")

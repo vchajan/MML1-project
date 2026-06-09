@@ -1,8 +1,8 @@
 # Modeling Dataset Summary
 
 - Input rows: 267150
-- Output rows: 267150
-- Train rows: 202166
+- Output rows: 267148
+- Train rows: 202164
 - Validation rows: 32388
 - Test rows: 32596
 - Train years: 1997 to 2010
@@ -13,31 +13,31 @@
 - Categorical features: 4
 - Numeric core features: 4
 - Weather features: 23
-- Rows with lag: 213187
-- Rows without lag: 53963
+- Rows with lag: 213184
+- Rows without lag: 53964
 
 ## Lag Availability By Split
 
-- train: 156369/202166 (0.7735)
+- train: 156366/202164 (0.7735)
 - validation: 28001/32388 (0.8645)
 - test: 28817/32596 (0.8841)
 
 ## Target Summary
 
 - Minimum: 0.000000
-- Maximum: 9801.000000
+- Maximum: 2247.533300
 - Median: 1.000000
-- Mean: 4.655959
+- Mean: 4.611258
 
 ## Train Target Quantiles
 
 - 1%: 0.000000
 - 5%: 0.170152
 - 25%: 0.500000
-- 50%: 0.996859
-- 75%: 2.168838
-- 95%: 19.791820
-- 99%: 68.001036
+- 50%: 0.996843
+- 75%: 2.168739
+- 95%: 19.790651
+- 99%: 68.000000
 
 ## Unseen Categories
 
@@ -47,3 +47,11 @@
 
 No preprocessing has been fitted during dataset construction.
 The 2013-2014 test split has not been used for modeling, feature selection, preprocessing decisions, hyperparameter tuning, or model selection.
+
+## Model Quality Exclusions
+
+- Modeling rows before quality exclusion: 267150
+- Modeling rows after quality exclusion: 267148
+- Modeling-only excluded rows: 2
+- Rows with changed lag availability/source after exclusion: 1
+- Full canonical and model-base interim datasets are not modified by this script.
