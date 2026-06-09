@@ -13,7 +13,7 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 - Základní modelový dataset má 267 150 řádků.
 - Coconut a agregované crop kategorie zůstávají v úplném kanonickém datasetu zdokumentované, ale nejsou v základním modelovém datasetu.
 - Weather pipeline nebyla při reconciliaci přepočítaná; byly zachované již vytvořené weather features.
-- Chronologický train/validation/test split je hotový. Outlier treatment a modelování ještě nebyly vykonané.
+- Chronologický train/validation/test split a validation benchmark jsou hotové. Finální testovací evaluace ještě nebyla vykonaná.
 - Půdní vlastnosti budou později získané ze SoilGrids.
 
 ## Hotové mezikroky
@@ -87,6 +87,28 @@ Lag feature `lag_yield_1y` je vytvořený explicitním self-joinem na stejný di
 
 Žádný imputer, encoder, scaler, outlier threshold ani model se při stavbě datasetu nefituje. Tyto kroky musí být později fitované pouze na train splitu. Test split 2013-2014 nebyl použitý pro model selection ani preprocessing rozhodnutí.
 
+## Validation Benchmark
+
+Validation benchmark používá pouze train období 1997-2010 a validation období 2011-2012. Test split 2013-2014 nebyl načtený, vyhodnocený ani použitý pro feature selection, preprocessing, hyperparametry nebo model selection.
+
+- train rows: 202 166
+- validation rows: 32 388
+- test data accessed: false
+- nejlepší baseline: `baseline_crop_median`
+- nejlepší baseline MAE/RMSE/R²: 35.271541 / 1546.982880 / 0.000907
+- vybraný feature set: `core_without_lag`
+- real model runs: 16 successful, 0 failed
+- nejlepší real model: `tree_depth_none_leaf_20_core_without_lag`
+- nejlepší model MAE/RMSE/R²: 34.591879 / 1546.783841 / 0.001164
+- absolutní MAE zlepšení oproti baseline: 0.679662
+- relativní MAE zlepšení oproti baseline: 1.93 %
+
+Zmrazená konfigurace je uložená v `data/reference/frozen_model_configuration.json`. Vybraný model je `DecisionTreeRegressor` s `max_depth = None` a `min_samples_leaf = 20`, preprocessing family `tree`, feature set `core_without_lag`.
+
+KNN konfigurace byly vyhodnocené pouze na deterministickém resource-limited train vzorku maximálně 15 000 řádků, takže nejsou plně přímo porovnatelné s modely trénovanými na celém train datasetu. Během benchmarku byly zaznamenané convergence warnings pro dvě Lasso konfigurace a jednu LinearSVR konfiguraci.
+
+Finální testovací evaluace na období 2013-2014 zůstává samostatný další krok.
+
 ## Geografické Přiřazení
 
 Okresní body jsou vytvořené z Census 2001 a Census 2011 polygonů přes representative point. Pro každý crop řádek se používá census verze podle `Crop_Year`.
@@ -109,7 +131,9 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
   - validation: 2011-2012
   - test: 2013-2014
 - Test set nebyl použitý před finální evaluací ani pro model selection.
-- Baseline modely zatím nebyly vytvořené.
+- Baseline modely byly porovnané na validation sadě.
+- Feature set byl vybraný pouze pomocí validation metrik.
+- Konfigurace vítězného modelu je zmrazená před otevřením test splitu.
 
 ## Důležité Soubory
 
@@ -131,6 +155,8 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 - `data/processed/validation_2011_2012.parquet` - lokální validation split ignorovaný Gitem.
 - `data/processed/test_2013_2014.parquet` - lokální test split ignorovaný Gitem.
 - `data/reference/model_feature_manifest.json` - schválené feature sety a modeling zásady.
+- `data/reference/selected_validation_feature_set.json` - validation-only výběr feature setu.
+- `data/reference/frozen_model_configuration.json` - zmrazená vítězná konfigurace před test evaluací.
 - `reports/crop_source_reconciliation_summary.md` - shrnutí source reconciliace.
 - `reports/crop_source_conflicts.csv` - konflikty mezi zdroji, kde byl vybraný legacy zdroj.
 - `reports/crop_basic_model_exclusions.csv` - řádky vynechané ze základního modelového datasetu.
@@ -140,6 +166,14 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 - `reports/modeling_feature_schema.csv` - schema modelovacích sloupců a missing counts.
 - `reports/modeling_unseen_categories.csv` - kategorie ve validation/test, které nejsou v train.
 - `reports/modeling_lag_summary.csv` - dostupnost lag feature podle splitu.
+- `reports/validation_baseline_results.csv` - výsledky baseline modelů na validation sadě.
+- `reports/validation_feature_set_comparison.csv` - porovnání feature setů pomocí Ridge a DecisionTree anchor modelů.
+- `reports/validation_model_results.csv` - výsledky validation benchmarku.
+- `reports/validation_runtime_results.csv` - runtime metriky validation benchmarku.
+- `reports/validation_subgroup_metrics.csv` - subgroup MAE pro vybraný model.
+- `reports/validation_predictions_sample.csv` - deterministická ukázka validation predikcí.
+- `reports/validation_benchmark_summary.md` - shrnutí validation benchmarku.
+- `reports/validation_mae.png`, `reports/validation_rmse.png`, `reports/validation_r2.png` - grafy validation metrik.
 
 ## Spuštění
 
@@ -159,6 +193,15 @@ Modelovací dataset a chronologický split:
 
 ```powershell
 python src\build_modeling_dataset.py
+```
+
+Validation benchmark po fázích:
+
+```powershell
+python src\run_validation_benchmark.py --phase baselines --resume
+python src\run_validation_benchmark.py --phase feature-sets --resume
+python src\run_validation_benchmark.py --phase models --resume
+python src\run_validation_benchmark.py --phase finalize
 ```
 
 Testy:

@@ -11,6 +11,9 @@ data/interim/**/*.parquet
 data/external/datameet_districts/
 data/processed/*.parquet
 data/processed/**/*.parquet
+data/interim/validation_benchmark_runs.csv
+data/interim/validation_models/
+data/interim/validation_predictions/
 .pytest_cache/
 
 *.zip

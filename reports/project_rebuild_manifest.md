@@ -105,7 +105,12 @@ The large interim CSV, NASA POWER cache, and derived interim/processed Parquet f
 - Chronological modeling dataset and train/validation/test splits completed from the local model-base Parquet.
 - Feature sets are recorded in `data/reference/model_feature_manifest.json`.
 - One-year lag yield is built with an explicit self-join on the same district, crop and season with `Crop_Year = Y - 1`.
-- No preprocessing, target outlier treatment, baseline model, hyperparameter tuning or test evaluation has been performed.
+- Validation benchmark completed using only train 1997-2010 and validation 2011-2012.
+- Baseline models were compared on validation data.
+- Feature set selection used validation metrics only and selected `core_without_lag`.
+- The winning validation configuration was frozen in `data/reference/frozen_model_configuration.json`.
+- No target outlier treatment or final test evaluation has been performed.
+- The 2013-2014 test split was not loaded or used for preprocessing, feature selection, hyperparameter tuning, model selection or evaluation.
 
 ## Crop Source Reconciliation Counts
 
@@ -154,6 +159,46 @@ Generated reports:
 - `reports/modeling_lag_summary.csv`
 - `reports/modeling_dataset_sample.csv`
 
+## Validation Benchmark Results
+
+- Train rows: 202,166
+- Validation rows: 32,388
+- Test data accessed: false
+- Best baseline: `baseline_crop_median`
+- Best baseline MAE: 35.271541
+- Best baseline RMSE: 1546.982880
+- Best baseline R2: 0.000907
+- Selected feature set: `core_without_lag`
+- Successful real model runs: 16
+- Failed real model runs: 0
+- Best real model: `tree_depth_none_leaf_20_core_without_lag`
+- Best real model family: `DecisionTree`
+- Best hyperparameters: `max_depth = None`, `min_samples_leaf = 20`
+- Best validation MAE: 34.591879
+- Best validation RMSE: 1546.783841
+- Best validation R2: 0.001164
+- Absolute MAE improvement over best baseline: 0.679662
+- Relative MAE improvement over best baseline: 1.93%
+- KNN training scope: `resource_limited_15000_train_rows`
+- Warnings: two Lasso convergence warnings and one LinearSVR convergence warning.
+
+Validation benchmark artifacts:
+
+- `src/run_validation_benchmark.py`
+- `tests/test_validation_benchmark.py`
+- `data/reference/selected_validation_feature_set.json`
+- `data/reference/frozen_model_configuration.json`
+- `reports/validation_baseline_results.csv`
+- `reports/validation_feature_set_comparison.csv`
+- `reports/validation_model_results.csv`
+- `reports/validation_runtime_results.csv`
+- `reports/validation_subgroup_metrics.csv`
+- `reports/validation_predictions_sample.csv`
+- `reports/validation_benchmark_summary.md`
+- `reports/validation_mae.png`
+- `reports/validation_rmse.png`
+- `reports/validation_r2.png`
+
 ## Next Step
 
-Fit preprocessing and any target outlier treatment only on the train period, then build baseline models. The 2013-2014 test split must stay unused until final evaluation.
+Run the separate final test evaluation using the frozen validation-selected configuration. The 2013-2014 test split remains unused so far.
