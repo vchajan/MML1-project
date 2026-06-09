@@ -21,6 +21,8 @@ def add_local_venv_site_packages() -> None:
     candidates = [
         REPO_ROOT / ".venv" / "Lib" / "site-packages",
         REPO_ROOT / ".venv" / "lib" / version_dir / "site-packages",
+        REPO_ROOT.parent / ".venv" / "Lib" / "site-packages",
+        REPO_ROOT.parent / ".venv" / "lib" / version_dir / "site-packages",
     ]
     for candidate in candidates:
         if candidate.exists() and str(candidate) not in sys.path:

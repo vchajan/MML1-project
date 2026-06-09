@@ -18,6 +18,31 @@
     "legacy_only": "legacy_source",
     "expanded_only": "expanded_source_x100"
   },
+  "conflict_resolution_policy": {
+    "corroborated": "If area, corrected production and target agree after source scaling, retain legacy source for stable precedence.",
+    "area_unit_conflict": "If corrected production matches and area differs by a deterministic factor of 10, 100 or 1000, select the source row with the normalized larger area in hectares. This rule is based on the source pair relationship, not on an absolute target threshold.",
+    "production_unit_conflict": "If area matches and corrected production differs by a deterministic factor of 10, 100 or 1000, retain legacy source and mark the pair unresolved unless source direction can be proven.",
+    "unresolved_conflict": "Retain legacy source and mark the conflict unresolved."
+  },
+  "area_unit_conversion_rules": {
+    "detected_factors": [
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "selected_area_rule": "select source row with normalized larger area when corrected productions match",
+    "forbidden_basis": "do not select by lower target_yield or any absolute target threshold"
+  },
+  "unit_conflict_detection_tolerance": {
+    "ratio_rtol": 1e-06,
+    "ratio_atol": 1e-09,
+    "production_match_atol": 1e-06
+  },
+  "unresolved_conflict_policy": {
+    "production_unit_status": "unresolved_production_unit_conflict",
+    "other_conflict_status": "conflict_unresolved_legacy_retained",
+    "retained_source": "legacy_source"
+  },
   "district_override_source": "data\\reference\\district_name_manual_overrides.csv",
   "excluded_unit_categories": [
     "Coconut"
@@ -27,5 +52,5 @@
     "Pulses total",
     "Total foodgrain"
   ],
-  "created_at_utc": "2026-06-09T08:40:07+00:00"
+  "created_at_utc": "2026-06-09T14:26:00+00:00"
 }

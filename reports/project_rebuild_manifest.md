@@ -98,7 +98,10 @@ The large interim CSV, NASA POWER cache, and derived interim/processed Parquet f
 - Crop source reconciliation completed. The raw crop dataset contains `legacy_source` and `expanded_source_x100`; expanded rows are normalized by factor `0.01`.
 - Canonical source key reconciliation completed with 270,300 canonical rows.
 - Basic model dataset prepared with 267,150 rows.
-- Legacy source has priority for 3,113 conflicting overlapping keys.
+- Conflict source-pair unit diagnostics completed for 3,113 conflicting overlapping keys.
+- Deterministic source-pair area-unit corrections applied to 29 conflicts.
+- Unresolved production-unit conflicts remain marked for 787 conflicts.
+- Other unresolved conflicts retain legacy source for 2,297 conflicts.
 - Coconut and aggregate crop categories are documented and excluded from the basic model dataset, but retained in the complete canonical dataset.
 - Weather features were preserved from the existing crop-weather dataset; weather aggregation was not recomputed during source reconciliation.
 - Source reconciliation rules are stored in `data/reference/crop_source_reconciliation_rules.json`.
@@ -111,6 +114,7 @@ The large interim CSV, NASA POWER cache, and derived interim/processed Parquet f
 - The winning validation configuration was frozen in `data/reference/frozen_model_configuration.json`.
 - No target outlier treatment or final test evaluation has been performed.
 - The 2013-2014 test split was not loaded or used for preprocessing, feature selection, hyperparameter tuning, model selection or evaluation.
+- The processed modeling dataset and validation benchmark artifacts predate the unit-correction rebuild and must be regenerated before further modeling or final test evaluation.
 
 ## Crop Source Reconciliation Counts
 
@@ -124,9 +128,37 @@ The large interim CSV, NASA POWER cache, and derived interim/processed Parquet f
 - Overlapping keys: 216,380
 - Corroborated overlaps: 213,267
 - Conflicting overlaps: 3,113
+- Unit-corrected conflicts: 29
+- Unresolved production-unit conflicts: 787
+- Unresolved conflicts with legacy retained: 2,297
 - Coconut exclusions: 2,260
 - Aggregate-category exclusions: 890
 - Missing weather values after reconciliation: 0
+
+## Crop Unit Correction Results
+
+- Conflict pairs reviewed: 3,113
+- Pattern groups: 329
+- Area-unit corrections applied: 29
+- Punjab 2011 / Whole Year / Sugarcane corrections: 15
+- Punjab 2011 corrected target range: 40..88
+- Punjab focus values:
+  - Gurdaspur: 74,550 -> 74.55
+  - Patiala: 88,000 -> 88
+  - S.A.S NAGAR: 65,000 -> 65
+  - Tarn Taran: 40,000 -> 40
+- Tamil Nadu 1997 / Whole Year / Sugarcane conflict rows: 0
+- Correction rule: source-pair evidence only; no absolute target threshold, clipping, winsorization or row deletion.
+- Canonical validation checks passed: true
+
+Unit correction reports:
+
+- `reports/crop_unit_conflict_patterns.csv`
+- `reports/crop_unit_conflict_details.csv`
+- `reports/crop_unit_conflict_summary.md`
+- `reports/crop_unit_corrections_applied.csv`
+- `reports/crop_unit_correction_validation.csv`
+- `reports/crop_unit_correction_summary.md`
 
 ## Modeling Dataset Counts
 
@@ -201,4 +233,4 @@ Validation benchmark artifacts:
 
 ## Next Step
 
-Run the separate final test evaluation using the frozen validation-selected configuration. The 2013-2014 test split remains unused so far.
+Regenerate `src/build_modeling_dataset.py` outputs from the corrected model-base Parquet, then rerun the validation benchmark phases. The 2013-2014 test split remains unused so far and final test evaluation must stay a separate later step.

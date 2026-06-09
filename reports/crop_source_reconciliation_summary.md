@@ -13,6 +13,9 @@
 - Overlapping keys: 216380
 - Corroborated overlaps: 213267
 - Conflicting overlaps: 3113
+- Unit-corrected conflicts: 29
+- Unresolved production-unit conflicts: 787
+- Unresolved conflicts with legacy retained: 2297
 
 ## Basic Model Exclusions
 

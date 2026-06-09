@@ -1,0 +1,8 @@
+check,passed,detail
+canonical_row_count_preserved,True,observed=270300; expected=270300
+model_base_row_count_preserved,True,observed=267150; expected=267150
+conflict_report_rows,True,observed=3113; expected=3113
+unit_corrected_conflicts,True,observed=29; expected=29
+punjab_2011_sugarcane_corrected_rows,True,rows=15; statuses=['conflict_unit_corrected']
+punjab_2011_sugarcane_target_scale,True,corrected_target_range=40..88
+tamil_nadu_1997_sugarcane_conflict_pairs,True,conflict_rows=0; statuses=[]

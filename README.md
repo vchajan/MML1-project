@@ -8,12 +8,12 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 - Jednotka pozorování pro kanonický dataset je `canonical_state_name + canonical_district_name + Crop_Year + Season_canonical + Crop_canonical`.
 - Raw crop dataset obsahoval dvě zdrojové verze: `legacy_source` a `expanded_source_x100`.
 - Expanded verze měla systematickou měřítkovou chybu `×100`; při reconciliaci byla normalizovaná faktorem `0.01`.
-- Při konfliktním překryvu má prioritu legacy zdroj. Hodnoty se neprůměrují a nesčítají.
+- Při konfliktním překryvu má prioritu legacy zdroj pouze tehdy, když neexistuje deterministický source-pair důkaz jednotkové konverze. Hodnoty se neprůměrují a nesčítají.
 - Kanonický crop-weather dataset má 270 300 řádků.
 - Základní modelový dataset má 267 150 řádků.
 - Coconut a agregované crop kategorie zůstávají v úplném kanonickém datasetu zdokumentované, ale nejsou v základním modelovém datasetu.
 - Weather pipeline nebyla při reconciliaci přepočítaná; byly zachované již vytvořené weather features.
-- Chronologický train/validation/test split a validation benchmark jsou hotové. Finální testovací evaluace ještě nebyla vykonaná.
+- Chronologický train/validation/test split a validation benchmark byly vytvořené před poslední unit-correction opravou a musí být znovu vygenerované před dalším modelováním. Finální testovací evaluace ještě nebyla vykonaná.
 - Půdní vlastnosti budou později získané ze SoilGrids.
 
 ## Hotové mezikroky
@@ -51,6 +51,13 @@ Výsledek reconciliace:
 - overlapping keys: 216 380
 - corroborated overlaps: 213 267
 - conflicting overlaps: 3 113
+- unit-corrected conflicts: 29
+- unresolved production-unit conflicts: 787
+- unresolved conflicts with legacy retained: 2 297
+
+Unit correction je aplikovaná pouze při deterministickém source-pair důkazu. Nepoužívá se absolutní target threshold, clipping, winsorizace ani mazání řádků.
+
+Punjab 2011 / Whole Year / Sugarcane měl 15 konfliktů s area ratio `1000` a shodnou corrected production; vybraný je `expanded_source_x100` a corrected target range je `40..88`. Tamil Nadu 1997 / Whole Year / Sugarcane není přítomný mezi 3 113 konfliktními source páry, takže se neopravuje.
 
 ## Základní Modelová Vhodnost
 
@@ -64,6 +71,8 @@ Z úplného kanonického datasetu jsou pro základní modelování vynechané po
 Nevyřazují se další target outliery. Outlier treatment se musí později fitovat pouze na train období.
 
 ## Chronologický Modelovací Dataset
+
+Poznámka: tato sekce popisuje poslední vytvořený processed modeling dataset a validation benchmark před unit-correction opravou crop source reconciliation. Po této opravě je potřeba znovu spustit `src\build_modeling_dataset.py` a poté validation benchmark fáze, než se budou používat nové modeling výsledky.
 
 Modelovací dataset je vytvořený z lokálního `data/interim/crop_weather_model_base_1997_2014.parquet` bez změny vstupních řádků:
 
@@ -139,6 +148,7 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 
 - `data/raw/Indian_crop_production_yield_dataset.csv` - původní raw crop dataset.
 - `data/reference/crop_source_reconciliation_rules.json` - pravidla source reconciliace.
+- `src/diagnose_crop_unit_conflicts.py` - diagnostika násobkových vztahů mezi konfliktními source páry.
 - `data/reference/crop_calendar_rules_1997_2014_v1.csv` - pravidla crop kalendáře.
 - `data/reference/district_boundary_assignments_working.csv` - pracovní přiřazení okresů k boundary vrstvám.
 - `data/reference/district_point_versions.csv` - reprezentativní body pro census verze.
@@ -158,9 +168,15 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 - `data/reference/selected_validation_feature_set.json` - validation-only výběr feature setu.
 - `data/reference/frozen_model_configuration.json` - zmrazená vítězná konfigurace před test evaluací.
 - `reports/crop_source_reconciliation_summary.md` - shrnutí source reconciliace.
-- `reports/crop_source_conflicts.csv` - konflikty mezi zdroji, kde byl vybraný legacy zdroj.
+- `reports/crop_source_conflicts.csv` - konflikty mezi zdroji včetně unit-corrected a unresolved rozhodnutí.
 - `reports/crop_basic_model_exclusions.csv` - řádky vynechané ze základního modelového datasetu.
 - `reports/crop_canonical_dataset_validation.csv` - validační kontroly kanonického datasetu.
+- `reports/crop_unit_conflict_patterns.csv` - agregované násobkové patterny v konfliktních source párech.
+- `reports/crop_unit_conflict_details.csv` - detailní diagnostika 3 113 konfliktních source párů.
+- `reports/crop_unit_conflict_summary.md` - shrnutí diagnostiky včetně Punjab 2011 a Tamil Nadu 1997.
+- `reports/crop_unit_corrections_applied.csv` - aplikované unit korekce se starými a novými hodnotami.
+- `reports/crop_unit_correction_validation.csv` - validační kontroly unit korekce.
+- `reports/crop_unit_correction_summary.md` - shrnutí aplikované unit korekce.
 - `reports/modeling_dataset_summary.md` - shrnutí modeling datasetu a splitu.
 - `reports/chronological_split_validation.csv` - validační kontroly splitu.
 - `reports/modeling_feature_schema.csv` - schema modelovacích sloupců a missing counts.

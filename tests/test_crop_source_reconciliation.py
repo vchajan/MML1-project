@@ -120,9 +120,9 @@ def test_corroborated_overlap_selects_legacy() -> None:
     assert row["selected_source_row_id"] == 1
 
 
-def test_conflicting_overlap_selects_legacy() -> None:
+def test_unresolved_conflicting_overlap_selects_legacy() -> None:
     canonical, _model_base, conflicts = canonical_dataset()
-    row = canonical[canonical["source_overlap_status"].eq("conflict_legacy_preferred")].iloc[0]
+    row = canonical[canonical["source_overlap_status"].eq("conflict_unresolved_legacy_retained")].iloc[0]
     assert row["selected_source"] == "legacy_source"
     assert row["selected_source_row_id"] == 2
     assert len(conflicts) == 1
