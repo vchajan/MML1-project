@@ -1,0 +1,24 @@
+check,passed,detail
+input_rows,True,observed=486680; expected=486680
+legacy_rows,True,observed=235817; expected=235817
+expanded_rows,True,observed=250863; expected=250863
+canonical_rows,True,observed=270300; expected=270300
+model_base_rows,True,observed=267150; expected=267150
+legacy_only_keys,True,observed=19437; expected=19437
+expanded_only_keys,True,observed=34483; expected=34483
+overlapping_keys,True,observed=216380; expected=216380
+corroborated_after_scaling,True,observed=213267; expected=213267
+conflict_legacy_preferred,True,observed=3113; expected=3113
+coconut_exclusions,True,observed=2260; expected=2260
+total_foodgrain_exclusions,True,observed=188; expected=188
+pulses_total_exclusions,True,observed=255; expected=255
+oilseeds_total_exclusions,True,observed=447; expected=447
+basic_exclusions,True,observed=3150; expected=3150
+canonical_key_unique,True,duplicate_keys=0
+no_many_to_many_expansion,True,max_source_rows_count=2
+target_formula_valid,True,target_yield equals Production_corrected / Area_corrected
+weather_features_preserved,True,weather_feature_columns=29
+no_missing_weather_values,True,missing_weather_values=0
+district_override_applied,True,"selected_rows_with_override=0; prepared_rows_with_override=73; raw_rule_rows=73; reflected_rows=146; Punjab/S->Punjab/S.A.S NAGAR: raw_rows=73, reflected_rows=146"
+source_scaling_applied,True,expanded_scale_factor=0.01
+raw_input_unchanged,True,before=1A4651D07A271F882869109271610E6E9BD3B1870F3679AE0AC3AAACB728E5BC; after=1A4651D07A271F882869109271610E6E9BD3B1870F3679AE0AC3AAACB728E5BC

@@ -1,0 +1,31 @@
+{
+  "raw_dataset_sha256": "1A4651D07A271F882869109271610E6E9BD3B1870F3679AE0AC3AAACB728E5BC",
+  "source_split_source_row_id": {
+    "legacy_source": "source_row_id <= 236378",
+    "expanded_source_x100": "source_row_id >= 236379"
+  },
+  "legacy_scale_factor": 1.0,
+  "expanded_scale_factor": 0.01,
+  "canonical_key": [
+    "canonical_state_name",
+    "canonical_district_name",
+    "Crop_Year",
+    "Season_canonical",
+    "Crop_canonical"
+  ],
+  "source_precedence": {
+    "overlap": "legacy_source",
+    "legacy_only": "legacy_source",
+    "expanded_only": "expanded_source_x100"
+  },
+  "district_override_source": "data\\reference\\district_name_manual_overrides.csv",
+  "excluded_unit_categories": [
+    "Coconut"
+  ],
+  "excluded_aggregate_categories": [
+    "Oilseeds total",
+    "Pulses total",
+    "Total foodgrain"
+  ],
+  "created_at_utc": "2026-06-09T08:40:07+00:00"
+}

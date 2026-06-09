@@ -75,6 +75,8 @@ The archived `Indian_crop_production_yield_dataset_old_4493186c.csv` is the old 
 - `data/interim/weather_daily/`
 - `data/interim/weather_features_by_window_1997_2014.parquet`
 - `data/interim/crop_weather_dataset_1997_2014.parquet`
+- `data/interim/crop_weather_canonical_1997_2014.parquet`
+- `data/interim/crop_weather_model_base_1997_2014.parquet`
 
 The large interim CSV, NASA POWER cache, and derived Parquet files remain local and ignored by Git.
 
@@ -89,7 +91,30 @@ The large interim CSV, NASA POWER cache, and derived Parquet files remain local 
 - NASA POWER daily weather download completed for 701 weather points, with 701 cache CSV files and 0 failed points.
 - Weather aggregation completed for 150,832 weather windows; all windows are valid and minimum coverage is 1.000000.
 - Crop-weather join completed with 486,680 input rows and 486,680 output rows.
+- Crop source reconciliation completed. The raw crop dataset contains `legacy_source` and `expanded_source_x100`; expanded rows are normalized by factor `0.01`.
+- Canonical source key reconciliation completed with 270,300 canonical rows.
+- Basic model dataset prepared with 267,150 rows.
+- Legacy source has priority for 3,113 conflicting overlapping keys.
+- Coconut and aggregate crop categories are documented and excluded from the basic model dataset, but retained in the complete canonical dataset.
+- Weather features were preserved from the existing crop-weather dataset; weather aggregation was not recomputed during source reconciliation.
+- Source reconciliation rules are stored in `data/reference/crop_source_reconciliation_rules.json`.
+
+## Crop Source Reconciliation Counts
+
+- Input rows: 486,680
+- Legacy rows: 235,817
+- Expanded rows: 250,863
+- Canonical rows: 270,300
+- Model-base rows: 267,150
+- Legacy-only keys: 19,437
+- Expanded-only keys: 34,483
+- Overlapping keys: 216,380
+- Corroborated overlaps: 213,267
+- Conflicting overlaps: 3,113
+- Coconut exclusions: 2,260
+- Aggregate-category exclusions: 890
+- Missing weather values after reconciliation: 0
 
 ## Next Step
 
-Audit the target definition and prepare the first modeling dataset. Modeling and target-conflict cleaning have not been performed yet.
+Prepare the train/validation/test split and fit any target outlier treatment only on the train period. Modeling and outlier treatment have not been performed yet.
