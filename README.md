@@ -4,22 +4,30 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 
 ## Aktuální stav
 
-- Projekt se přerábí od začátku nad crop daty pro období 1997-2014.
+- Projekt se přerábí nad crop daty pro období 1997-2014.
 - Jednotka pozorování zůstává `State_Name + District_Name + Crop_Year + Season + Crop`.
-- Každý sezonní crop řádek v připravovaném calendar výstupu má explicitní weather okno `start_date` až `end_date`.
-- Crop calendar má 2 069 pravidel.
-- Všech 486 680 řádků má přiřazené `start_date` a `end_date`; pokrytí aplikace kalendáře je 100 %.
-- Dalším krokem je vytvoření district crosswalku a ověřených bodů okresů.
-- Denní počasí bude později získané z NASA POWER.
+- Všech 486 680 crop řádků má přiřazené `start_date`, `end_date`, `district_id`, `weather_point_id` a `weather_window_id`.
+- Crop calendar má 2 069 pravidel a pokrytí aplikace kalendáře je 100 %.
+- Pro 701 weather bodů jsou kompletně stažená denní NASA POWER data za období 1997-03-01 až 2015-10-14.
+- Weather features jsou agregované podle crop-specific `start_date` a `end_date`.
+- Agregace vytvořila 150 832 weather-window feature řádků; všechna okna jsou validní a minimum coverage je 1.000000.
+- Výsledný crop-weather dataset má 486 680 řádků, 65 sloupců, 727 okresů, 700 použitých weather bodů a 150 832 weather windows.
+- Velké Parquet výstupy a NASA cache zůstávají lokální a jsou ignorované Gitem.
+- Modelování a čištění konfliktního targetu ještě nebyly vykonané.
 - Půdní vlastnosti budou později získané ze SoilGrids.
-- Stará geografická a weather pipeline se už nepoužívá.
-- Audit názvů okresů byl vytvořen; souřadnice zatím nebyly přiřazeny.
-- District-name anomaly review completed; no geographic matching or coordinate assignment has been performed yet.
-- District name override stage is complete; boundaries and coordinates have not been assigned yet.
-- Census 2001 and Census 2011 district boundary layers were downloaded and audited; raw map files are local and ignored by Git, source commit and license notes are stored in the boundary source manifest, and district matching plus representative points have not been performed yet.
-- Name matching against Census 2001 and Census 2011 boundaries has been run; fuzzy matching is used only for candidates, representative points and coordinates have not been created, and unresolved districts remain explicitly marked.
 
-Nová geography, weather ani soil pipeline zatím nejsou dokončené.
+## Geografické přiřazení
+
+Okresní body jsou vytvořené z Census 2001 a Census 2011 polygonů přes representative point. Pro každý crop řádek se používá census verze podle `Crop_Year`.
+
+Geografické přiřazení zůstává označené podle confidence:
+
+- `confirmed`
+- `working_strong`
+- `working_fallback`
+- `historical_fallback`
+
+Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 
 ## Modelovací rozhodnutí
 
@@ -31,16 +39,41 @@ Nová geography, weather ani soil pipeline zatím nejsou dokončené.
   - test: 2013-2014
 - Test set nebude použitý před finální evaluací.
 
-## Projektové soubory
+## Důležité soubory
 
 - `data/raw/Indian_crop_production_yield_dataset.csv` - hlavní crop dataset uložený v repozitáři.
 - `data/reference/crop_calendar_rules_1997_2014_v1.csv` - pravidla crop kalendáře.
 - `data/reference/required_districts_1997_2014.csv` - reference soubor pro potřebné okresy.
-- `data/reference/district_crosswalk_template_1997_2014.csv` - šablona district crosswalku.
+- `data/reference/district_boundary_assignments_working.csv` - pracovní přiřazení okresů k boundary vrstvám.
+- `data/reference/district_point_versions.csv` - reprezentativní body pro census verze.
+- `data/reference/district_points_by_crop_year.csv` - body použité podle crop roku.
+- `data/reference/weather_points_unique.csv` - unikátní NASA POWER body.
+- `data/reference/nasa_power_request_manifest.json` - manifest NASA POWER downloadu.
 - `data/interim/crop_with_calendar_dates_1997_2014.csv` - velký lokální mezivýsledek ignorovaný Gitem.
-- `reports/crop_calendar_application_validation.csv` - validační výstup aplikace kalendáře.
-- `reports/crop_calendar_application_summary.txt` - textové shrnutí aplikace kalendáře.
-- `reports/district_requirements_summary.txt` - shrnutí požadavků na okresy.
+- `data/interim/weather_daily/` - lokální NASA POWER cache ignorovaná Gitem.
+- `data/interim/weather_features_by_window_1997_2014.parquet` - lokální agregované weather features ignorované Gitem.
+- `data/interim/crop_weather_dataset_1997_2014.parquet` - lokální spojený crop-weather dataset ignorovaný Gitem.
+- `reports/weather_window_aggregation_summary.md` - shrnutí agregace počasí.
+- `reports/crop_weather_dataset_summary.md` - shrnutí finálního crop-weather datasetu.
+
+## Spuštění bez nového stahování
+
+```powershell
+python src\run_geography_weather_pipeline.py --skip-download
+```
+
+Samostatné kroky:
+
+```powershell
+python src\aggregate_crop_weather_windows.py
+python src\build_crop_weather_dataset.py
+```
+
+Testy:
+
+```powershell
+python -m pytest -q -p no:cacheprovider
+```
 
 ## Struktura
 

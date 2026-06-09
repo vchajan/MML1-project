@@ -1,0 +1,7 @@
+check,passed,detail
+row_count_preserved,True,486680 -> 486680
+no_many_to_many_expansion,True,joined_rows=486680
+all_weather_window_ids_matched,True,"crop_windows=150832, feature_windows=150832"
+all_weather_features_present,True,missing_values=0
+source_row_id_preserved,True,unique_source_row_id=486680
+year_range_1997_2014,True,1997..2014

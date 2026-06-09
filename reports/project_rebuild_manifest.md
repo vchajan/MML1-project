@@ -72,17 +72,24 @@ The archived `Indian_crop_production_yield_dataset_old_4493186c.csv` is the old 
 ## Large Local Ignored Files
 
 - `data/interim/crop_with_calendar_dates_1997_2014.csv`
+- `data/interim/weather_daily/`
+- `data/interim/weather_features_by_window_1997_2014.parquet`
+- `data/interim/crop_weather_dataset_1997_2014.parquet`
 
-The large interim CSV remains local and ignored by Git.
+The large interim CSV, NASA POWER cache, and derived Parquet files remain local and ignored by Git.
 
 ## Rebuild Steps
 
-- District-name audit completed; geographic matching not yet performed.
-- District-name anomaly review completed; no geographic matching or coordinate assignment has been performed yet.
-- District name override stage completed; boundaries and coordinates have not been assigned yet.
-- DataMeet Census 2001 and Census 2011 district boundary layers downloaded and technically audited at source commit `b3fbbde595310b397a55d718e0958ce249a4fa1f`; raw map files remain local and ignored by Git, source/license notes are in `data/reference/boundary_sources/datameet_district_boundaries.json`, and district matching plus representative points have not been performed yet.
-- Name matching against Census 2001 and Census 2011 boundary inventories completed; fuzzy matching is candidate-only, representative points and coordinates have not been created, and unresolved districts remain explicitly marked.
+- District-name audit completed.
+- District-name anomaly review completed.
+- District name override stage completed.
+- DataMeet Census 2001 and Census 2011 district boundary layers downloaded and technically audited at source commit `b3fbbde595310b397a55d718e0958ce249a4fa1f`; raw map files remain local and ignored by Git, and source/license notes are in `data/reference/boundary_sources/datameet_district_boundaries.json`.
+- Name matching against Census 2001 and Census 2011 boundary inventories completed; fuzzy matching remains marked in assignment confidence fields.
+- Working historical district points completed for 727 districts and crop years 1997-2014.
+- NASA POWER daily weather download completed for 701 weather points, with 701 cache CSV files and 0 failed points.
+- Weather aggregation completed for 150,832 weather windows; all windows are valid and minimum coverage is 1.000000.
+- Crop-weather join completed with 486,680 input rows and 486,680 output rows.
 
 ## Next Step
 
-Create the district crosswalk and verified district points.
+Audit the target definition and prepare the first modeling dataset. Modeling and target-conflict cleaning have not been performed yet.
