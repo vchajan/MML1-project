@@ -13,7 +13,7 @@ Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, we
 - Základní modelový dataset má 267 150 řádků.
 - Coconut a agregované crop kategorie zůstávají v úplném kanonickém datasetu zdokumentované, ale nejsou v základním modelovém datasetu.
 - Weather pipeline nebyla při reconciliaci přepočítaná; byly zachované již vytvořené weather features.
-- Chronologický train/validation/test split byl znovu vytvořen po unit-correction opravě a po explicitních modeling-only quality exclusions. Validation benchmark, time-aware tuning cache a finální testovací evaluace musí být vytvořené znovu nad aktuálním modeling datasetem.
+- Chronologický train/validation/test split byl znovu vytvořen po unit-correction opravě a po explicitních modeling-only quality exclusions. Time-aware tuning a validation shortlist jsou aktuální nad tímto modeling datasetem; finální testovací evaluace zůstává samostatný další krok.
 - Půdní vlastnosti budou později získané ze SoilGrids.
 
 ## Hotové mezikroky
@@ -103,27 +103,34 @@ Tyto záznamy jsou source-corroborated, ale interně poškozené. Neprovádí se
 
 Žádný imputer, encoder, scaler, outlier threshold ani model se při stavbě datasetu nefituje. Tyto kroky musí být později fitované pouze na train splitu. Test split 2013-2014 nebyl použitý pro model selection ani preprocessing rozhodnutí.
 
-## Validation Benchmark
+## Time-Aware Model Tuning
 
-Poznámka: následující validation benchmark artefakty předcházejí aktuálnímu modeling-only quality exclusion rebuildu. Musí být znovu vygenerované před dalším model selection nebo finální test evaluací. Test split 2013-2014 nebyl načtený, vyhodnocený ani použitý pro feature selection, preprocessing, hyperparametry nebo model selection.
+Aktuální model selection používá expanding-window time-series CV pouze v train období 1997-2010:
 
-- train rows: 202 166
-- validation rows: 32 388
-- test data accessed: false
-- nejlepší baseline: `baseline_crop_median`
-- nejlepší baseline MAE/RMSE/R²: 35.271541 / 1546.982880 / 0.000907
-- vybraný feature set: `core_without_lag`
-- real model runs: 16 successful, 0 failed
-- nejlepší real model: `tree_depth_none_leaf_20_core_without_lag`
-- nejlepší model MAE/RMSE/R²: 34.591879 / 1546.783841 / 0.001164
-- absolutní MAE zlepšení oproti baseline: 0.679662
-- relativní MAE zlepšení oproti baseline: 1.93 %
+- fold 1: fit 1997-2004, evaluation 2005-2006
+- fold 2: fit 1997-2006, evaluation 2007-2008
+- fold 3: fit 1997-2008, evaluation 2009-2010
 
-Zmrazená konfigurace je uložená v `data/reference/frozen_model_configuration.json`. Vybraný model je `DecisionTreeRegressor` s `max_depth = None` a `min_samples_leaf = 20`, preprocessing family `tree`, feature set `core_without_lag`.
+Previous-year official yield is assumed to be available when predicting the following year. Test split 2013-2014 nebyl otevřený, analyzovaný ani použitý pro feature selection, hyperparametry, target transformaci nebo model selection.
 
-KNN konfigurace byly vyhodnocené pouze na deterministickém resource-limited train vzorku maximálně 15 000 řádků, takže nejsou plně přímo porovnatelné s modely trénovanými na celém train datasetu. Během benchmarku byly zaznamenané convergence warnings pro dvě Lasso konfigurace a jednu LinearSVR konfiguraci.
+Shortlist je rozdělený na dva aplikační tracky:
 
-Finální testovací evaluace na období 2013-2014 zůstává samostatný další krok.
+- `forecast_with_lag`: forecast existující plodiny, kde je povolený `lag_yield_1y`.
+- `suitability_without_lag`: porovnání vhodnosti plodiny mezi okresy, kde se `lag_yield_1y` nepoužívá.
+
+Time-CV a validation 2011-2012 výsledky:
+
+- best CV baseline: `cv_baseline_lag_with_crop_median_fallback`, mean MAE 1.074877
+- best direct CV model: `cv_direct_rf_200_depth_none_leaf_20_maxfeat_0_5_core_with_lag`, mean MAE 1.259570
+- best residual CV model: `cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector`, mean MAE 1.083049
+- best log-target CV model: `cv_log_target_rf_200_depth_20_leaf_10_maxfeat_sqrt_core_with_lag`, mean MAE 1.578012
+- best overall forecast validation run: `cv_baseline_lag_with_crop_median_fallback`, validation MAE 1.233652
+- best trained forecast validation model: `cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector`, validation MAE 1.240889
+- best suitability validation model: `cv_direct_tree_depth_none_leaf_20_core_without_lag`, validation MAE 1.673477
+
+Residual modely byly porovnané proti silnému lag baseline. Nejlepší residual model nepřekonal lag baseline celkově na validation MAE, ale je nejlepším trénovaným forecast modelem. Log-target strategie nezlepšila time-CV MAE proti direct/residual kandidátům.
+
+Zmrazená time-aware konfigurace je uložená v `data/reference/frozen_tuned_model_configuration.json`. Finální testovací evaluace na období 2013-2014 zůstává samostatný další krok.
 
 ## Geografické Přiřazení
 
@@ -147,9 +154,10 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
   - validation: 2011-2012
   - test: 2013-2014
 - Test set nebyl použitý před finální evaluací ani pro model selection.
-- Baseline modely byly porovnané na validation sadě.
-- Feature set byl vybraný pouze pomocí validation metrik.
-- Konfigurace vítězného modelu je zmrazená před otevřením test splitu.
+- Hyperparametry a shortlist byly vybrané pomocí time-CV uvnitř train období 1997-2010.
+- Shortlist byl jednou vyhodnocený na validation období 2011-2012.
+- Forecast track smí používat `lag_yield_1y`; suitability track používá pouze `core_without_lag`.
+- Konfigurace nejlepšího trénovaného forecast modelu je zmrazená před otevřením test splitu.
 
 ## Důležité Soubory
 
@@ -175,6 +183,10 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 - `data/reference/model_quality_exclusions.csv` - explicitní modeling-only exclusions aplikované před lag self-joinem.
 - `data/reference/selected_validation_feature_set.json` - validation-only výběr feature setu.
 - `data/reference/frozen_model_configuration.json` - zmrazená vítězná konfigurace před test evaluací.
+- `data/reference/time_cv_shortlist.json` - time-CV shortlist rozdělený na forecast a suitability track.
+- `data/reference/frozen_tuned_model_configuration.json` - zmrazená time-aware konfigurace před test evaluací.
+- `src/run_time_aware_model_tuning.py` - expanding-window CV, shortlist validation a finalize reporty.
+- `tests/test_time_aware_model_tuning.py` - syntetické testy proti leakage a track mixing.
 - `reports/crop_source_reconciliation_summary.md` - shrnutí source reconciliace.
 - `reports/crop_source_conflicts.csv` - konflikty mezi zdroji včetně unit-corrected a unresolved rozhodnutí.
 - `reports/crop_basic_model_exclusions.csv` - řádky vynechané ze základního modelového datasetu.
@@ -200,6 +212,10 @@ Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
 - `reports/validation_predictions_sample.csv` - deterministická ukázka validation predikcí.
 - `reports/validation_benchmark_summary.md` - shrnutí validation benchmarku.
 - `reports/validation_mae.png`, `reports/validation_rmse.png`, `reports/validation_r2.png` - grafy validation metrik.
+- `reports/time_aware_tuning_summary.md` - shrnutí time-aware tuningu a shortlist validation.
+- `reports/time_cv_baseline_fold_results.csv`, `reports/time_cv_direct_results.csv`, `reports/time_cv_residual_results.csv`, `reports/time_cv_log_target_results.csv`, `reports/time_cv_all_results.csv` - time-CV výsledky.
+- `reports/tuned_validation_results.csv`, `reports/tuned_validation_comparison.csv`, `reports/tuned_validation_subgroup_metrics.csv` - validation výsledky shortlistu.
+- `reports/time_cv_mae.png`, `reports/time_cv_stability.png`, `reports/tuned_validation_mae.png` - grafy time-aware tuningu.
 
 ## Spuštění
 
@@ -228,6 +244,17 @@ python src\run_validation_benchmark.py --phase baselines --resume
 python src\run_validation_benchmark.py --phase feature-sets --resume
 python src\run_validation_benchmark.py --phase models --resume
 python src\run_validation_benchmark.py --phase finalize
+```
+
+Time-aware tuning po fázích:
+
+```powershell
+python src\run_time_aware_model_tuning.py --phase cv-baselines --resume
+python src\run_time_aware_model_tuning.py --phase cv-direct --resume
+python src\run_time_aware_model_tuning.py --phase cv-residual --resume
+python src\run_time_aware_model_tuning.py --phase cv-log-target --resume
+python src\run_time_aware_model_tuning.py --phase validation-shortlist --resume
+python src\run_time_aware_model_tuning.py --phase finalize
 ```
 
 Testy:

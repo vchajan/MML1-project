@@ -1,0 +1,106 @@
+{
+  "selected_run_id": "cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector",
+  "selected_experiment_family": "residual",
+  "selected_model_name": "LinearSVR",
+  "selected_feature_set": "residual_lag_corrector",
+  "selected_target_strategy": "residual",
+  "selected_hyperparameters": {
+    "C": 0.03,
+    "epsilon": 0.0,
+    "max_iter": 20000
+  },
+  "selected_preprocessing_family": "linear",
+  "time_cv_folds": [
+    {
+      "fold_id": "fold_1",
+      "fit_start_year": 1997,
+      "fit_end_year": 2004,
+      "evaluation_start_year": 2005,
+      "evaluation_end_year": 2006
+    },
+    {
+      "fold_id": "fold_2",
+      "fit_start_year": 1997,
+      "fit_end_year": 2006,
+      "evaluation_start_year": 2007,
+      "evaluation_end_year": 2008
+    },
+    {
+      "fold_id": "fold_3",
+      "fit_start_year": 1997,
+      "fit_end_year": 2008,
+      "evaluation_start_year": 2009,
+      "evaluation_end_year": 2010
+    }
+  ],
+  "time_cv_metrics": {
+    "mean_mae": 1.083048732898592,
+    "std_mae": 0.0344348320497914,
+    "worst_fold_mae": 1.126521812374789
+  },
+  "validation_metrics": {
+    "mae": 1.2408891719969837,
+    "rmse": 5.42449574785008,
+    "r2": 0.8145921166543428,
+    "median_ae": 0.1915102792258444
+  },
+  "best_overall_validation_run_id": "cv_baseline_lag_with_crop_median_fallback",
+  "best_trained_model_validation_run_id": "cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector",
+  "best_overall_forecast_validation_run": "cv_baseline_lag_with_crop_median_fallback",
+  "best_trained_forecast_validation_model": "cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector",
+  "best_suitability_validation_model": "cv_direct_tree_depth_none_leaf_20_core_without_lag",
+  "best_direct_model": "cv_direct_rf_200_depth_none_leaf_20_maxfeat_0_5_core_with_lag",
+  "best_residual_model": "cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector",
+  "best_log_target_model": "cv_log_target_rf_200_depth_20_leaf_10_maxfeat_sqrt_core_with_lag",
+  "train_period": "1997-2010",
+  "validation_period": "2011-2012",
+  "test_period": "2013-2014",
+  "test_data_accessed": false,
+  "test_used_for_selection": false,
+  "frozen_tracks": {
+    "forecast_baseline": {
+      "run_id": "cv_baseline_lag_with_crop_median_fallback",
+      "type": "baseline"
+    },
+    "forecast_trained_model": {
+      "run_id": "cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector",
+      "model": "LinearSVR",
+      "feature_set": "residual_lag_corrector",
+      "target_strategy": "residual",
+      "preprocessing_family": "linear",
+      "hyperparameters": {
+        "C": 0.03,
+        "epsilon": 0.0,
+        "max_iter": 20000
+      }
+    },
+    "suitability_model": {
+      "run_id": "cv_direct_tree_depth_none_leaf_20_core_without_lag",
+      "model": "DecisionTreeRegressor",
+      "feature_set": "core_without_lag",
+      "target_strategy": "direct",
+      "preprocessing_family": "tree",
+      "hyperparameters": {
+        "max_depth": null,
+        "min_samples_leaf": 20,
+        "random_state": 42
+      }
+    },
+    "log_target_experiment": {
+      "run_id": "cv_log_target_rf_200_depth_20_leaf_10_maxfeat_sqrt_core_with_lag",
+      "model": "RandomForestRegressor",
+      "feature_set": "core_with_lag",
+      "target_strategy": "log1p",
+      "preprocessing_family": "tree",
+      "hyperparameters": {
+        "n_estimators": 200,
+        "max_depth": 20,
+        "min_samples_leaf": 10,
+        "max_features": "sqrt",
+        "n_jobs": -1,
+        "random_state": 42
+      }
+    }
+  },
+  "created_at_utc": "2026-06-10T06:23:22+00:00"
+}

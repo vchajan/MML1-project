@@ -14,6 +14,9 @@ data/processed/**/*.parquet
 data/interim/validation_benchmark_runs.csv
 data/interim/validation_models/
 data/interim/validation_predictions/
+data/interim/time_aware_tuning_runs.csv
+data/interim/time_aware_tuning_models/
+data/interim/time_aware_tuning_predictions/
 .pytest_cache/
 
 *.zip

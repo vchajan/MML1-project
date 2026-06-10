@@ -113,9 +113,13 @@ The large interim CSV, NASA POWER cache, and derived interim/processed Parquet f
 - Baseline models were compared on validation data.
 - Feature set selection used validation metrics only and selected `core_without_lag`.
 - The winning validation configuration was frozen in `data/reference/frozen_model_configuration.json`.
+- Time-aware model tuning completed using only train years 1997-2010 for expanding-window CV.
+- Time-CV shortlist was evaluated once on validation years 2011-2012.
+- Forecast and suitability application tracks were selected separately.
+- The winning trained forecast configuration was frozen in `data/reference/frozen_tuned_model_configuration.json`.
 - No target outlier treatment or final test evaluation has been performed.
 - The 2013-2014 test split was not loaded or used for preprocessing, feature selection, hyperparameter tuning, model selection or evaluation.
-- The processed modeling dataset has been regenerated after unit corrections and modeling-only quality exclusions. Existing validation benchmark, time-aware tuning cache and final test evaluation artifacts must be regenerated before further model selection or test evaluation.
+- The processed modeling dataset has been regenerated after unit corrections and modeling-only quality exclusions, and the time-aware tuning artifacts now reflect the regenerated modeling dataset.
 
 ## Crop Source Reconciliation Counts
 
@@ -208,48 +212,58 @@ Generated reports:
 - No numeric target correction, winsorization, general target threshold or validation/test target analysis was used.
 - Lag rows affected: 1 (`CCR_D28BD19892E28C79012D`, Tamil Nadu / PERAMBALUR / 2009 / Whole Year / Cashewnut lost invalid `lag_yield_1y = 9801`).
 
-## Validation Benchmark Results
+## Time-Aware Model Tuning Results
 
-These validation benchmark artifacts predate the modeling-only quality exclusion rebuild and must be regenerated before further model selection or final test evaluation.
+Time-aware model selection uses expanding-window CV only inside train years 1997-2010:
 
-- Train rows: 202,166
-- Validation rows: 32,388
+- Fold 1: fit 1997-2004, evaluate 2005-2006
+- Fold 2: fit 1997-2006, evaluate 2007-2008
+- Fold 3: fit 1997-2008, evaluate 2009-2010
+- Rolling lag assumption: previous-year official yield is available when predicting the following year.
 - Test data accessed: false
-- Best baseline: `baseline_crop_median`
-- Best baseline MAE: 35.271541
-- Best baseline RMSE: 1546.982880
-- Best baseline R2: 0.000907
-- Selected feature set: `core_without_lag`
-- Successful real model runs: 16
-- Failed real model runs: 0
-- Best real model: `tree_depth_none_leaf_20_core_without_lag`
-- Best real model family: `DecisionTree`
-- Best hyperparameters: `max_depth = None`, `min_samples_leaf = 20`
-- Best validation MAE: 34.591879
-- Best validation RMSE: 1546.783841
-- Best validation R2: 0.001164
-- Absolute MAE improvement over best baseline: 0.679662
-- Relative MAE improvement over best baseline: 1.93%
-- KNN training scope: `resource_limited_15000_train_rows`
-- Warnings: two Lasso convergence warnings and one LinearSVR convergence warning.
+- Test used for selection: false
 
-Validation benchmark artifacts:
+CV winners:
 
-- `src/run_validation_benchmark.py`
-- `tests/test_validation_benchmark.py`
-- `data/reference/selected_validation_feature_set.json`
-- `data/reference/frozen_model_configuration.json`
-- `reports/validation_baseline_results.csv`
-- `reports/validation_feature_set_comparison.csv`
-- `reports/validation_model_results.csv`
-- `reports/validation_runtime_results.csv`
-- `reports/validation_subgroup_metrics.csv`
-- `reports/validation_predictions_sample.csv`
-- `reports/validation_benchmark_summary.md`
-- `reports/validation_mae.png`
-- `reports/validation_rmse.png`
-- `reports/validation_r2.png`
+- Best CV baseline: `cv_baseline_lag_with_crop_median_fallback`, mean MAE 1.074877
+- Best direct CV model: `cv_direct_rf_200_depth_none_leaf_20_maxfeat_0_5_core_with_lag`, mean MAE 1.259570
+- Best residual CV model: `cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector`, mean MAE 1.083049
+- Best log-target CV model: `cv_log_target_rf_200_depth_20_leaf_10_maxfeat_sqrt_core_with_lag`, mean MAE 1.578012
+
+Validation shortlist winners:
+
+- Best overall forecast validation run: `cv_baseline_lag_with_crop_median_fallback`, validation MAE 1.233652
+- Best trained forecast validation model: `cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector`, validation MAE 1.240889
+- Best suitability validation model: `cv_direct_tree_depth_none_leaf_20_core_without_lag`, validation MAE 1.673477
+
+Application tracks:
+
+- `forecast_with_lag` includes lag baseline, direct `core_with_lag`, residual lag-corrector and stable log-target candidates.
+- `suitability_without_lag` includes crop median baseline and direct `core_without_lag` candidates only.
+- Residual models did not beat the lag baseline overall on validation MAE, but the best residual LinearSVR is the best trained forecast model.
+- Log-target models did not improve over the best direct/residual candidates.
+
+Time-aware artifacts:
+
+- `src/run_time_aware_model_tuning.py`
+- `tests/test_time_aware_model_tuning.py`
+- `data/reference/time_cv_shortlist.json`
+- `data/reference/frozen_tuned_model_configuration.json`
+- `reports/time_cv_baseline_fold_results.csv`
+- `reports/time_cv_direct_results.csv`
+- `reports/time_cv_residual_results.csv`
+- `reports/time_cv_log_target_results.csv`
+- `reports/time_cv_all_results.csv`
+- `reports/tuned_validation_results.csv`
+- `reports/tuned_validation_runtime.csv`
+- `reports/tuned_validation_predictions_sample.csv`
+- `reports/tuned_validation_comparison.csv`
+- `reports/tuned_validation_subgroup_metrics.csv`
+- `reports/time_aware_tuning_summary.md`
+- `reports/time_cv_mae.png`
+- `reports/time_cv_stability.png`
+- `reports/tuned_validation_mae.png`
 
 ## Next Step
 
-Remove stale time-aware tuning cache if present, then rerun validation/time-aware model selection phases from the regenerated modeling dataset. The 2013-2014 test split remains unused for model selection and final test evaluation must stay a separate later step.
+Run final test evaluation as a separate step only after accepting the frozen time-aware configuration. The 2013-2014 test split remains unused for model selection.
