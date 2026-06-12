@@ -35,3 +35,8 @@ MML1-project-HW2_backup*/
 .idea/
 *.tmp
 *.log
+
+# HW3 local final-test runtime artefacts
+data/interim/hw3_final_full_test_runs.csv
+data/interim/hw3_final_resource_test_runs.csv
+data/interim/hw3_final_predictions/

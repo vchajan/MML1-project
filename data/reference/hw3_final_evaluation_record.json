@@ -1,0 +1,18 @@
+{
+  "task": "HW3 final frozen regression model evaluation",
+  "frozen_plan_path": "data\\reference\\hw3_frozen_evaluation_plan.json",
+  "frozen_plan_sha256": "1b4209c8605e0fca704c32d1d6291deb4f3134c2b007ec2db7d6be6bce793249",
+  "configuration_frozen_before_test": true,
+  "test_used_for_model_selection": false,
+  "test_used_for_hyperparameter_tuning": false,
+  "post_test_tuning_performed": false,
+  "final_fit_period": "1997-2012",
+  "final_test_period": "2013-2014",
+  "final_train_rows": 234552,
+  "test_rows": 32596,
+  "selected_from_validation_run_id": "random_forest_200_leaf_20",
+  "reported_test_best_run_id": "random_forest_200_leaf_20",
+  "full_model_count": 10,
+  "resource_model_count": 5,
+  "random_state": 42
+}
