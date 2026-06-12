@@ -121,7 +121,7 @@ data/reference/hw3_final_evaluation_record.json
 
 ### Resource-limited experiment
 
-KNN a RBF-SVR byly kvůli výpočetní náročnosti vyhodnoceny odděleně na deterministickém vzorku.
+KNN a RBF-SVR byly kvůli výpočetní náročnosti natrénovány na deterministickém vzorku 5 000 řádků. Jejich předem zmrazené konfigurace byly následně v notebooku vyhodnoceny na celé testovací sadě 32 596 řádků. Výsledky jsou stále uváděny odděleně, protože trénovací rozsah není srovnatelný s hlavním full-data experimentem.
 
 Tento experiment obsahuje:
 
@@ -270,7 +270,7 @@ Notebook je možné otevřít přímo v Jupyteru:
 jupyter notebook ukol3_evaluace.ipynb
 ```
 
-Případně lze z již vytvořených výsledků znovu vytvořit notebook a HTML export:
+Příkaz níže znovu vytvoří zmrazené modelové pipeline, natrénuje full-data modely na období 1997–2012, ověří jejich metriky proti uloženému auditu, spustí doplňkovou resource-limited evaluaci a následně vytvoří notebook i HTML export:
 
 ```bash
 python create_hw3_artifacts.py --execute

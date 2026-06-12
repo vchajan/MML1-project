@@ -5,8 +5,9 @@ Vytvorí, spustí a exportuje finálny notebook k MML1 Úlohe 3.
 Spúšťaj z koreňa repozitára:
     python create_hw3_artifacts.py --execute
 
-Skript nič netrénuje ani nemení výsledky modelov. Notebook iba načíta
-zmrazené validačné a finálne testovacie reporty.
+Notebook pri vykonaní znovu natrénuje všetky zmrazené full-data modely,
+overí ich metriky proti uloženému auditu a samostatne vyhodnotí resource-limited
+modely na celej testovacej sade. Nemení zoznam modelov ani hyperparametre.
 """
 
 from __future__ import annotations
@@ -99,6 +100,269 @@ MedianAE.
 - **RMSE** výrazněji penalizuje velké chyby.
 - **R²** porovnává model s konstantní predikcí průměru.
 - **MedianAE** popisuje typickou chybu a je méně citlivá na extrémy.
+"""))
+
+
+    cells.append(md("""
+## Reprodukční spuštění zmrazených modelů
+
+Zadání požaduje, aby byly modely v notebooku natrénovány nebo znovu načteny.
+Proto následující buňka skutečně znovu vytvoří všechny pipeline ze zmrazeného
+plánu, natrénuje deset full-data modelů na období 1997–2012 a vyhodnotí je na
+celé testovací sadě 2013–2014.
+
+Hyperparametry se v notebooku nehledají ani nemění. Před spuštěním se ověří,
+že modelové specifikace přesně odpovídají souboru
+`hw3_frozen_evaluation_plan.json`. Nově vypočtené full-data metriky se následně
+porovnají s uloženým finálním reportem.
+
+KNN a RBF-SVR zůstávají resource-limited podle velikosti trénovacího vzorku
+(5 000 řádků), ale notebook je navíc vyhodnotí na všech 32 596 testovacích
+řádcích. Jde pouze o doplňkovou evaluaci předem zmrazených konfigurací, nikoli
+o nové model selection.
+"""))
+
+    cells.append(code(r"""
+from pathlib import Path
+import gc
+import json
+import sys
+import time
+
+import numpy as np
+import pandas as pd
+from IPython.display import display
+
+ROOT = Path.cwd()
+SRC_DIR = ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
+from run_hw3_final_test import (
+    load_inputs,
+    validate_specs_against_plan,
+)
+from run_hw3_pretest_selection import (
+    FEATURE_SET_NAME,
+    TARGET,
+    deterministic_sample,
+    full_model_specs,
+    regression_metrics,
+    resource_model_specs,
+)
+
+train_frame, validation_frame, test_frame, notebook_manifest, notebook_plan = (
+    load_inputs()
+)
+final_train_frame = pd.concat(
+    [train_frame, validation_frame],
+    ignore_index=True,
+)
+
+feature_set = list(
+    notebook_manifest["feature_sets"][FEATURE_SET_NAME]
+)
+categorical_features = list(
+    notebook_manifest["categorical_features"]
+)
+numeric_features = [
+    column
+    for column in feature_set
+    if column not in categorical_features
+]
+
+full_specs = full_model_specs(
+    categorical_features,
+    numeric_features,
+)
+resource_specs = resource_model_specs(
+    categorical_features,
+    numeric_features,
+)
+
+validate_specs_against_plan(
+    full_specs,
+    notebook_plan["full_validation_models"],
+)
+validate_specs_against_plan(
+    resource_specs,
+    notebook_plan["resource_limited_validation_models"],
+)
+
+
+def fit_and_evaluate_specs(
+    specs,
+    fit_frame,
+    evaluation_frame,
+    scope,
+):
+    rows = []
+    X_fit = fit_frame[feature_set]
+    y_fit = fit_frame[TARGET]
+    X_evaluation = evaluation_frame[feature_set]
+    y_evaluation = evaluation_frame[TARGET]
+
+    for spec in specs:
+        estimator = spec.build_estimator()
+
+        started = time.perf_counter()
+        if spec.preprocessing_family == "none":
+            estimator.fit(
+                np.zeros((len(fit_frame), 1)),
+                y_fit,
+            )
+        else:
+            estimator.fit(X_fit, y_fit)
+        fit_seconds = time.perf_counter() - started
+
+        if spec.preprocessing_family == "none":
+            fit_prediction = estimator.predict(
+                np.zeros((len(fit_frame), 1))
+            )
+            evaluation_prediction = estimator.predict(
+                np.zeros((len(evaluation_frame), 1))
+            )
+        else:
+            fit_prediction = estimator.predict(X_fit)
+            evaluation_prediction = estimator.predict(X_evaluation)
+
+        fit_metrics = regression_metrics(
+            y_fit,
+            fit_prediction,
+        )
+        evaluation_metrics = regression_metrics(
+            y_evaluation,
+            evaluation_prediction,
+        )
+
+        rows.append(
+            {
+                "model_run_id": spec.run_id,
+                "model_name": spec.model_name,
+                "model_family": spec.model_family,
+                "evaluation_scope": scope,
+                "train_rows_used": len(fit_frame),
+                "test_rows_used": len(evaluation_frame),
+                "fit_seconds": fit_seconds,
+                "train_mae": fit_metrics["mae"],
+                "train_rmse": fit_metrics["rmse"],
+                "train_r2": fit_metrics["r2"],
+                "train_median_ae": fit_metrics["median_ae"],
+                "test_mae": evaluation_metrics["mae"],
+                "test_rmse": evaluation_metrics["rmse"],
+                "test_r2": evaluation_metrics["r2"],
+                "test_median_ae": evaluation_metrics["median_ae"],
+                "status": "completed",
+            }
+        )
+
+        del estimator
+        gc.collect()
+
+    return pd.DataFrame(rows)
+
+
+notebook_full_results = fit_and_evaluate_specs(
+    full_specs,
+    final_train_frame,
+    test_frame,
+    "notebook_recomputed_full_test",
+)
+
+stored_full_results = pd.read_csv(
+    ROOT / "reports" / "hw3_final_full_test_results.csv"
+)
+
+verification = notebook_full_results.merge(
+    stored_full_results[
+        [
+            "model_run_id",
+            "test_mae",
+            "test_rmse",
+            "test_r2",
+            "test_median_ae",
+        ]
+    ],
+    on="model_run_id",
+    suffixes=("_notebook", "_stored"),
+    validate="one_to_one",
+)
+
+for metric in ["test_mae", "test_rmse", "test_r2", "test_median_ae"]:
+    verification[f"{metric}_abs_difference"] = (
+        verification[f"{metric}_notebook"]
+        - verification[f"{metric}_stored"]
+    ).abs()
+
+difference_columns = [
+    column
+    for column in verification.columns
+    if column.endswith("_abs_difference")
+]
+maximum_difference = float(
+    verification[difference_columns].to_numpy().max()
+)
+assert maximum_difference < 1e-5, (
+    "Nově vypočtené full-data metriky se liší od uloženého "
+    f"auditu; max rozdíl={maximum_difference}"
+)
+
+resource_train_frame = deterministic_sample(
+    final_train_frame,
+    5000,
+)
+resource_full_test_results = fit_and_evaluate_specs(
+    resource_specs,
+    resource_train_frame,
+    test_frame,
+    "notebook_resource_train_full_test",
+)
+
+print(
+    "Full-data modely byly znovu natrénovány a jejich metriky "
+    "souhlasí s uloženým auditem."
+)
+print(
+    f"Maximální absolutní rozdíl metrik: {maximum_difference:.10f}"
+)
+print(
+    "Resource-limited modely byly natrénovány na 5 000 řádcích "
+    f"a vyhodnoceny na všech {len(test_frame):,} testovacích řádcích."
+)
+
+display(
+    notebook_full_results[
+        [
+            "model_name",
+            "train_rows_used",
+            "test_rows_used",
+            "fit_seconds",
+            "test_mae",
+            "test_rmse",
+            "test_r2",
+            "test_median_ae",
+        ]
+    ]
+    .sort_values("test_mae")
+    .reset_index(drop=True)
+)
+
+display(
+    resource_full_test_results[
+        [
+            "model_name",
+            "train_rows_used",
+            "test_rows_used",
+            "fit_seconds",
+            "train_mae",
+            "test_mae",
+            "test_rmse",
+            "test_r2",
+        ]
+    ]
+    .sort_values("test_mae")
+    .reset_index(drop=True)
+)
 """))
 
     cells.append(code(r"""
@@ -339,14 +603,34 @@ show_image("hw3_validation_vs_test_mae.png")
     cells.append(md("""
 ### Diskuze validačního výběru
 
-Random Forest dosáhl nejnižšího validačního MAE a byl proto zmrazen jako
-finální kandidát. Rozhodovací strom byl druhý. Výsledek naznačuje, že vztahy
-v datech jsou výrazně nelineární a obsahují interakce, které lineární modely
-nezachycují stejně dobře.
+Random Forest dosáhl nejnižšího validačního MAE (`1.618119`) a byl proto
+vybrán ještě před otevřením testovací sady. Druhý skončil Decision Tree
+s MAE `1.673477`. Už validační výsledky tedy ukázaly, že stromové modely
+zachycují strukturu dat lépe než globální lineární vztah.
 
-Random Forest používá průměrování většího počtu stromů, což obvykle omezuje
-varianci samostatného stromu. Současně je méně interpretovatelný a výpočetně
-náročnější.
+Důvodem je pravděpodobně charakter problému. Vliv teploty, srážek nebo plochy
+nemusí být stejný pro všechny plodiny, okresy a sezóny. Strom dokáže vytvářet
+rozdílná pravidla pro různé části dat a přirozeně zachytit prahové efekty
+a interakce, například situaci, kdy vysoká teplota škodí pouze určité plodině
+v určité sezóně. Lineární model naproti tomu předpokládá převážně aditivní
+globální vztahy a bez ručně vytvořených interakcí takovou heterogenitu
+zachytává hůře.
+
+Random Forest průměruje predikce 200 stromů. Jednotlivé stromy nejsou totožné,
+protože pracují s různými bootstrap vzorky a podmnožinami features.
+Průměrování snižuje varianci a omezuje citlivost na konkrétní trénovací
+pozorování. To vysvětluje, proč Random Forest překonal jeden Decision Tree,
+aniž by bylo nutné výrazně omezit hloubku stromů.
+
+Z lineárních a regularizovaných modelů dopadlo nejlépe Lasso. L1 regularizace
+pravděpodobně pomohla potlačit méně užitečné koeficienty ve
+vysoko-dimenzionálním one-hot prostoru. Ani Lasso však nemůže samo vytvářet
+nelineární podmínky a interakce, takže za stromovými modely zaostalo.
+
+LinearSVR měl nejlepší validační MAE mezi nestromovými modely. To naznačuje,
+že jeho ztrátová funkce dobře omezuje typické absolutní chyby. Vyšší RMSE však
+ukazuje, že některé velké chyby zůstaly. Výběr Random Forestu proto nestojí
+pouze na jednom čísle, ale také na lepší kontrole extrémních odchylek.
 """))
 
     cells.append(md("""
@@ -381,15 +665,37 @@ show_image("hw3_final_test_r2.png")
     cells.append(md("""
 ### Diskuze finálního pořadí
 
-Random Forest zůstal nejlepším modelem i na finálním testu. Samostatný
-Decision Tree dosáhl téměř stejného MAE, ale Random Forest měl výrazně nižší
-RMSE a vyšší R². To znamená, že při téměř shodné průměrné absolutní chybě
-Random Forest lépe omezuje velké chyby a vysvětluje větší část variability.
+Random Forest zůstal první i na finálním testu. Jeho MAE `1.611674` je téměř
+shodné s MAE Decision Tree `1.612646`; rozdíl je pouze přibližně `0.000973`.
+Podle samotného MAE proto nelze tvrdit, že Random Forest je prakticky výrazně
+lepší v běžné absolutní chybě.
 
-Lineární a regularizované modely překonaly naivní baseline, ale zaostaly za
-stromovými metodami. To podporuje závěr, že vztah mezi lokalitou, plodinou,
-sezónou, počasím a výnosem není dobře popsán jedinou globální lineární
-funkcí.
+Rozdíl se ukáže až u RMSE a R². Random Forest má RMSE `5.277702`, zatímco
+Decision Tree `6.138621`. Jde přibližně o 14% snížení RMSE. Random Forest má
+také R² `0.839797`, oproti `0.783268` u jednoho stromu. To znamená, že soubor
+stromů lépe omezuje několik velmi velkých chyb a vysvětluje větší část
+variability targetu. Právě tato stabilita, nikoli zanedbatelný rozdíl MAE, je
+hlavním důvodem pro volbu Random Forestu.
+
+Výsledky baseline zároveň ukazují šikmé rozdělení targetu. Mediánová baseline
+má nižší MAE než průměrová baseline, protože medián je odolnější vůči
+extrémně vysokým výnosům. Průměrová baseline má naopak mírně lepší RMSE,
+protože aritmetický průměr minimalizuje čtvercovou chybu. Obě baseline mají
+R² kolem nuly nebo pod nulou, takže samy nevysvětlují strukturu dat.
+
+Lineární regrese, Ridge, Lasso a Elastic Net baseline jasně překonaly, ale
+jejich MAE zůstalo přibližně mezi `2.95` a `3.17`. Ridge a obyčejná lineární
+regrese dopadly velmi podobně, takže L2 regularizace v této konfiguraci
+nepřinesla zásadní zlepšení. Lasso bylo lepší, pravděpodobně díky výběrovému
+účinku L1 regularizace, stále však pracuje s převážně lineárními a aditivními
+vztahy.
+
+LinearSVR dosáhl nižšího MAE než ostatní lineární modely, ale horšího RMSE.
+To znamená, že často predikoval poměrně přesně, avšak u části pozorování
+udělal velké chyby. Gradient Boosting v použité zmrazené konfiguraci také
+nepřekonal Random Forest. Nelze z toho vyvozovat, že boosting je obecně horší;
+výsledek platí pro konkrétní počet stromů, hloubku, learning rate a tento
+dataset.
 """))
 
     cells.append(code(r"""
@@ -426,17 +732,36 @@ display(comparison)
     cells.append(md("""
 ## 8. Overfitting a stabilita mezi validation a testem
 
-Overfitting nelze posuzovat pouze podle jedné dvojice čísel. V tomto projektu
-je navíc split chronologický, takže rozdíl mezi obdobími může vzniknout nejen
-přeučením, ale také časovým distribučním posunem.
+Overfitting hodnotíme porovnáním výkonu na trénovacích a dosud neviděných
+datech. Současně je nutné oddělit klasické přeučení od časového dataset shiftu,
+protože validation a test představují pozdější roky než train.
 
-U Random Forestu je testovací MAE velmi podobné validačnímu MAE. Nevidíme tedy
-výrazný propad generalizace mezi validation a testem. Samostatný strom je také
-stabilní mezi těmito obdobími, ale jeho horší RMSE ukazuje vyšší citlivost na
-některé velké chyby.
+U Random Forestu bylo train MAE přibližně `1.130255`, validation MAE
+`1.618119` a test MAE `1.611674`. Train chyba je podle očekávání nižší, takže
+určitý generalizační rozdíl existuje. Mezi validation a test obdobím ale
+nedošlo k dalšímu zhoršení. Random Forest proto nevykazuje výrazný
+validation-to-test overfitting.
 
-Train–test rozdíl je nutné interpretovat opatrně, protože historická trénovací
-část obsahuje jiné extrémy targetu než testovací období.
+Decision Tree měl train MAE `0.951869` a test MAE `1.612646`. Jeho
+train–test mezera je větší než u Random Forestu. Jeden strom se snáze
+přizpůsobí specifickým strukturám trénovacích dat, zatímco průměrování ve
+Random Forestu tuto varianci omezuje. Horší testovací RMSE Decision Tree tuto
+vyšší citlivost na některé případy potvrzuje.
+
+Nejsilnější známku přeučení v celém srovnání vykazuje resource-limited KNN.
+Na trénovacím vzorku dosahuje nulové nebo téměř nulové MAE, zatímco na celé
+testovací sadě je chyba výrazně vyšší, jak ukazuje samostatná resource tabulka.
+Při distance weighting je trénovací bod sám sobě sousedem se vzdáleností nula,
+takže model může trénovací data prakticky zapamatovat. Nulová train chyba proto
+není důkazem kvality, ale naopak varováním před přeučením.
+
+RBF-SVR má naopak vysokou chybu už na trénovacím vzorku i na celé testovací
+sadě. To připomíná spíše underfitting nebo nevhodnou zmrazenou konfiguraci než
+klasické přeučení.
+
+Závěr tedy není, že se žádný model nepřeučil. Random Forest generalizuje
+stabilně, Decision Tree vykazuje větší varianci a KNN představuje
+nejzřetelnější případ přeučení v resource-limited experimentu.
 """))
 
     cells.append(code(r"""
@@ -531,46 +856,97 @@ by vytvořit příliš optimistický obraz generalizace.
     cells.append(md("""
 ## 12. Resource-limited experiment: KNN a RBF-SVR
 
-KNN a kernelový SVR jsou zahrnuty kvůli úplnosti srovnání probíraných metod,
-ale byly spuštěny na samostatném deterministickém vzorku. Spolu s nimi byly na
-stejném vzorku vyhodnoceny baseline a Decision Tree.
+KNN a kernelový SVR jsou zahrnuty kvůli úplnosti srovnání probíraných metod.
+Kvůli výpočetní náročnosti byly natrénovány na samostatném deterministickém
+vzorku 5 000 řádků. Notebook je však vyhodnocuje na celé testovací sadě
+32 596 řádků. Spolu s nimi jsou za stejných podmínek natrénovány baseline
+a Decision Tree.
 
-Výsledky slouží k porovnání uvnitř resource-limited experimentu. Nesmí být
-přímo zařazeny do pořadí full-data modelů.
+Výsledky slouží k porovnání uvnitř resource-limited experimentu. Kvůli menšímu
+trénovacímu vzorku nesmí být přímo zařazeny do pořadí full-data modelů.
 """))
 
     cells.append(code(r"""
 resource_view = [
-    column for column in [
-        "model_name", "test_mae", "test_rmse", "test_r2", "test_median_ae"
-    ] if column in test_resource.columns
+    "model_name",
+    "train_rows_used",
+    "test_rows_used",
+    "train_mae",
+    "test_mae",
+    "test_rmse",
+    "test_r2",
+    "test_median_ae",
 ]
 display(
-    test_resource.loc[test_resource["status"].eq("completed"), resource_view]
+    resource_full_test_results[resource_view]
     .sort_values("test_mae")
     .reset_index(drop=True)
 )
 """))
 
-    cells.append(md("""
-Decision Tree byl na vzorku nejlepší. KNN překonal vzorkové naivní baseline,
-ale zaostal za stromem. RBF-SVR měl s danou předem zmrazenou konfigurací vysoké
-MAE. Výsledek nelze interpretovat jako obecný důkaz, že KNN nebo kernelový SVM
-jsou vždy slabé; platí pouze pro tento dataset, preprocessing, vzorek a
-zmrazené hyperparametry.
+    cells.append(code(r"""
+resource_by_name = resource_full_test_results.set_index("model_name")
+resource_tree = resource_by_name.loc["Decision Tree (sample)"]
+resource_knn = resource_by_name.loc["KNN (sample)"]
+resource_rbf = resource_by_name.loc["SVR RBF (sample)"]
+
+display(
+    Markdown(
+        f'''
+### Diskuze resource-limited experimentu
+
+Decision Tree byl v doplňkovém experimentu nejlepší s test MAE
+`{resource_tree['test_mae']:.6f}`. Model byl natrénován pouze na 5 000
+řádcích, ale vyhodnocen na celé testovací sadě. Jeho horší výkon proti stromu
+trénovanému na plných datech ukazuje, že omezení trénovacího vzorku vede ke
+ztrátě užitečné informace o různých okresech, plodinách a podmínkách.
+
+KNN dosáhl train MAE `{resource_knn['train_mae']:.6f}`, ale test MAE
+`{resource_knn['test_mae']:.6f}`. Nulová nebo téměř nulová train chyba je
+způsobena také tím, že při distance weighting je trénovací bod sám sobě
+nejbližším sousedem se vzdáleností nula. Velký rozdíl mezi train a test
+výkonem proto představuje nejsilnější známku přeučení v celém srovnání.
+
+RBF-SVR dosáhl train MAE `{resource_rbf['train_mae']:.6f}` a test MAE
+`{resource_rbf['test_mae']:.6f}`. Vysoká chyba už na trénovacích datech
+odpovídá spíše underfittingu nebo nevhodné zmrazené konfiguraci než
+klasickému přeučení.
+
+Tyto výsledky neznamenají, že KNN nebo kernelový SVM jsou obecně nevhodné.
+Platí pro předem zmrazené hyperparametry, použitý preprocessing a omezený
+trénovací vzorek. Proto nejsou použity k přepsání hlavního full-data pořadí.
+'''
+    )
+)
 """))
 
     cells.append(md("""
-## 13. Vyplatil se složitější model?
+## 13. Jak velký je rozdíl proti baseline a vyplatil se složitější model?
 
-Ano. Random Forest snížil MAE přibližně o 73 % proti predikci průměru a o
-64 % proti predikci mediánu. To je natolik velký rozdíl, že použití reálného
-modelu má jasnou hodnotu.
+Rozdíl proti naivním baseline je výrazný. Random Forest snížil MAE z
+`5.938865` u mean baseline na `1.611674`. Absolutní zlepšení je přibližně
+`4.327191` a relativní zlepšení `72.86 %`.
 
-Proti jedinému rozhodovacímu stromu je rozdíl v MAE zanedbatelný. Přínos
-Random Forestu se však ukazuje v nižším RMSE a vyšším R², tedy v lepší kontrole
-velkých chyb. Cena za toto zlepšení je nižší interpretovatelnost, vyšší
-paměťová náročnost a delší trénink.
+Proti median baseline kleslo MAE z `4.519306` na `1.611674`. Absolutní
+zlepšení je přibližně `2.907632`, tedy `64.34 %`. Nejde proto o malé
+kosmetické zlepšení. Model využívá informace o plodině, lokalitě, sezóně,
+roku a počasí a oproti konstantní predikci podstatně snižuje chybu.
+
+Použití skutečného modelu se tedy proti baseline jednoznačně vyplatilo.
+Složitější otázkou je, zda se vyplatil právě Random Forest místo jediného
+Decision Tree. Rozdíl jejich MAE je prakticky nulový, takže pro aplikaci, kde
+je prioritou jednoduchost, rychlost a interpretovatelnost, by mohl být jeden
+strom dostatečný.
+
+Random Forest však snížil RMSE proti Decision Tree přibližně o 14 % a zvýšil
+R² přibližně o `0.0565`. Pokud jsou velké chyby nákladné nebo rizikové, je
+tento rozdíl důležitý. Random Forest se proto vyplatí jako finální predikční
+model hlavně kvůli stabilitě a menším extrémním chybám, nikoli kvůli
+zanedbatelnému rozdílu v MAE.
+
+Cena za tuto stabilitu je nižší interpretovatelnost, vyšší paměťová náročnost
+a delší trénink. Volba mezi Random Forestem a jedním stromem tedy závisí i na
+praktických požadavcích aplikace.
 """))
 
     cells.append(md("""
@@ -590,17 +966,26 @@ paměťová náročnost a delší trénink.
     cells.append(md("""
 ## 15. Závěr
 
-Validace vybrala Random Forest a jednorázový finální test tuto volbu podpořil.
-Model dosáhl nejnižšího testovacího MAE, nejlepšího RMSE a nejvyššího R² mezi
-full-data konfiguracemi.
+Random Forest byl vybrán podle validation MAE ještě před otevřením testu a na
+finálním testu dosáhl nejlepší kombinace MAE, RMSE a R². Jeho výhodou je
+schopnost zachytit nelineární vztahy a interakce mezi plodinou, lokalitou,
+sezónou a počasím a současně omezit varianci jednotlivých stromů jejich
+průměrováním.
 
-Samostatný Decision Tree měl prakticky stejné MAE a představuje zajímavou
-jednodušší alternativu. Random Forest je však vhodnější jako finální
-predikční model, protože výrazně lépe omezuje velké chyby.
+Decision Tree měl prakticky stejné MAE a je interpretovatelnější. Random
+Forest je však preferován kvůli výrazně lepšímu RMSE a R², tedy menším velkým
+chybám. LinearSVR byl nejlepší nestromový model podle MAE, zatímco Lasso bylo
+nejlepší mezi klasickými lineárními a regularizovanými modely.
 
-Nejdůležitějším výsledkem není pouze pořadí modelů, ale metodika: chronologický
-split, preprocessing uvnitř pipeline, explicitní leakage audit, baseline,
-zmrazení konfigurací před testem a následná analýza reziduí a limitů.
+Nejvýraznější overfitting se objevil u resource-limited KNN, které dosáhlo
+nulové train chyby, ale podstatně horší test chyby. RBF-SVR naopak vykazovalo
+spíše nedostatečné přizpůsobení v použité konfiguraci.
+
+Rozdíl mezi Random Forestem a naivními baseline je dostatečně velký, aby
+ospravedlnil použití strojového učení. Přínos Random Forestu proti jedinému
+stromu spočívá hlavně v lepší kontrole extrémních chyb. Výsledky však platí
+pro období 2013–2014 a použitý dataset; nejde o důkaz kauzality ani o záruku
+stejného výkonu na současných datech.
 """))
 
     notebook = new_notebook(

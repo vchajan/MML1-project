@@ -7796,7 +7796,7 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ceff9930">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c3504a7f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7815,7 +7815,7 @@ byly zmrazeny před zpřístupněním testovací sady.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73a0caf0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd89733a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7836,12 +7836,541 @@ MedianAE.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=461f8252">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=984f8587">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Reproduk%C4%8Dn%C3%AD-spu%C5%A1t%C4%9Bn%C3%AD-zmrazen%C3%BDch-model%C5%AF">Reprodukční spuštění zmrazených modelů<a class="anchor-link" href="#Reproduk%C4%8Dn%C3%AD-spu%C5%A1t%C4%9Bn%C3%AD-zmrazen%C3%BDch-model%C5%AF">¶</a></h2><p>Zadání požaduje, aby byly modely v notebooku natrénovány nebo znovu načteny.
+Proto následující buňka skutečně znovu vytvoří všechny pipeline ze zmrazeného
+plánu, natrénuje deset full-data modelů na období 1997–2012 a vyhodnotí je na
+celé testovací sadě 2013–2014.</p>
+<p>Hyperparametry se v notebooku nehledají ani nemění. Před spuštěním se ověří,
+že modelové specifikace přesně odpovídají souboru
+<code>hw3_frozen_evaluation_plan.json</code>. Nově vypočtené full-data metriky se následně
+porovnají s uloženým finálním reportem.</p>
+<p>KNN a RBF-SVR zůstávají resource-limited podle velikosti trénovacího vzorku
+(5 000 řádků), ale notebook je navíc vyhodnotí na všech 32 596 testovacích
+řádcích. Jde pouze o doplňkovou evaluaci předem zmrazených konfigurací, nikoli
+o nové model selection.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c59c2d6f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="n">SRC_DIR</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"src"</span>
+<span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">SRC_DIR</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">SRC_DIR</span><span class="p">))</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">run_hw3_final_test</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">load_inputs</span><span class="p">,</span>
+    <span class="n">validate_specs_against_plan</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">run_hw3_pretest_selection</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">FEATURE_SET_NAME</span><span class="p">,</span>
+    <span class="n">TARGET</span><span class="p">,</span>
+    <span class="n">deterministic_sample</span><span class="p">,</span>
+    <span class="n">full_model_specs</span><span class="p">,</span>
+    <span class="n">regression_metrics</span><span class="p">,</span>
+    <span class="n">resource_model_specs</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">train_frame</span><span class="p">,</span> <span class="n">validation_frame</span><span class="p">,</span> <span class="n">test_frame</span><span class="p">,</span> <span class="n">notebook_manifest</span><span class="p">,</span> <span class="n">notebook_plan</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">load_inputs</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">final_train_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">train_frame</span><span class="p">,</span> <span class="n">validation_frame</span><span class="p">],</span>
+    <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">feature_set</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="n">notebook_manifest</span><span class="p">[</span><span class="s2">"feature_sets"</span><span class="p">][</span><span class="n">FEATURE_SET_NAME</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="n">notebook_manifest</span><span class="p">[</span><span class="s2">"categorical_features"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">column</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">feature_set</span>
+    <span class="k">if</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">categorical_features</span>
+<span class="p">]</span>
+
+<span class="n">full_specs</span> <span class="o">=</span> <span class="n">full_model_specs</span><span class="p">(</span>
+    <span class="n">categorical_features</span><span class="p">,</span>
+    <span class="n">numeric_features</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">resource_specs</span> <span class="o">=</span> <span class="n">resource_model_specs</span><span class="p">(</span>
+    <span class="n">categorical_features</span><span class="p">,</span>
+    <span class="n">numeric_features</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">validate_specs_against_plan</span><span class="p">(</span>
+    <span class="n">full_specs</span><span class="p">,</span>
+    <span class="n">notebook_plan</span><span class="p">[</span><span class="s2">"full_validation_models"</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">validate_specs_against_plan</span><span class="p">(</span>
+    <span class="n">resource_specs</span><span class="p">,</span>
+    <span class="n">notebook_plan</span><span class="p">[</span><span class="s2">"resource_limited_validation_models"</span><span class="p">],</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_and_evaluate_specs</span><span class="p">(</span>
+    <span class="n">specs</span><span class="p">,</span>
+    <span class="n">fit_frame</span><span class="p">,</span>
+    <span class="n">evaluation_frame</span><span class="p">,</span>
+    <span class="n">scope</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">X_fit</span> <span class="o">=</span> <span class="n">fit_frame</span><span class="p">[</span><span class="n">feature_set</span><span class="p">]</span>
+    <span class="n">y_fit</span> <span class="o">=</span> <span class="n">fit_frame</span><span class="p">[</span><span class="n">TARGET</span><span class="p">]</span>
+    <span class="n">X_evaluation</span> <span class="o">=</span> <span class="n">evaluation_frame</span><span class="p">[</span><span class="n">feature_set</span><span class="p">]</span>
+    <span class="n">y_evaluation</span> <span class="o">=</span> <span class="n">evaluation_frame</span><span class="p">[</span><span class="n">TARGET</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">specs</span><span class="p">:</span>
+        <span class="n">estimator</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">build_estimator</span><span class="p">()</span>
+
+        <span class="n">started</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">spec</span><span class="o">.</span><span class="n">preprocessing_family</span> <span class="o">==</span> <span class="s2">"none"</span><span class="p">:</span>
+            <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">fit_frame</span><span class="p">),</span> <span class="mi">1</span><span class="p">)),</span>
+                <span class="n">y_fit</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_fit</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">)</span>
+        <span class="n">fit_seconds</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">started</span>
+
+        <span class="k">if</span> <span class="n">spec</span><span class="o">.</span><span class="n">preprocessing_family</span> <span class="o">==</span> <span class="s2">"none"</span><span class="p">:</span>
+            <span class="n">fit_prediction</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">fit_frame</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="p">)</span>
+            <span class="n">evaluation_prediction</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">evaluation_frame</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fit_prediction</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_fit</span><span class="p">)</span>
+            <span class="n">evaluation_prediction</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_evaluation</span><span class="p">)</span>
+
+        <span class="n">fit_metrics</span> <span class="o">=</span> <span class="n">regression_metrics</span><span class="p">(</span>
+            <span class="n">y_fit</span><span class="p">,</span>
+            <span class="n">fit_prediction</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">evaluation_metrics</span> <span class="o">=</span> <span class="n">regression_metrics</span><span class="p">(</span>
+            <span class="n">y_evaluation</span><span class="p">,</span>
+            <span class="n">evaluation_prediction</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">"model_run_id"</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">run_id</span><span class="p">,</span>
+                <span class="s2">"model_name"</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span>
+                <span class="s2">"model_family"</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">model_family</span><span class="p">,</span>
+                <span class="s2">"evaluation_scope"</span><span class="p">:</span> <span class="n">scope</span><span class="p">,</span>
+                <span class="s2">"train_rows_used"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">fit_frame</span><span class="p">),</span>
+                <span class="s2">"test_rows_used"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">evaluation_frame</span><span class="p">),</span>
+                <span class="s2">"fit_seconds"</span><span class="p">:</span> <span class="n">fit_seconds</span><span class="p">,</span>
+                <span class="s2">"train_mae"</span><span class="p">:</span> <span class="n">fit_metrics</span><span class="p">[</span><span class="s2">"mae"</span><span class="p">],</span>
+                <span class="s2">"train_rmse"</span><span class="p">:</span> <span class="n">fit_metrics</span><span class="p">[</span><span class="s2">"rmse"</span><span class="p">],</span>
+                <span class="s2">"train_r2"</span><span class="p">:</span> <span class="n">fit_metrics</span><span class="p">[</span><span class="s2">"r2"</span><span class="p">],</span>
+                <span class="s2">"train_median_ae"</span><span class="p">:</span> <span class="n">fit_metrics</span><span class="p">[</span><span class="s2">"median_ae"</span><span class="p">],</span>
+                <span class="s2">"test_mae"</span><span class="p">:</span> <span class="n">evaluation_metrics</span><span class="p">[</span><span class="s2">"mae"</span><span class="p">],</span>
+                <span class="s2">"test_rmse"</span><span class="p">:</span> <span class="n">evaluation_metrics</span><span class="p">[</span><span class="s2">"rmse"</span><span class="p">],</span>
+                <span class="s2">"test_r2"</span><span class="p">:</span> <span class="n">evaluation_metrics</span><span class="p">[</span><span class="s2">"r2"</span><span class="p">],</span>
+                <span class="s2">"test_median_ae"</span><span class="p">:</span> <span class="n">evaluation_metrics</span><span class="p">[</span><span class="s2">"median_ae"</span><span class="p">],</span>
+                <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"completed"</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="k">del</span> <span class="n">estimator</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+
+
+<span class="n">notebook_full_results</span> <span class="o">=</span> <span class="n">fit_and_evaluate_specs</span><span class="p">(</span>
+    <span class="n">full_specs</span><span class="p">,</span>
+    <span class="n">final_train_frame</span><span class="p">,</span>
+    <span class="n">test_frame</span><span class="p">,</span>
+    <span class="s2">"notebook_recomputed_full_test"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">stored_full_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"reports"</span> <span class="o">/</span> <span class="s2">"hw3_final_full_test_results.csv"</span>
+<span class="p">)</span>
+
+<span class="n">verification</span> <span class="o">=</span> <span class="n">notebook_full_results</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">stored_full_results</span><span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s2">"model_run_id"</span><span class="p">,</span>
+            <span class="s2">"test_mae"</span><span class="p">,</span>
+            <span class="s2">"test_rmse"</span><span class="p">,</span>
+            <span class="s2">"test_r2"</span><span class="p">,</span>
+            <span class="s2">"test_median_ae"</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">],</span>
+    <span class="n">on</span><span class="o">=</span><span class="s2">"model_run_id"</span><span class="p">,</span>
+    <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">"_notebook"</span><span class="p">,</span> <span class="s2">"_stored"</span><span class="p">),</span>
+    <span class="n">validate</span><span class="o">=</span><span class="s2">"one_to_one"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"test_mae"</span><span class="p">,</span> <span class="s2">"test_rmse"</span><span class="p">,</span> <span class="s2">"test_r2"</span><span class="p">,</span> <span class="s2">"test_median_ae"</span><span class="p">]:</span>
+    <span class="n">verification</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">_abs_difference"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">verification</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">_notebook"</span><span class="p">]</span>
+        <span class="o">-</span> <span class="n">verification</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">_stored"</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+
+<span class="n">difference_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">column</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">verification</span><span class="o">.</span><span class="n">columns</span>
+    <span class="k">if</span> <span class="n">column</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"_abs_difference"</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">maximum_difference</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span>
+    <span class="n">verification</span><span class="p">[</span><span class="n">difference_columns</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">maximum_difference</span> <span class="o">&lt;</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="p">(</span>
+    <span class="s2">"Nově vypočtené full-data metriky se liší od uloženého "</span>
+    <span class="sa">f</span><span class="s2">"auditu; max rozdíl=</span><span class="si">{</span><span class="n">maximum_difference</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+
+<span class="n">resource_train_frame</span> <span class="o">=</span> <span class="n">deterministic_sample</span><span class="p">(</span>
+    <span class="n">final_train_frame</span><span class="p">,</span>
+    <span class="mi">5000</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">resource_full_test_results</span> <span class="o">=</span> <span class="n">fit_and_evaluate_specs</span><span class="p">(</span>
+    <span class="n">resource_specs</span><span class="p">,</span>
+    <span class="n">resource_train_frame</span><span class="p">,</span>
+    <span class="n">test_frame</span><span class="p">,</span>
+    <span class="s2">"notebook_resource_train_full_test"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Full-data modely byly znovu natrénovány a jejich metriky "</span>
+    <span class="s2">"souhlasí s uloženým auditem."</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"Maximální absolutní rozdíl metrik: </span><span class="si">{</span><span class="n">maximum_difference</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Resource-limited modely byly natrénovány na 5 000 řádcích "</span>
+    <span class="sa">f</span><span class="s2">"a vyhodnoceny na všech </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_frame</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> testovacích řádcích."</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span>
+    <span class="n">notebook_full_results</span><span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s2">"model_name"</span><span class="p">,</span>
+            <span class="s2">"train_rows_used"</span><span class="p">,</span>
+            <span class="s2">"test_rows_used"</span><span class="p">,</span>
+            <span class="s2">"fit_seconds"</span><span class="p">,</span>
+            <span class="s2">"test_mae"</span><span class="p">,</span>
+            <span class="s2">"test_rmse"</span><span class="p">,</span>
+            <span class="s2">"test_r2"</span><span class="p">,</span>
+            <span class="s2">"test_median_ae"</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"test_mae"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span>
+    <span class="n">resource_full_test_results</span><span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s2">"model_name"</span><span class="p">,</span>
+            <span class="s2">"train_rows_used"</span><span class="p">,</span>
+            <span class="s2">"test_rows_used"</span><span class="p">,</span>
+            <span class="s2">"fit_seconds"</span><span class="p">,</span>
+            <span class="s2">"train_mae"</span><span class="p">,</span>
+            <span class="s2">"test_mae"</span><span class="p">,</span>
+            <span class="s2">"test_rmse"</span><span class="p">,</span>
+            <span class="s2">"test_r2"</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"test_mae"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Full-data modely byly znovu natrénovány a jejich metriky souhlasí s uloženým auditem.
+Maximální absolutní rozdíl metrik: 0.0000000000
+Resource-limited modely byly natrénovány na 5 000 řádcích a vyhodnoceny na všech 32,596 testovacích řádcích.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>model_name</th>
+<th>train_rows_used</th>
+<th>test_rows_used</th>
+<th>fit_seconds</th>
+<th>test_mae</th>
+<th>test_rmse</th>
+<th>test_r2</th>
+<th>test_median_ae</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Random Forest</td>
+<td>234552</td>
+<td>32596</td>
+<td>202.455544</td>
+<td>1.611674</td>
+<td>5.277702</td>
+<td>0.839797</td>
+<td>0.424710</td>
+</tr>
+<tr>
+<th>1</th>
+<td>Decision Tree</td>
+<td>234552</td>
+<td>32596</td>
+<td>14.870879</td>
+<td>1.612646</td>
+<td>6.138621</td>
+<td>0.783268</td>
+<td>0.321230</td>
+</tr>
+<tr>
+<th>2</th>
+<td>LinearSVR</td>
+<td>234552</td>
+<td>32596</td>
+<td>8.331093</td>
+<td>2.505427</td>
+<td>7.923610</td>
+<td>0.638901</td>
+<td>0.429133</td>
+</tr>
+<tr>
+<th>3</th>
+<td>Lasso</td>
+<td>234552</td>
+<td>32596</td>
+<td>15.568062</td>
+<td>2.946074</td>
+<td>7.185825</td>
+<td>0.703015</td>
+<td>1.236091</td>
+</tr>
+<tr>
+<th>4</th>
+<td>Gradient Boosting</td>
+<td>234552</td>
+<td>32596</td>
+<td>152.145940</td>
+<td>2.951746</td>
+<td>7.400100</td>
+<td>0.685040</td>
+<td>1.079457</td>
+</tr>
+<tr>
+<th>5</th>
+<td>Elastic Net</td>
+<td>234552</td>
+<td>32596</td>
+<td>13.728293</td>
+<td>3.065463</td>
+<td>7.574680</td>
+<td>0.670004</td>
+<td>1.298478</td>
+</tr>
+<tr>
+<th>6</th>
+<td>Ridge</td>
+<td>234552</td>
+<td>32596</td>
+<td>5.996402</td>
+<td>3.154957</td>
+<td>7.071487</td>
+<td>0.712391</td>
+<td>1.592953</td>
+</tr>
+<tr>
+<th>7</th>
+<td>Linear Regression</td>
+<td>234552</td>
+<td>32596</td>
+<td>17.563400</td>
+<td>3.167277</td>
+<td>7.076283</td>
+<td>0.712001</td>
+<td>1.592805</td>
+</tr>
+<tr>
+<th>8</th>
+<td>DummyRegressor (median)</td>
+<td>234552</td>
+<td>32596</td>
+<td>0.006853</td>
+<td>4.519306</td>
+<td>13.827940</td>
+<td>-0.099754</td>
+<td>0.641749</td>
+</tr>
+<tr>
+<th>9</th>
+<td>DummyRegressor (mean)</td>
+<td>234552</td>
+<td>32596</td>
+<td>0.002166</td>
+<td>5.938865</td>
+<td>13.200952</td>
+<td>-0.002285</td>
+<td>3.659358</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>model_name</th>
+<th>train_rows_used</th>
+<th>test_rows_used</th>
+<th>fit_seconds</th>
+<th>train_mae</th>
+<th>test_mae</th>
+<th>test_rmse</th>
+<th>test_r2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Decision Tree (sample)</td>
+<td>5000</td>
+<td>32596</td>
+<td>0.213152</td>
+<td>1.868955</td>
+<td>2.596639</td>
+<td>7.111595</td>
+<td>0.709120</td>
+</tr>
+<tr>
+<th>1</th>
+<td>KNN (sample)</td>
+<td>5000</td>
+<td>32596</td>
+<td>0.078474</td>
+<td>0.000000</td>
+<td>4.137332</td>
+<td>10.255836</td>
+<td>0.395045</td>
+</tr>
+<tr>
+<th>2</th>
+<td>DummyRegressor median (sample)</td>
+<td>5000</td>
+<td>32596</td>
+<td>0.000810</td>
+<td>3.874908</td>
+<td>4.519306</td>
+<td>13.827940</td>
+<td>-0.099754</td>
+</tr>
+<tr>
+<th>3</th>
+<td>SVR RBF (sample)</td>
+<td>5000</td>
+<td>32596</td>
+<td>0.984577</td>
+<td>4.545927</td>
+<td>5.541523</td>
+<td>9.605025</td>
+<td>0.469387</td>
+</tr>
+<tr>
+<th>4</th>
+<td>DummyRegressor mean (sample)</td>
+<td>5000</td>
+<td>32596</td>
+<td>0.000474</td>
+<td>5.571864</td>
+<td>5.847297</td>
+<td>13.208856</td>
+<td>-0.003485</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=716248a9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
@@ -7907,7 +8436,7 @@ Resource-limited modely: 5
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3f0cf973">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c5d37773">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7932,12 +8461,12 @@ scénář.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5e657364">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26e3e450">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -8074,7 +8603,7 @@ scénář.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2719e39e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2e4645a6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8096,12 +8625,12 @@ použity pro změnu konfigurací.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5780ec7f">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c0b3d1c2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">protocol</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -8203,7 +8732,7 @@ použity pro změnu konfigurací.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32008467">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=395543a3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8229,12 +8758,12 @@ Neuronové sítě nebyly podle zadání zahrnuty.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=553c7e85">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ec1af1b5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model_columns</span> <span class="o">=</span> <span class="p">[</span>
@@ -8381,7 +8910,7 @@ Neuronové sítě nebyly podle zadání zahrnuty.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9bf3f69f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6673659d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8398,12 +8927,12 @@ překoná.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e6dffd45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59b519d6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">baseline_mask</span> <span class="o">=</span> <span class="n">test_full</span><span class="p">[</span><span class="s2">"model_family"</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s2">"baseline"</span><span class="p">)</span>
@@ -8477,7 +9006,7 @@ překoná.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=eadd1346">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6d505647">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8489,12 +9018,12 @@ testovacího pořadí.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47b1286b">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3a193e7d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">validation_ranking</span> <span class="o">=</span> <span class="p">(</span>
@@ -8648,12 +9177,12 @@ testovacího pořadí.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=debbc864">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c793e4fb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">show_image</span><span class="p">(</span><span class="s2">"hw3_validation_vs_test_mae.png"</span><span class="p">)</span>
@@ -8675,24 +9204,41 @@ testovacího pořadí.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=07dec6a9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15726b27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Diskuze-valida%C4%8Dn%C3%ADho-v%C3%BDb%C4%9Bru">Diskuze validačního výběru<a class="anchor-link" href="#Diskuze-valida%C4%8Dn%C3%ADho-v%C3%BDb%C4%9Bru">¶</a></h3><p>Random Forest dosáhl nejnižšího validačního MAE a byl proto zmrazen jako
-finální kandidát. Rozhodovací strom byl druhý. Výsledek naznačuje, že vztahy
-v datech jsou výrazně nelineární a obsahují interakce, které lineární modely
-nezachycují stejně dobře.</p>
-<p>Random Forest používá průměrování většího počtu stromů, což obvykle omezuje
-varianci samostatného stromu. Současně je méně interpretovatelný a výpočetně
-náročnější.</p>
+<h3 id="Diskuze-valida%C4%8Dn%C3%ADho-v%C3%BDb%C4%9Bru">Diskuze validačního výběru<a class="anchor-link" href="#Diskuze-valida%C4%8Dn%C3%ADho-v%C3%BDb%C4%9Bru">¶</a></h3><p>Random Forest dosáhl nejnižšího validačního MAE (<code>1.618119</code>) a byl proto
+vybrán ještě před otevřením testovací sady. Druhý skončil Decision Tree
+s MAE <code>1.673477</code>. Už validační výsledky tedy ukázaly, že stromové modely
+zachycují strukturu dat lépe než globální lineární vztah.</p>
+<p>Důvodem je pravděpodobně charakter problému. Vliv teploty, srážek nebo plochy
+nemusí být stejný pro všechny plodiny, okresy a sezóny. Strom dokáže vytvářet
+rozdílná pravidla pro různé části dat a přirozeně zachytit prahové efekty
+a interakce, například situaci, kdy vysoká teplota škodí pouze určité plodině
+v určité sezóně. Lineární model naproti tomu předpokládá převážně aditivní
+globální vztahy a bez ručně vytvořených interakcí takovou heterogenitu
+zachytává hůře.</p>
+<p>Random Forest průměruje predikce 200 stromů. Jednotlivé stromy nejsou totožné,
+protože pracují s různými bootstrap vzorky a podmnožinami features.
+Průměrování snižuje varianci a omezuje citlivost na konkrétní trénovací
+pozorování. To vysvětluje, proč Random Forest překonal jeden Decision Tree,
+aniž by bylo nutné výrazně omezit hloubku stromů.</p>
+<p>Z lineárních a regularizovaných modelů dopadlo nejlépe Lasso. L1 regularizace
+pravděpodobně pomohla potlačit méně užitečné koeficienty ve
+vysoko-dimenzionálním one-hot prostoru. Ani Lasso však nemůže samo vytvářet
+nelineární podmínky a interakce, takže za stromovými modely zaostalo.</p>
+<p>LinearSVR měl nejlepší validační MAE mezi nestromovými modely. To naznačuje,
+že jeho ztrátová funkce dobře omezuje typické absolutní chyby. Vyšší RMSE však
+ukazuje, že některé velké chyby zůstaly. Výběr Random Forestu proto nestojí
+pouze na jednom čísle, ale také na lepší kontrole extrémních odchylek.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f2e4e74e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ede9975e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8704,12 +9250,12 @@ features ani hyperparametry.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ab906193">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=517ff2f8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">test_ranking</span> <span class="o">=</span> <span class="p">(</span>
@@ -8860,12 +9406,12 @@ features ani hyperparametry.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5b461172">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52d9c521">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">show_image</span><span class="p">(</span><span class="s2">"hw3_final_test_mae.png"</span><span class="p">)</span>
@@ -8901,29 +9447,48 @@ features ani hyperparametry.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fb0e0453">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b4ca1cb6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Diskuze-fin%C3%A1ln%C3%ADho-po%C5%99ad%C3%AD">Diskuze finálního pořadí<a class="anchor-link" href="#Diskuze-fin%C3%A1ln%C3%ADho-po%C5%99ad%C3%AD">¶</a></h3><p>Random Forest zůstal nejlepším modelem i na finálním testu. Samostatný
-Decision Tree dosáhl téměř stejného MAE, ale Random Forest měl výrazně nižší
-RMSE a vyšší R². To znamená, že při téměř shodné průměrné absolutní chybě
-Random Forest lépe omezuje velké chyby a vysvětluje větší část variability.</p>
-<p>Lineární a regularizované modely překonaly naivní baseline, ale zaostaly za
-stromovými metodami. To podporuje závěr, že vztah mezi lokalitou, plodinou,
-sezónou, počasím a výnosem není dobře popsán jedinou globální lineární
-funkcí.</p>
+<h3 id="Diskuze-fin%C3%A1ln%C3%ADho-po%C5%99ad%C3%AD">Diskuze finálního pořadí<a class="anchor-link" href="#Diskuze-fin%C3%A1ln%C3%ADho-po%C5%99ad%C3%AD">¶</a></h3><p>Random Forest zůstal první i na finálním testu. Jeho MAE <code>1.611674</code> je téměř
+shodné s MAE Decision Tree <code>1.612646</code>; rozdíl je pouze přibližně <code>0.000973</code>.
+Podle samotného MAE proto nelze tvrdit, že Random Forest je prakticky výrazně
+lepší v běžné absolutní chybě.</p>
+<p>Rozdíl se ukáže až u RMSE a R². Random Forest má RMSE <code>5.277702</code>, zatímco
+Decision Tree <code>6.138621</code>. Jde přibližně o 14% snížení RMSE. Random Forest má
+také R² <code>0.839797</code>, oproti <code>0.783268</code> u jednoho stromu. To znamená, že soubor
+stromů lépe omezuje několik velmi velkých chyb a vysvětluje větší část
+variability targetu. Právě tato stabilita, nikoli zanedbatelný rozdíl MAE, je
+hlavním důvodem pro volbu Random Forestu.</p>
+<p>Výsledky baseline zároveň ukazují šikmé rozdělení targetu. Mediánová baseline
+má nižší MAE než průměrová baseline, protože medián je odolnější vůči
+extrémně vysokým výnosům. Průměrová baseline má naopak mírně lepší RMSE,
+protože aritmetický průměr minimalizuje čtvercovou chybu. Obě baseline mají
+R² kolem nuly nebo pod nulou, takže samy nevysvětlují strukturu dat.</p>
+<p>Lineární regrese, Ridge, Lasso a Elastic Net baseline jasně překonaly, ale
+jejich MAE zůstalo přibližně mezi <code>2.95</code> a <code>3.17</code>. Ridge a obyčejná lineární
+regrese dopadly velmi podobně, takže L2 regularizace v této konfiguraci
+nepřinesla zásadní zlepšení. Lasso bylo lepší, pravděpodobně díky výběrovému
+účinku L1 regularizace, stále však pracuje s převážně lineárními a aditivními
+vztahy.</p>
+<p>LinearSVR dosáhl nižšího MAE než ostatní lineární modely, ale horšího RMSE.
+To znamená, že často predikoval poměrně přesně, avšak u části pozorování
+udělal velké chyby. Gradient Boosting v použité zmrazené konfiguraci také
+nepřekonal Random Forest. Nelze z toho vyvozovat, že boosting je obecně horší;
+výsledek platí pro konkrétní počet stromů, hloubku, learning rate a tento
+dataset.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0e7e66fe">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5380a408">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">best</span> <span class="o">=</span> <span class="n">test_ranking</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -9027,30 +9592,46 @@ funkcí.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2f9e2a0b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=80577331">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="8.-Overfitting-a-stabilita-mezi-validation-a-testem">8. Overfitting a stabilita mezi validation a testem<a class="anchor-link" href="#8.-Overfitting-a-stabilita-mezi-validation-a-testem">¶</a></h2><p>Overfitting nelze posuzovat pouze podle jedné dvojice čísel. V tomto projektu
-je navíc split chronologický, takže rozdíl mezi obdobími může vzniknout nejen
-přeučením, ale také časovým distribučním posunem.</p>
-<p>U Random Forestu je testovací MAE velmi podobné validačnímu MAE. Nevidíme tedy
-výrazný propad generalizace mezi validation a testem. Samostatný strom je také
-stabilní mezi těmito obdobími, ale jeho horší RMSE ukazuje vyšší citlivost na
-některé velké chyby.</p>
-<p>Train–test rozdíl je nutné interpretovat opatrně, protože historická trénovací
-část obsahuje jiné extrémy targetu než testovací období.</p>
+<h2 id="8.-Overfitting-a-stabilita-mezi-validation-a-testem">8. Overfitting a stabilita mezi validation a testem<a class="anchor-link" href="#8.-Overfitting-a-stabilita-mezi-validation-a-testem">¶</a></h2><p>Overfitting hodnotíme porovnáním výkonu na trénovacích a dosud neviděných
+datech. Současně je nutné oddělit klasické přeučení od časového dataset shiftu,
+protože validation a test představují pozdější roky než train.</p>
+<p>U Random Forestu bylo train MAE přibližně <code>1.130255</code>, validation MAE
+<code>1.618119</code> a test MAE <code>1.611674</code>. Train chyba je podle očekávání nižší, takže
+určitý generalizační rozdíl existuje. Mezi validation a test obdobím ale
+nedošlo k dalšímu zhoršení. Random Forest proto nevykazuje výrazný
+validation-to-test overfitting.</p>
+<p>Decision Tree měl train MAE <code>0.951869</code> a test MAE <code>1.612646</code>. Jeho
+train–test mezera je větší než u Random Forestu. Jeden strom se snáze
+přizpůsobí specifickým strukturám trénovacích dat, zatímco průměrování ve
+Random Forestu tuto varianci omezuje. Horší testovací RMSE Decision Tree tuto
+vyšší citlivost na některé případy potvrzuje.</p>
+<p>Nejsilnější známku přeučení v celém srovnání vykazuje resource-limited KNN.
+Na trénovacím vzorku dosahuje nulové nebo téměř nulové MAE, zatímco na celé
+testovací sadě je chyba výrazně vyšší, jak ukazuje samostatná resource tabulka.
+Při distance weighting je trénovací bod sám sobě sousedem se vzdáleností nula,
+takže model může trénovací data prakticky zapamatovat. Nulová train chyba proto
+není důkazem kvality, ale naopak varováním před přeučením.</p>
+<p>RBF-SVR má naopak vysokou chybu už na trénovacím vzorku i na celé testovací
+sadě. To připomíná spíše underfitting nebo nevhodnou zmrazenou konfiguraci než
+klasické přeučení.</p>
+<p>Závěr tedy není, že se žádný model nepřeučil. Random Forest generalizuje
+stabilně, Decision Tree vykazuje větší varianci a KNN představuje
+nejzřetelnější případ přeučení v resource-limited experimentu.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b05d4acd">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c7a516b0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">stability_columns</span> <span class="o">=</span> <span class="p">[</span>
@@ -9225,7 +9806,7 @@ některé velké chyby.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d099c720">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fa129b4a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9238,12 +9819,12 @@ znamená nadhodnocení.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fa8b4470">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=693e6f6a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">show_image</span><span class="p">(</span><span class="s2">"hw3_best_actual_vs_predicted.png"</span><span class="p">)</span>
@@ -9278,12 +9859,12 @@ znamená nadhodnocení.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7200a81d">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=184d3a4c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">residual_quartiles</span><span class="p">)</span>
@@ -9380,7 +9961,7 @@ znamená nadhodnocení.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4d18541e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9a8ac1bc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9397,7 +9978,7 @@ výnosových extrémů.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dff1b6c1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2bb5b834">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9409,12 +9990,12 @@ targetu.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9499c858">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d398164e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">worst_predictions</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
@@ -9750,7 +10331,7 @@ targetu.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b6b4960b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=eed3481b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9764,7 +10345,7 @@ Proto nejsou extrémy po zobrazení testu dodatečně mazány ani winsorizovány
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84e76b18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ce02641d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9776,12 +10357,12 @@ distribuci. Kontrola targetu pomáhá oddělit možné přeučení od přirozen�
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ab4ffeee">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5c8f8592">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">target_distribution</span><span class="p">)</span>
@@ -9895,7 +10476,7 @@ distribuci. Kontrola targetu pomáhá oddělit možné přeučení od přirozen�
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=db3ba0a6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=806e9e51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9909,35 +10490,42 @@ by vytvořit příliš optimistický obraz generalizace.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f76411d8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bebb3125">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="12.-Resource-limited-experiment:-KNN-a-RBF-SVR">12. Resource-limited experiment: KNN a RBF-SVR<a class="anchor-link" href="#12.-Resource-limited-experiment:-KNN-a-RBF-SVR">¶</a></h2><p>KNN a kernelový SVR jsou zahrnuty kvůli úplnosti srovnání probíraných metod,
-ale byly spuštěny na samostatném deterministickém vzorku. Spolu s nimi byly na
-stejném vzorku vyhodnoceny baseline a Decision Tree.</p>
-<p>Výsledky slouží k porovnání uvnitř resource-limited experimentu. Nesmí být
-přímo zařazeny do pořadí full-data modelů.</p>
+<h2 id="12.-Resource-limited-experiment:-KNN-a-RBF-SVR">12. Resource-limited experiment: KNN a RBF-SVR<a class="anchor-link" href="#12.-Resource-limited-experiment:-KNN-a-RBF-SVR">¶</a></h2><p>KNN a kernelový SVR jsou zahrnuty kvůli úplnosti srovnání probíraných metod.
+Kvůli výpočetní náročnosti byly natrénovány na samostatném deterministickém
+vzorku 5 000 řádků. Notebook je však vyhodnocuje na celé testovací sadě
+32 596 řádků. Spolu s nimi jsou za stejných podmínek natrénovány baseline
+a Decision Tree.</p>
+<p>Výsledky slouží k porovnání uvnitř resource-limited experimentu. Kvůli menšímu
+trénovacímu vzorku nesmí být přímo zařazeny do pořadí full-data modelů.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47191641">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1a44e7c0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">resource_view</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">column</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="p">[</span>
-        <span class="s2">"model_name"</span><span class="p">,</span> <span class="s2">"test_mae"</span><span class="p">,</span> <span class="s2">"test_rmse"</span><span class="p">,</span> <span class="s2">"test_r2"</span><span class="p">,</span> <span class="s2">"test_median_ae"</span>
-    <span class="p">]</span> <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">test_resource</span><span class="o">.</span><span class="n">columns</span>
+    <span class="s2">"model_name"</span><span class="p">,</span>
+    <span class="s2">"train_rows_used"</span><span class="p">,</span>
+    <span class="s2">"test_rows_used"</span><span class="p">,</span>
+    <span class="s2">"train_mae"</span><span class="p">,</span>
+    <span class="s2">"test_mae"</span><span class="p">,</span>
+    <span class="s2">"test_rmse"</span><span class="p">,</span>
+    <span class="s2">"test_r2"</span><span class="p">,</span>
+    <span class="s2">"test_median_ae"</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="n">display</span><span class="p">(</span>
-    <span class="n">test_resource</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">test_resource</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s2">"completed"</span><span class="p">),</span> <span class="n">resource_view</span><span class="p">]</span>
+    <span class="n">resource_full_test_results</span><span class="p">[</span><span class="n">resource_view</span><span class="p">]</span>
     <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"test_mae"</span><span class="p">)</span>
     <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
@@ -9972,6 +10560,9 @@ přímo zařazeny do pořadí full-data modelů.</p>
 <tr style="text-align: right;">
 <th></th>
 <th>model_name</th>
+<th>train_rows_used</th>
+<th>test_rows_used</th>
+<th>train_mae</th>
 <th>test_mae</th>
 <th>test_rmse</th>
 <th>test_r2</th>
@@ -9982,42 +10573,57 @@ přímo zařazeny do pořadí full-data modelů.</p>
 <tr>
 <th>0</th>
 <td>Decision Tree (sample)</td>
-<td>2.646002</td>
-<td>7.027429</td>
-<td>0.710185</td>
-<td>0.700571</td>
+<td>5000</td>
+<td>32596</td>
+<td>1.868955</td>
+<td>2.596639</td>
+<td>7.111595</td>
+<td>0.709120</td>
+<td>0.704772</td>
 </tr>
 <tr>
 <th>1</th>
 <td>KNN (sample)</td>
-<td>4.090619</td>
-<td>9.865669</td>
-<td>0.428810</td>
-<td>1.166729</td>
+<td>5000</td>
+<td>32596</td>
+<td>0.000000</td>
+<td>4.137332</td>
+<td>10.255836</td>
+<td>0.395045</td>
+<td>1.200661</td>
 </tr>
 <tr>
 <th>2</th>
 <td>DummyRegressor median (sample)</td>
-<td>4.506452</td>
-<td>13.702038</td>
-<td>-0.101788</td>
-<td>0.637787</td>
+<td>5000</td>
+<td>32596</td>
+<td>3.874908</td>
+<td>4.519306</td>
+<td>13.827940</td>
+<td>-0.099754</td>
+<td>0.641749</td>
 </tr>
 <tr>
 <th>3</th>
 <td>SVR RBF (sample)</td>
-<td>5.489616</td>
-<td>9.155102</td>
-<td>0.508126</td>
-<td>4.286787</td>
+<td>5000</td>
+<td>32596</td>
+<td>4.545927</td>
+<td>5.541523</td>
+<td>9.605025</td>
+<td>0.469387</td>
+<td>4.284582</td>
 </tr>
 <tr>
 <th>4</th>
 <td>DummyRegressor mean (sample)</td>
-<td>5.839574</td>
-<td>13.076974</td>
-<td>-0.003557</td>
-<td>3.492801</td>
+<td>5000</td>
+<td>32596</td>
+<td>5.571864</td>
+<td>5.847297</td>
+<td>13.208856</td>
+<td>-0.003485</td>
+<td>3.518618</td>
 </tr>
 </tbody>
 </table>
@@ -10026,40 +10632,112 @@ přímo zařazeny do pořadí full-data modelů.</p>
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d395edc1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=129fef9c">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">resource_by_name</span> <span class="o">=</span> <span class="n">resource_full_test_results</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"model_name"</span><span class="p">)</span>
+<span class="n">resource_tree</span> <span class="o">=</span> <span class="n">resource_by_name</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Decision Tree (sample)"</span><span class="p">]</span>
+<span class="n">resource_knn</span> <span class="o">=</span> <span class="n">resource_by_name</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"KNN (sample)"</span><span class="p">]</span>
+<span class="n">resource_rbf</span> <span class="o">=</span> <span class="n">resource_by_name</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"SVR RBF (sample)"</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span>
+    <span class="n">Markdown</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">'''</span>
+<span class="s1">### Diskuze resource-limited experimentu</span>
+
+<span class="s1">Decision Tree byl v doplňkovém experimentu nejlepší s test MAE</span>
+<span class="s1">`</span><span class="si">{</span><span class="n">resource_tree</span><span class="p">[</span><span class="s1">'test_mae'</span><span class="p">]</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">`. Model byl natrénován pouze na 5 000</span>
+<span class="s1">řádcích, ale vyhodnocen na celé testovací sadě. Jeho horší výkon proti stromu</span>
+<span class="s1">trénovanému na plných datech ukazuje, že omezení trénovacího vzorku vede ke</span>
+<span class="s1">ztrátě užitečné informace o různých okresech, plodinách a podmínkách.</span>
+
+<span class="s1">KNN dosáhl train MAE `</span><span class="si">{</span><span class="n">resource_knn</span><span class="p">[</span><span class="s1">'train_mae'</span><span class="p">]</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">`, ale test MAE</span>
+<span class="s1">`</span><span class="si">{</span><span class="n">resource_knn</span><span class="p">[</span><span class="s1">'test_mae'</span><span class="p">]</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">`. Nulová nebo téměř nulová train chyba je</span>
+<span class="s1">způsobena také tím, že při distance weighting je trénovací bod sám sobě</span>
+<span class="s1">nejbližším sousedem se vzdáleností nula. Velký rozdíl mezi train a test</span>
+<span class="s1">výkonem proto představuje nejsilnější známku přeučení v celém srovnání.</span>
+
+<span class="s1">RBF-SVR dosáhl train MAE `</span><span class="si">{</span><span class="n">resource_rbf</span><span class="p">[</span><span class="s1">'train_mae'</span><span class="p">]</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">` a test MAE</span>
+<span class="s1">`</span><span class="si">{</span><span class="n">resource_rbf</span><span class="p">[</span><span class="s1">'test_mae'</span><span class="p">]</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">`. Vysoká chyba už na trénovacích datech</span>
+<span class="s1">odpovídá spíše underfittingu nebo nevhodné zmrazené konfiguraci než</span>
+<span class="s1">klasickému přeučení.</span>
+
+<span class="s1">Tyto výsledky neznamenají, že KNN nebo kernelový SVM jsou obecně nevhodné.</span>
+<span class="s1">Platí pro předem zmrazené hyperparametry, použitý preprocessing a omezený</span>
+<span class="s1">trénovací vzorek. Proto nejsou použity k přepsání hlavního full-data pořadí.</span>
+<span class="s1">'''</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
+<h3 id="Diskuze-resource-limited-experimentu">Diskuze resource-limited experimentu<a class="anchor-link" href="#Diskuze-resource-limited-experimentu">¶</a></h3><p>Decision Tree byl v doplňkovém experimentu nejlepší s test MAE
+<code>2.596639</code>. Model byl natrénován pouze na 5 000
+řádcích, ale vyhodnocen na celé testovací sadě. Jeho horší výkon proti stromu
+trénovanému na plných datech ukazuje, že omezení trénovacího vzorku vede ke
+ztrátě užitečné informace o různých okresech, plodinách a podmínkách.</p>
+<p>KNN dosáhl train MAE <code>0.000000</code>, ale test MAE
+<code>4.137332</code>. Nulová nebo téměř nulová train chyba je
+způsobena také tím, že při distance weighting je trénovací bod sám sobě
+nejbližším sousedem se vzdáleností nula. Velký rozdíl mezi train a test
+výkonem proto představuje nejsilnější známku přeučení v celém srovnání.</p>
+<p>RBF-SVR dosáhl train MAE <code>4.545927</code> a test MAE
+<code>5.541523</code>. Vysoká chyba už na trénovacích datech
+odpovídá spíše underfittingu nebo nevhodné zmrazené konfiguraci než
+klasickému přeučení.</p>
+<p>Tyto výsledky neznamenají, že KNN nebo kernelový SVM jsou obecně nevhodné.
+Platí pro předem zmrazené hyperparametry, použitý preprocessing a omezený
+trénovací vzorek. Proto nejsou použity k přepsání hlavního full-data pořadí.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8159ca0f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Decision Tree byl na vzorku nejlepší. KNN překonal vzorkové naivní baseline,
-ale zaostal za stromem. RBF-SVR měl s danou předem zmrazenou konfigurací vysoké
-MAE. Výsledek nelze interpretovat jako obecný důkaz, že KNN nebo kernelový SVM
-jsou vždy slabé; platí pouze pro tento dataset, preprocessing, vzorek a
-zmrazené hyperparametry.</p>
+<h2 id="13.-Jak-velk%C3%BD-je-rozd%C3%ADl-proti-baseline-a-vyplatil-se-slo%C5%BEit%C4%9Bj%C5%A1%C3%AD-model?">13. Jak velký je rozdíl proti baseline a vyplatil se složitější model?<a class="anchor-link" href="#13.-Jak-velk%C3%BD-je-rozd%C3%ADl-proti-baseline-a-vyplatil-se-slo%C5%BEit%C4%9Bj%C5%A1%C3%AD-model?">¶</a></h2><p>Rozdíl proti naivním baseline je výrazný. Random Forest snížil MAE z
+<code>5.938865</code> u mean baseline na <code>1.611674</code>. Absolutní zlepšení je přibližně
+<code>4.327191</code> a relativní zlepšení <code>72.86 %</code>.</p>
+<p>Proti median baseline kleslo MAE z <code>4.519306</code> na <code>1.611674</code>. Absolutní
+zlepšení je přibližně <code>2.907632</code>, tedy <code>64.34 %</code>. Nejde proto o malé
+kosmetické zlepšení. Model využívá informace o plodině, lokalitě, sezóně,
+roku a počasí a oproti konstantní predikci podstatně snižuje chybu.</p>
+<p>Použití skutečného modelu se tedy proti baseline jednoznačně vyplatilo.
+Složitější otázkou je, zda se vyplatil právě Random Forest místo jediného
+Decision Tree. Rozdíl jejich MAE je prakticky nulový, takže pro aplikaci, kde
+je prioritou jednoduchost, rychlost a interpretovatelnost, by mohl být jeden
+strom dostatečný.</p>
+<p>Random Forest však snížil RMSE proti Decision Tree přibližně o 14 % a zvýšil
+R² přibližně o <code>0.0565</code>. Pokud jsou velké chyby nákladné nebo rizikové, je
+tento rozdíl důležitý. Random Forest se proto vyplatí jako finální predikční
+model hlavně kvůli stabilitě a menším extrémním chybám, nikoli kvůli
+zanedbatelnému rozdílu v MAE.</p>
+<p>Cena za tuto stabilitu je nižší interpretovatelnost, vyšší paměťová náročnost
+a delší trénink. Volba mezi Random Forestem a jedním stromem tedy závisí i na
+praktických požadavcích aplikace.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1640ef7b">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="13.-Vyplatil-se-slo%C5%BEit%C4%9Bj%C5%A1%C3%AD-model?">13. Vyplatil se složitější model?<a class="anchor-link" href="#13.-Vyplatil-se-slo%C5%BEit%C4%9Bj%C5%A1%C3%AD-model?">¶</a></h2><p>Ano. Random Forest snížil MAE přibližně o 73 % proti predikci průměru a o
-64 % proti predikci mediánu. To je natolik velký rozdíl, že použití reálného
-modelu má jasnou hodnotu.</p>
-<p>Proti jedinému rozhodovacímu stromu je rozdíl v MAE zanedbatelný. Přínos
-Random Forestu se však ukazuje v nižším RMSE a vyšším R², tedy v lepší kontrole
-velkých chyb. Cena za toto zlepšení je nižší interpretovatelnost, vyšší
-paměťová náročnost a delší trénink.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=af8814a0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3f078d55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10080,21 +10758,29 @@ by porušil její roli nezávislého auditu.</li>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61aa0da2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c2e9e65c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="15.-Z%C3%A1v%C4%9Br">15. Závěr<a class="anchor-link" href="#15.-Z%C3%A1v%C4%9Br">¶</a></h2><p>Validace vybrala Random Forest a jednorázový finální test tuto volbu podpořil.
-Model dosáhl nejnižšího testovacího MAE, nejlepšího RMSE a nejvyššího R² mezi
-full-data konfiguracemi.</p>
-<p>Samostatný Decision Tree měl prakticky stejné MAE a představuje zajímavou
-jednodušší alternativu. Random Forest je však vhodnější jako finální
-predikční model, protože výrazně lépe omezuje velké chyby.</p>
-<p>Nejdůležitějším výsledkem není pouze pořadí modelů, ale metodika: chronologický
-split, preprocessing uvnitř pipeline, explicitní leakage audit, baseline,
-zmrazení konfigurací před testem a následná analýza reziduí a limitů.</p>
+<h2 id="15.-Z%C3%A1v%C4%9Br">15. Závěr<a class="anchor-link" href="#15.-Z%C3%A1v%C4%9Br">¶</a></h2><p>Random Forest byl vybrán podle validation MAE ještě před otevřením testu a na
+finálním testu dosáhl nejlepší kombinace MAE, RMSE a R². Jeho výhodou je
+schopnost zachytit nelineární vztahy a interakce mezi plodinou, lokalitou,
+sezónou a počasím a současně omezit varianci jednotlivých stromů jejich
+průměrováním.</p>
+<p>Decision Tree měl prakticky stejné MAE a je interpretovatelnější. Random
+Forest je však preferován kvůli výrazně lepšímu RMSE a R², tedy menším velkým
+chybám. LinearSVR byl nejlepší nestromový model podle MAE, zatímco Lasso bylo
+nejlepší mezi klasickými lineárními a regularizovanými modely.</p>
+<p>Nejvýraznější overfitting se objevil u resource-limited KNN, které dosáhlo
+nulové train chyby, ale podstatně horší test chyby. RBF-SVR naopak vykazovalo
+spíše nedostatečné přizpůsobení v použité konfiguraci.</p>
+<p>Rozdíl mezi Random Forestem a naivními baseline je dostatečně velký, aby
+ospravedlnil použití strojového učení. Přínos Random Forestu proti jedinému
+stromu spočívá hlavně v lepší kontrole extrémních chyb. Výsledky však platí
+pro období 2013–2014 a použitý dataset; nejde o důkaz kauzality ani o záruku
+stejného výkonu na současných datech.</p>
 </div>
 </div>
 </div>
