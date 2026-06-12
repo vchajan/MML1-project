@@ -1,0 +1,319 @@
+{
+  "task": "HW3 comprehensive regression model evaluation",
+  "created_before_final_test": true,
+  "configuration_frozen_before_test": true,
+  "test_data_present_during_freeze": false,
+  "test_data_accessed_by_pretest_script": false,
+  "test_used_for_model_selection": false,
+  "test_used_for_hyperparameter_tuning": false,
+  "train_period": "1997-2010",
+  "validation_period": "2011-2012",
+  "future_final_test_period": "2013-2014",
+  "train_rows": 202164,
+  "validation_rows": 32388,
+  "feature_set": "core_without_lag",
+  "target": "target_yield",
+  "primary_metric": "MAE",
+  "secondary_metrics": [
+    "RMSE",
+    "R2",
+    "MedianAE"
+  ],
+  "full_validation_models": [
+    {
+      "run_id": "dummy_mean",
+      "model_name": "DummyRegressor (mean)",
+      "model_family": "baseline",
+      "preprocessing_family": "none",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "strategy": "mean"
+      }
+    },
+    {
+      "run_id": "dummy_median",
+      "model_name": "DummyRegressor (median)",
+      "model_family": "baseline",
+      "preprocessing_family": "none",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "strategy": "median"
+      }
+    },
+    {
+      "run_id": "linear_regression",
+      "model_name": "Linear Regression",
+      "model_family": "linear",
+      "preprocessing_family": "onehot_scaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {}
+    },
+    {
+      "run_id": "ridge_alpha_1",
+      "model_name": "Ridge",
+      "model_family": "linear_regularized",
+      "preprocessing_family": "onehot_scaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "alpha": 1.0,
+        "solver": "lsqr"
+      }
+    },
+    {
+      "run_id": "lasso_alpha_0_01",
+      "model_name": "Lasso",
+      "model_family": "linear_regularized",
+      "preprocessing_family": "onehot_scaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "alpha": 0.01,
+        "max_iter": 10000,
+        "tol": 0.001,
+        "selection": "cyclic"
+      }
+    },
+    {
+      "run_id": "elastic_net_alpha_0_01_l1_0_5",
+      "model_name": "Elastic Net",
+      "model_family": "linear_regularized",
+      "preprocessing_family": "onehot_scaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "alpha": 0.01,
+        "l1_ratio": 0.5,
+        "max_iter": 10000,
+        "tol": 0.001,
+        "selection": "cyclic"
+      }
+    },
+    {
+      "run_id": "decision_tree_leaf_20",
+      "model_name": "Decision Tree",
+      "model_family": "tree",
+      "preprocessing_family": "ordinal_unscaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "max_depth": null,
+        "min_samples_leaf": 20,
+        "random_state": 42
+      }
+    },
+    {
+      "run_id": "random_forest_200_leaf_20",
+      "model_name": "Random Forest",
+      "model_family": "bagging_ensemble",
+      "preprocessing_family": "ordinal_unscaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "n_estimators": 200,
+        "max_depth": null,
+        "min_samples_leaf": 20,
+        "max_features": 0.5,
+        "n_jobs": -1,
+        "random_state": 42
+      }
+    },
+    {
+      "run_id": "gradient_boosting_60_lr_0_1_depth_3",
+      "model_name": "Gradient Boosting",
+      "model_family": "boosting_ensemble",
+      "preprocessing_family": "ordinal_unscaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "n_estimators": 60,
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "random_state": 42
+      }
+    },
+    {
+      "run_id": "linear_svr_c_0_03",
+      "model_name": "LinearSVR",
+      "model_family": "svm",
+      "preprocessing_family": "onehot_scaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "C": 0.03,
+        "epsilon": 0.0,
+        "max_iter": 20000,
+        "dual": "auto",
+        "random_state": 42
+      }
+    }
+  ],
+  "resource_limited_validation_models": [
+    {
+      "run_id": "sample_dummy_mean",
+      "model_name": "DummyRegressor mean (sample)",
+      "model_family": "baseline",
+      "preprocessing_family": "none",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "strategy": "mean"
+      }
+    },
+    {
+      "run_id": "sample_dummy_median",
+      "model_name": "DummyRegressor median (sample)",
+      "model_family": "baseline",
+      "preprocessing_family": "none",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "strategy": "median"
+      }
+    },
+    {
+      "run_id": "sample_decision_tree_leaf_20",
+      "model_name": "Decision Tree (sample)",
+      "model_family": "tree",
+      "preprocessing_family": "ordinal_unscaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "max_depth": null,
+        "min_samples_leaf": 20,
+        "random_state": 42
+      }
+    },
+    {
+      "run_id": "sample_knn_15_distance",
+      "model_name": "KNN (sample)",
+      "model_family": "neighbors",
+      "preprocessing_family": "onehot_scaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "n_neighbors": 15,
+        "weights": "distance",
+        "algorithm": "brute",
+        "n_jobs": -1
+      }
+    },
+    {
+      "run_id": "sample_svr_rbf_c_10_epsilon_5",
+      "model_name": "SVR RBF (sample)",
+      "model_family": "kernel_svm",
+      "preprocessing_family": "onehot_scaled",
+      "feature_set": "core_without_lag",
+      "hyperparameters": {
+        "kernel": "rbf",
+        "C": 10.0,
+        "gamma": "scale",
+        "epsilon": 5.0
+      }
+    }
+  ],
+  "resource_limited_train_rows": 5000,
+  "resource_limited_validation_rows": 2000,
+  "best_full_validation_run_id": "random_forest_200_leaf_20",
+  "best_resource_validation_run_id": "sample_decision_tree_leaf_20",
+  "full_validation_ranking": [
+    {
+      "rank": 1,
+      "run_id": "random_forest_200_leaf_20",
+      "validation_mae": 1.618119452396922,
+      "validation_rmse": 5.712142382605606,
+      "validation_r2": 0.7944073907979096
+    },
+    {
+      "rank": 2,
+      "run_id": "decision_tree_leaf_20",
+      "validation_mae": 1.6734770052892585,
+      "validation_rmse": 6.229360367292113,
+      "validation_r2": 0.7554901492006221
+    },
+    {
+      "rank": 3,
+      "run_id": "linear_svr_c_0_03",
+      "validation_mae": 2.3393037998376136,
+      "validation_rmse": 7.752574325811292,
+      "validation_r2": 0.6212947489768325
+    },
+    {
+      "rank": 4,
+      "run_id": "gradient_boosting_60_lr_0_1_depth_3",
+      "validation_mae": 2.761549840434556,
+      "validation_rmse": 7.277976902416803,
+      "validation_r2": 0.6662426829218709
+    },
+    {
+      "rank": 5,
+      "run_id": "lasso_alpha_0_01",
+      "validation_mae": 2.9797493405016806,
+      "validation_rmse": 7.249110455583205,
+      "validation_r2": 0.6688849780731565
+    },
+    {
+      "rank": 6,
+      "run_id": "elastic_net_alpha_0_01_l1_0_5",
+      "validation_mae": 3.021564101951012,
+      "validation_rmse": 7.51595821790867,
+      "validation_r2": 0.6440588788780179
+    },
+    {
+      "rank": 7,
+      "run_id": "ridge_alpha_1",
+      "validation_mae": 3.175822099621952,
+      "validation_rmse": 7.122269386031102,
+      "validation_r2": 0.680370951661513
+    },
+    {
+      "rank": 8,
+      "run_id": "linear_regression",
+      "validation_mae": 3.222497351281562,
+      "validation_rmse": 7.136064188628695,
+      "validation_r2": 0.6791316024045655
+    },
+    {
+      "rank": 9,
+      "run_id": "dummy_median",
+      "validation_mae": 4.096405930067954,
+      "validation_rmse": 13.134076683741926,
+      "validation_r2": -0.0869474423033989
+    },
+    {
+      "rank": 10,
+      "run_id": "dummy_mean",
+      "validation_mae": 5.639313631443724,
+      "validation_rmse": 12.599493551977917,
+      "validation_r2": -0.0002662763549325
+    }
+  ],
+  "resource_validation_ranking": [
+    {
+      "rank": 1,
+      "run_id": "sample_decision_tree_leaf_20",
+      "validation_mae": 2.617752170825043,
+      "validation_rmse": 6.778062852566781,
+      "validation_r2": 0.6632649818959587
+    },
+    {
+      "rank": 2,
+      "run_id": "sample_knn_15_distance",
+      "validation_mae": 3.521587136346448,
+      "validation_rmse": 10.010782639078574,
+      "validation_r2": 0.2654638700338857
+    },
+    {
+      "rank": 3,
+      "run_id": "sample_dummy_median",
+      "validation_mae": 3.802954837809674,
+      "validation_rmse": 12.169615354813232,
+      "validation_r2": -0.0855024358120333
+    },
+    {
+      "rank": 4,
+      "run_id": "sample_dummy_mean",
+      "validation_mae": 5.052218259132588,
+      "validation_rmse": 11.687132315693498,
+      "validation_r2": -0.0011358669241783
+    },
+    {
+      "rank": 5,
+      "run_id": "sample_svr_rbf_c_10_epsilon_5",
+      "validation_mae": 5.156411630681517,
+      "validation_rmse": 9.17467044589376,
+      "validation_r2": 0.3830385257729992
+    }
+  ],
+  "final_test_rule": "Evaluate every frozen configuration once on 2013-2014. Do not change model list, preprocessing, features or hyperparameters after viewing final test metrics.",
+  "random_state": 42
+}
