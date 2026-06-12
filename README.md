@@ -1,280 +1,375 @@
-# Predikce výnosu plodin v Indii
+﻿# Predikce výnosu plodin v Indii – MML1
 
-Tento repozitář je pracovní větev pro čistou přestavbu crop, geography, weather a soil pipeline. Původní odevzdaná HW2 verze je zachovaná v Git tagu `hw2-original`.
+Autor: Peter Briedoň
+
+Tento repozitář obsahuje semestrální projekt pro předmět **Úvod do strojového učení – MML1**. Projekt řeší regresní predikci výnosu zemědělských plodin v Indii a navazuje na tři úkoly:
+
+1. task framing,
+2. příprava dat, leakage audit, split a benchmark,
+3. komplexní evaluace, porovnání a diskuze modelů.
+
+Původní odevzdaná verze HW2 je zachována v Git tagu `hw2-original`. Finální HW3 verze je zachována v odovzdávacím Git tagu a je dostupná na hlavní větvi repozitáře.
 
 ## Aktuální stav
 
-- Projekt se přerábí nad crop daty pro období 1997-2014.
-- Jednotka pozorování pro kanonický dataset je `canonical_state_name + canonical_district_name + Crop_Year + Season_canonical + Crop_canonical`.
-- Raw crop dataset obsahoval dvě zdrojové verze: `legacy_source` a `expanded_source_x100`.
-- Expanded verze měla systematickou měřítkovou chybu `×100`; při reconciliaci byla normalizovaná faktorem `0.01`.
-- Při konfliktním překryvu má prioritu legacy zdroj pouze tehdy, když neexistuje deterministický source-pair důkaz jednotkové konverze. Hodnoty se neprůměrují a nesčítají.
-- Kanonický crop-weather dataset má 270 300 řádků.
-- Základní modelový dataset má 267 150 řádků.
-- Coconut a agregované crop kategorie zůstávají v úplném kanonickém datasetu zdokumentované, ale nejsou v základním modelovém datasetu.
-- Weather pipeline nebyla při reconciliaci přepočítaná; byly zachované již vytvořené weather features.
-- Chronologický train/validation/test split byl znovu vytvořen po unit-correction opravě a po explicitních modeling-only quality exclusions. Time-aware tuning a validation shortlist jsou aktuální nad tímto modeling datasetem; finální testovací evaluace zůstává samostatný další krok.
-- Půdní vlastnosti budou později získané ze SoilGrids.
+Finální HW3 workflow je dokončeno:
 
-## Hotové mezikroky
+- konfigurace modelů byly zmrazeny před zpřístupněním testovací sady,
+- model selection proběhl na train období 1997–2010 a validation období 2011–2012,
+- finální modely byly natrénovány na období 1997–2012,
+- jednorázová finální evaluace proběhla na test období 2013–2014,
+- po zobrazení testovacích výsledků neproběhl žádný další tuning,
+- finální notebook `ukol3_evaluace.ipynb` byl spuštěn od začátku do konce a obsahuje uložené výstupy,
+- HTML export je uložen jako `ukol3_evaluace.html`,
+- kompletní testovací sada projektu prošla: **163 testů**.
 
-- Crop calendar má 2 069 pravidel a pokrytí aplikace kalendáře je 100 %.
-- Všech 486 680 crop-weather řádků má `start_date`, `end_date`, `district_id`, `weather_point_id` a `weather_window_id`.
-- Pro 701 weather bodů jsou kompletně stažená denní NASA POWER data za období 1997-03-01 až 2015-10-14.
-- Agregace vytvořila 150 832 weather-window feature řádků; všechna okna jsou validní a minimum coverage je 1.000000.
-- Spojený crop-weather dataset před reconciliací měl 486 680 řádků, 65 sloupců a 0 missing weather feature values.
+Autoritativní audit finální evaluace je uložen v:
 
-## Source Reconciliation
+```text
+data/reference/hw3_final_evaluation_record.json
+```
 
-Rozdělení zdrojů podle `source_row_id`:
+## Cíl projektu
 
-- `source_row_id <= 236378`: `legacy_source`
-- `source_row_id >= 236379`: `expanded_source_x100`
-
-Měřítko:
-
-- `legacy_source`: `production_scale_factor = 1.0`
-- `expanded_source_x100`: `production_scale_factor = 0.01`
-
-Definitivní target:
+Cílem je predikovat spojitou cílovou proměnnou:
 
 ```text
 target_yield = Production_corrected / Area_corrected
 ```
 
-Raw sloupec `yield` není definitivní target. Slouží pouze jako původní zdrojová hodnota a diagnostika.
+Jednotka pozorování:
 
-Výsledek reconciliace:
-
-- legacy-only keys: 19 437
-- expanded-only keys: 34 483
-- overlapping keys: 216 380
-- corroborated overlaps: 213 267
-- conflicting overlaps: 3 113
-- unit-corrected conflicts: 29
-- unresolved production-unit conflicts: 787
-- unresolved conflicts with legacy retained: 2 297
-
-Unit correction je aplikovaná pouze při deterministickém source-pair důkazu. Nepoužívá se absolutní target threshold, clipping, winsorizace ani mazání řádků.
-
-Punjab 2011 / Whole Year / Sugarcane měl 15 konfliktů s area ratio `1000` a shodnou corrected production; vybraný je `expanded_source_x100` a corrected target range je `40..88`. Tamil Nadu 1997 / Whole Year / Sugarcane není přítomný mezi 3 113 konfliktními source páry, takže se neopravuje.
-
-## Základní Modelová Vhodnost
-
-Z úplného kanonického datasetu jsou pro základní modelování vynechané pouze známé nekompatibilní jednotky a agregované kategorie:
-
-- Coconut: 2 260 řádků
-- Total foodgrain: 188 řádků
-- Pulses total: 255 řádků
-- Oilseeds total: 447 řádků
-
-Nevyřazují se další target outliery. Outlier treatment se musí později fitovat pouze na train období.
-
-## Chronologický Modelovací Dataset
-
-Modelovací dataset je vytvořený z lokálního `data/interim/crop_weather_model_base_1997_2014.parquet`. Úplný kanonický dataset a model-base interim dataset zůstávají beze změny; explicitní quality exclusions se aplikují pouze na processed modeling dataset před vytvořením lag feature.
-
-- model-base input: 267 150 řádků
-- modeling-only quality exclusions: 2 řádky
-- model dataset: 267 148 řádků
-- train 1997-2010: 202 164 řádků
-- validation 2011-2012: 32 388 řádků
-- test 2013-2014: 32 596 řádků
-- target `target_yield`: 0 missing hodnot
-- weather feature missing hodnoty: 0
-
-Schválené feature sety jsou uložené v `data/reference/model_feature_manifest.json`:
-
-- `core_without_lag`: 31 features
-- `core_with_lag`: 33 features
-- 4 kategorické features, 4 numerické core features a 23 weather features
-
-Lag feature `lag_yield_1y` je vytvořený explicitním self-joinem na stejný district, crop a season s `Crop_Year = Y - 1`. Nejedná se o `groupby().shift()` nad seřazenou tabulkou.
-
-- řádky s dostupným lagem: 213 184
-- řádky bez dostupného lagu: 53 964
-
-Explicitní modeling-only exclusions jsou uložené v `data/reference/model_quality_exclusions.csv`:
-
-- `CCR_D813C3DC43AF694A5EF8` - Haryana / KARNAL / 2008 / Whole Year / Onion
-- `CCR_1D8AB7669408410FDFD9` - Tamil Nadu / PERAMBALUR / 2008 / Whole Year / Cashewnut
-
-Tyto záznamy jsou source-corroborated, ale interně poškozené. Neprovádí se numerická oprava, winsorizace ani obecný target threshold. Odstranění Perambalur 2008 zamezilo vytvoření chybného 2009 one-year lag záznamu.
-
-Žádný imputer, encoder, scaler, outlier threshold ani model se při stavbě datasetu nefituje. Tyto kroky musí být později fitované pouze na train splitu. Test split 2013-2014 nebyl použitý pro model selection ani preprocessing rozhodnutí.
-
-## Time-Aware Model Tuning
-
-Aktuální model selection používá expanding-window time-series CV pouze v train období 1997-2010:
-
-- fold 1: fit 1997-2004, evaluation 2005-2006
-- fold 2: fit 1997-2006, evaluation 2007-2008
-- fold 3: fit 1997-2008, evaluation 2009-2010
-
-Previous-year official yield is assumed to be available when predicting the following year. Test split 2013-2014 nebyl otevřený, analyzovaný ani použitý pro feature selection, hyperparametry, target transformaci nebo model selection.
-
-Shortlist je rozdělený na dva aplikační tracky:
-
-- `forecast_with_lag`: forecast existující plodiny, kde je povolený `lag_yield_1y`.
-- `suitability_without_lag`: porovnání vhodnosti plodiny mezi okresy, kde se `lag_yield_1y` nepoužívá.
-
-Time-CV a validation 2011-2012 výsledky:
-
-- best CV baseline: `cv_baseline_lag_with_crop_median_fallback`, mean MAE 1.074877
-- best direct CV model: `cv_direct_rf_200_depth_none_leaf_20_maxfeat_0_5_core_with_lag`, mean MAE 1.259570
-- best residual CV model: `cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector`, mean MAE 1.083049
-- best log-target CV model: `cv_log_target_rf_200_depth_20_leaf_10_maxfeat_sqrt_core_with_lag`, mean MAE 1.578012
-- best overall forecast validation run: `cv_baseline_lag_with_crop_median_fallback`, validation MAE 1.233652
-- best trained forecast validation model: `cv_residual_linearsvr_c_0_03_epsilon_0_0_residual_lag_corrector`, validation MAE 1.240889
-- best suitability validation model: `cv_direct_tree_depth_none_leaf_20_core_without_lag`, validation MAE 1.673477
-
-Residual modely byly porovnané proti silnému lag baseline. Nejlepší residual model nepřekonal lag baseline celkově na validation MAE, ale je nejlepším trénovaným forecast modelem. Log-target strategie nezlepšila time-CV MAE proti direct/residual kandidátům.
-
-Zmrazená time-aware konfigurace je uložená v `data/reference/frozen_tuned_model_configuration.json`. Finální testovací evaluace na období 2013-2014 zůstává samostatný další krok.
-
-## Geografické Přiřazení
-
-Okresní body jsou vytvořené z Census 2001 a Census 2011 polygonů přes representative point. Pro každý crop řádek se používá census verze podle `Crop_Year`.
-
-Geografické přiřazení zůstává označené podle confidence:
-
-- `confirmed`
-- `working_strong`
-- `working_fallback`
-- `historical_fallback`
-
-Fuzzy fallbacky jsou ponechané jako auditovatelná omezení další práce.
-
-## Modelovací Rozhodnutí
-
-- Úloha je regresní predikce `target_yield`.
-- `Production` nebude použité jako modelová feature.
-- Split je chronologický:
-  - train: 1997-2010
-  - validation: 2011-2012
-  - test: 2013-2014
-- Test set nebyl použitý před finální evaluací ani pro model selection.
-- Hyperparametry a shortlist byly vybrané pomocí time-CV uvnitř train období 1997-2010.
-- Shortlist byl jednou vyhodnocený na validation období 2011-2012.
-- Forecast track smí používat `lag_yield_1y`; suitability track používá pouze `core_without_lag`.
-- Konfigurace nejlepšího trénovaného forecast modelu je zmrazená před otevřením test splitu.
-
-## Důležité Soubory
-
-- `data/raw/Indian_crop_production_yield_dataset.csv` - původní raw crop dataset.
-- `data/reference/crop_source_reconciliation_rules.json` - pravidla source reconciliace.
-- `src/diagnose_crop_unit_conflicts.py` - diagnostika násobkových vztahů mezi konfliktními source páry.
-- `data/reference/crop_calendar_rules_1997_2014_v1.csv` - pravidla crop kalendáře.
-- `data/reference/district_boundary_assignments_working.csv` - pracovní přiřazení okresů k boundary vrstvám.
-- `data/reference/district_point_versions.csv` - reprezentativní body pro census verze.
-- `data/reference/district_points_by_crop_year.csv` - body použité podle crop roku.
-- `data/reference/weather_points_unique.csv` - unikátní NASA POWER body.
-- `data/reference/nasa_power_request_manifest.json` - manifest NASA POWER downloadu.
-- `data/interim/weather_daily/` - lokální NASA POWER cache ignorovaná Gitem.
-- `data/interim/weather_features_by_window_1997_2014.parquet` - lokální agregované weather features ignorované Gitem.
-- `data/interim/crop_weather_dataset_1997_2014.parquet` - lokální spojený crop-weather dataset ignorovaný Gitem.
-- `data/interim/crop_weather_canonical_1997_2014.parquet` - lokální úplný kanonický dataset ignorovaný Gitem.
-- `data/interim/crop_weather_model_base_1997_2014.parquet` - lokální základní modelový dataset ignorovaný Gitem.
-- `data/processed/model_dataset_1997_2014.parquet` - lokální modelovací dataset ignorovaný Gitem.
-- `data/processed/train_1997_2010.parquet` - lokální train split ignorovaný Gitem.
-- `data/processed/validation_2011_2012.parquet` - lokální validation split ignorovaný Gitem.
-- `data/processed/test_2013_2014.parquet` - lokální test split ignorovaný Gitem.
-- `data/reference/model_feature_manifest.json` - schválené feature sety a modeling zásady.
-- `data/reference/model_quality_exclusions.csv` - explicitní modeling-only exclusions aplikované před lag self-joinem.
-- `data/reference/selected_validation_feature_set.json` - validation-only výběr feature setu.
-- `data/reference/frozen_model_configuration.json` - zmrazená vítězná konfigurace před test evaluací.
-- `data/reference/time_cv_shortlist.json` - time-CV shortlist rozdělený na forecast a suitability track.
-- `data/reference/frozen_tuned_model_configuration.json` - zmrazená time-aware konfigurace před test evaluací.
-- `src/run_time_aware_model_tuning.py` - expanding-window CV, shortlist validation a finalize reporty.
-- `tests/test_time_aware_model_tuning.py` - syntetické testy proti leakage a track mixing.
-- `reports/crop_source_reconciliation_summary.md` - shrnutí source reconciliace.
-- `reports/crop_source_conflicts.csv` - konflikty mezi zdroji včetně unit-corrected a unresolved rozhodnutí.
-- `reports/crop_basic_model_exclusions.csv` - řádky vynechané ze základního modelového datasetu.
-- `reports/crop_canonical_dataset_validation.csv` - validační kontroly kanonického datasetu.
-- `reports/crop_unit_conflict_patterns.csv` - agregované násobkové patterny v konfliktních source párech.
-- `reports/crop_unit_conflict_details.csv` - detailní diagnostika 3 113 konfliktních source párů.
-- `reports/crop_unit_conflict_summary.md` - shrnutí diagnostiky včetně Punjab 2011 a Tamil Nadu 1997.
-- `reports/crop_unit_corrections_applied.csv` - aplikované unit korekce se starými a novými hodnotami.
-- `reports/crop_unit_correction_validation.csv` - validační kontroly unit korekce.
-- `reports/crop_unit_correction_summary.md` - shrnutí aplikované unit korekce.
-- `reports/modeling_dataset_summary.md` - shrnutí modeling datasetu a splitu.
-- `reports/chronological_split_validation.csv` - validační kontroly splitu.
-- `reports/modeling_feature_schema.csv` - schema modelovacích sloupců a missing counts.
-- `reports/modeling_unseen_categories.csv` - kategorie ve validation/test, které nejsou v train.
-- `reports/modeling_lag_summary.csv` - dostupnost lag feature podle splitu.
-- `reports/model_quality_exclusions.csv` - excluded modeling rows with original Area, Production and target values.
-- `reports/model_quality_exclusion_summary.md` - summary of modeling-only exclusions and affected lag rows.
-- `reports/validation_baseline_results.csv` - výsledky baseline modelů na validation sadě.
-- `reports/validation_feature_set_comparison.csv` - porovnání feature setů pomocí Ridge a DecisionTree anchor modelů.
-- `reports/validation_model_results.csv` - výsledky validation benchmarku.
-- `reports/validation_runtime_results.csv` - runtime metriky validation benchmarku.
-- `reports/validation_subgroup_metrics.csv` - subgroup MAE pro vybraný model.
-- `reports/validation_predictions_sample.csv` - deterministická ukázka validation predikcí.
-- `reports/validation_benchmark_summary.md` - shrnutí validation benchmarku.
-- `reports/validation_mae.png`, `reports/validation_rmse.png`, `reports/validation_r2.png` - grafy validation metrik.
-- `reports/time_aware_tuning_summary.md` - shrnutí time-aware tuningu a shortlist validation.
-- `reports/time_cv_baseline_fold_results.csv`, `reports/time_cv_direct_results.csv`, `reports/time_cv_residual_results.csv`, `reports/time_cv_log_target_results.csv`, `reports/time_cv_all_results.csv` - time-CV výsledky.
-- `reports/tuned_validation_results.csv`, `reports/tuned_validation_comparison.csv`, `reports/tuned_validation_subgroup_metrics.csv` - validation výsledky shortlistu.
-- `reports/time_cv_mae.png`, `reports/time_cv_stability.png`, `reports/tuned_validation_mae.png` - grafy time-aware tuningu.
-
-## Spuštění
-
-Reconciliace zdrojů:
-
-```powershell
-python src\build_canonical_crop_weather_dataset.py
+```text
+canonical_state_name
++ canonical_district_name
++ Crop_Year
++ Season_canonical
++ Crop_canonical
 ```
 
-Weather pipeline bez nového stahování:
+Projekt predikuje zemědělský výnos. Nepredikuje ekonomický zisk a výsledky nelze interpretovat kauzálně.
 
-```powershell
-python src\run_geography_weather_pipeline.py --skip-download
+## Data a jejich opravy
+
+Raw crop dataset obsahoval dvě zdrojové verze:
+
+```text
+legacy_source
+expanded_source_x100
 ```
 
-Modelovací dataset a chronologický split:
+Druhá verze měla systematickou chybu měřítka produkce `×100`. Při source reconciliation byla proto normalizována faktorem `0.01`.
 
-```powershell
-python src\build_modeling_dataset.py
+Definitivní target je odvozen z opravené produkce a opravené plochy. Původní raw sloupec `yield` zůstává pouze jako diagnostická zdrojová hodnota.
+
+Hlavní velikosti dat:
+
+```text
+kanonický crop-weather dataset: 270 300 řádků
+model-base dataset:             267 150 řádků
+modelovací dataset:             267 148 řádků
+train 1997–2010:                202 164 řádků
+validation 2011–2012:            32 388 řádků
+test 2013–2014:                  32 596 řádků
+finální fit 1997–2012:          234 552 řádků
 ```
 
-Validation benchmark po fázích:
+Dva konkrétní interně poškozené záznamy byly vyloučeny pouze z modelovací vrstvy před vytvořením lag feature. Neprobíhá obecné mazání target outlierů, clipping ani winsorizace podle testovacích výsledků.
 
-```powershell
-python src\run_validation_benchmark.py --phase baselines --resume
-python src\run_validation_benchmark.py --phase feature-sets --resume
-python src\run_validation_benchmark.py --phase models --resume
-python src\run_validation_benchmark.py --phase finalize
+## Weather a geografie
+
+Denní meteorologická data pocházejí z NASA POWER. Byla získána podle reprezentativních bodů okresů a agregována na crop-specific časová okna.
+
+Modelovací manifest obsahuje:
+
+- 4 kategorické features,
+- 4 numerické core features,
+- 23 weather features,
+- volitelně 2 lag features.
+
+Hlavní finální HW3 porovnání používá společný feature set:
+
+```text
+core_without_lag
 ```
 
-Time-aware tuning po fázích:
+Tím mají full-data modely stejnou informační základnu. Historické lag experimenty zůstávají v repozitáři jako doplňková vývojová větev, ale nejsou hlavním autoritativním pořadím Úlohy 3.
 
-```powershell
-python src\run_time_aware_model_tuning.py --phase cv-baselines --resume
-python src\run_time_aware_model_tuning.py --phase cv-direct --resume
-python src\run_time_aware_model_tuning.py --phase cv-residual --resume
-python src\run_time_aware_model_tuning.py --phase cv-log-target --resume
-python src\run_time_aware_model_tuning.py --phase validation-shortlist --resume
-python src\run_time_aware_model_tuning.py --phase finalize
+## Leakage audit
+
+Mezi zakázané modelové vstupy patří zejména:
+
+```text
+Production
+Production_corrected
+yield
+yield_source_corrected
+target_yield
 ```
 
-Testy:
+a technické sloupce popisující source reconciliation, identifikátory a validitu weather oken.
+
+Další ochrany:
+
+- split je chronologický, nikoli náhodný,
+- imputery, encodery a scalery se fitují pouze uvnitř modelových pipeline,
+- test 2013–2014 nebyl použit pro feature selection, preprocessing rozhodnutí, tuning ani výběr modelu,
+- model list, features, preprocessing a hyperparametry byly uloženy před obnovením testovacího souboru.
+
+## Chronologický experimentální protokol
+
+```text
+train:       1997–2010
+validation:  2011–2012
+final fit:   1997–2012
+test:        2013–2014
+```
+
+Před finálním testem byl vytvořen zmrazený plán:
+
+```text
+data/reference/hw3_frozen_evaluation_plan.json
+```
+
+Finální audit:
+
+```text
+data/reference/hw3_final_evaluation_record.json
+```
+
+Audit potvrzuje:
+
+```text
+configuration_frozen_before_test = true
+test_used_for_model_selection = false
+test_used_for_hyperparameter_tuning = false
+post_test_tuning_performed = false
+```
+
+## Modely v hlavním full-data porovnání
+
+Finální full-data evaluace zahrnuje 10 konfigurací:
+
+1. DummyRegressor – mean,
+2. DummyRegressor – median,
+3. Linear Regression,
+4. Ridge,
+5. Lasso,
+6. Elastic Net,
+7. Decision Tree,
+8. Random Forest,
+9. Gradient Boosting,
+10. LinearSVR.
+
+Neuronové sítě nejsou podle zadání Úlohy 3 zahrnuty.
+
+## Resource-limited experiment
+
+KNN a kernelový RBF-SVR byly vyhodnoceny odděleně na deterministickém vzorku, protože jejich náklady špatně škálují na plném vysoko-dimenzionálním one-hot datasetu.
+
+Samostatný resource-limited experiment obsahuje:
+
+- DummyRegressor mean,
+- DummyRegressor median,
+- Decision Tree,
+- KNN,
+- RBF-SVR.
+
+Jeho výsledky se nesmějí přímo míchat do hlavního full-data pořadí.
+
+## Finální výsledky
+
+Validace vybrala:
+
+```text
+Random Forest
+run_id: random_forest_200_leaf_20
+```
+
+Validační metriky:
+
+```text
+MAE:  1.618119
+RMSE: 5.712142
+R²:   0.794407
+```
+
+Finální testovací metriky:
+
+```text
+MAE:      1.611674
+RMSE:     5.277702
+R²:       0.839797
+MedianAE: 0.424710
+```
+
+Random Forest zlepšil MAE:
+
+```text
+oproti mean baseline:   72.86 %
+oproti median baseline: 64.34 %
+```
+
+Decision Tree dosáhl téměř stejného MAE:
+
+```text
+Decision Tree MAE: 1.612646
+```
+
+Random Forest je však preferovaný finální model, protože má podstatně nižší RMSE a vyšší R², tedy lépe omezuje velké chyby.
+
+## Interpretace overfittingu
+
+Random Forest měl:
+
+```text
+validation MAE: 1.618119
+test MAE:       1.611674
+```
+
+Mezi validation a test obdobím tedy nedošlo k výraznému propadu. Rozdíly mezi obdobími však nelze automaticky označit za overfitting, protože chronologický split zachycuje také možný temporal dataset shift.
+
+Reziduální analýza ukazuje, že nejvyšší kvartil targetu je výrazně obtížnější a model v něm častěji podhodnocuje vysoké výnosy.
+
+## Hlavní soubory Úlohy 3
+
+```text
+ukol3_evaluace.ipynb
+ukol3_evaluace.html
+create_hw3_artifacts.py
+
+src/run_hw3_pretest_selection.py
+src/run_hw3_final_test.py
+
+tests/test_hw3_pretest_selection.py
+tests/test_hw3_final_test.py
+
+data/reference/hw3_frozen_evaluation_plan.json
+data/reference/hw3_final_evaluation_record.json
+
+reports/hw3_pretest_full_validation_results.csv
+reports/hw3_pretest_resource_validation_results.csv
+reports/hw3_pretest_selection_summary.md
+
+reports/hw3_final_full_test_results.csv
+reports/hw3_final_resource_test_results.csv
+reports/hw3_final_evaluation_summary.md
+reports/hw3_validation_test_comparison.csv
+reports/hw3_residual_summary_by_target_quartile.csv
+reports/hw3_worst_predictions.csv
+```
+
+Grafy finální evaluace jsou uloženy v `reports/` pod prefixem `hw3_`.
+
+## Notebook Úlohy 3
+
+Notebook:
+
+```text
+ukol3_evaluace.ipynb
+```
+
+obsahuje:
+
+- task framing,
+- popis targetu, dat a chronologického splitu,
+- leakage audit,
+- baseline,
+- lineární a regularizované modely,
+- stromové a ensemble modely,
+- SVM,
+- oddělený KNN a RBF-SVR experiment,
+- validační výběr modelu,
+- finální MAE, RMSE, R² a MedianAE,
+- porovnávací grafy,
+- diskuzi overfittingu,
+- reziduální analýzu,
+- nejhorší predikce,
+- porovnání s baseline,
+- kritické zhodnocení přínosu složitějších modelů,
+- limity interpretace.
+
+Notebook načítá již vytvořené, auditované reporty. Neprovádí další post-test tuning.
+
+## Instalace
+
+```bash
+python -m venv .venv
+```
+
+Aktivace ve Windows PowerShell:
 
 ```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Instalace závislostí:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Reprodukce HW3 workflow
+
+### 1. Pre-test validace a zmrazení konfigurací
+
+Tuto fázi již není vhodné opakovat za účelem změny konfigurací podle známých testovacích výsledků. Příkazy dokumentují původní workflow:
+
+```bash
+python src/run_hw3_pretest_selection.py --phase full-validation --resume
+python src/run_hw3_pretest_selection.py --phase resource-validation --resume
+python src/run_hw3_pretest_selection.py --phase freeze
+```
+
+### 2. Jednorázová finální testovací evaluace
+
+```bash
+python src/run_hw3_final_test.py --phase full-test --resume
+python src/run_hw3_final_test.py --phase resource-test --resume
+python src/run_hw3_final_test.py --phase finalize
+```
+
+### 3. Vytvoření finálního notebooku a HTML
+
+```bash
+python create_hw3_artifacts.py --execute
+```
+
+### 4. Testy
+
+```bash
 python -m pytest -q -p no:cacheprovider
 ```
 
-## Struktura
+Ověřený stav finální verze:
 
 ```text
-data/
-  raw/
-  reference/
-  interim/
-    weather_daily/
-  processed/
-reports/
-notebooks/
-src/
-maps/
-models/
+163 passed
 ```
+
+## Historické a doplňkové experimenty
+
+Repozitář obsahuje i předchozí validační, time-aware, lag, residual a log-target experimenty. Ty dokumentují vývoj projektu a další aplikační scénáře.
+
+Pro finální Úlohu 3 jsou autoritativní zejména:
+
+```text
+data/reference/hw3_frozen_evaluation_plan.json
+data/reference/hw3_final_evaluation_record.json
+reports/hw3_final_*
+ukol3_evaluace.ipynb
+```
+
+Starší soubory `frozen_model_configuration.json` a
+`frozen_tuned_model_configuration.json` nejsou hlavním finálním pořadím Úlohy 3.
+
+## Omezení
+
+- Model predikuje výnos, nikoli ekonomický profit.
+- Výsledky nejsou kauzálním důkazem vlivu počasí.
+- Dataset neobsahuje kompletní náklady, ceny, odrůdy, zavlažování ani lokální agronomické zásahy.
+- Výkon na období 2013–2014 nezaručuje stejný výkon v současnosti.
+- Nejvyšší výnosové hodnoty jsou obtížnější a častěji podhodnocované.
+- Resource-limited experiment není přímo srovnatelný s full-data pořadím.
+- Další tuning podle finální testovací sady by porušil její roli nezávislého auditu.
+

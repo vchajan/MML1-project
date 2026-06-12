@@ -9,4 +9,6 @@ scikit-learn
 matplotlib
 jupyter
 nbconvert
+nbformat
+tabulate
 pytest
