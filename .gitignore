@@ -45,3 +45,8 @@ data/interim/hw3_final_predictions/
 !data/processed/train_1997_2010.parquet
 !data/processed/validation_2011_2012.parquet
 !data/processed/test_2013_2014.parquet
+
+# Finální train, validation a test datasety pro MML1
+!data/processed/train_1997_2010.parquet
+!data/processed/validation_2011_2012.parquet
+!data/processed/test_2013_2014.parquet
