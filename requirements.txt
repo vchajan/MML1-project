@@ -1,5 +1,6 @@
 pandas
 numpy
+scipy
 pyarrow
 requests
 geopandas
@@ -7,6 +8,7 @@ shapely
 folium
 scikit-learn
 matplotlib
+torch
 jupyter
 nbconvert
 nbformat
