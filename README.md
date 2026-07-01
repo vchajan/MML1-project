@@ -68,3 +68,36 @@ data/reference/                uložené konfigurace a metadata
 reports/                       výsledkové tabulky a grafy
 requirements.txt               Python závislosti
 ```
+
+## HW4: PyTorch MLP and ablation study
+
+HW4 adds two advanced workshop-based techniques:
+
+1. A configurable PyTorch MLP regressor for nonlinear interactions among crop,
+   geography, season, area, year, and weather features.
+2. An ablation study comparing small `[64]`, medium `[128, 64]`, and deep
+   `[256, 128, 64]` networks, plus ReLU versus Tanh for the medium network.
+
+These techniques are appropriate because crop yield depends on nonlinear
+interactions between weather, crop type, place, and growing season. The ablation
+separates the effect of network capacity from the effect of activation choice,
+instead of relying on one arbitrary neural-network setup.
+
+The experiment reuses the chronological processed splits, fits scaling and
+one-hot encoding on training data only, and reports MAE, RMSE, and R2 against
+Dummy and Ridge baselines. Run it with:
+
+```powershell
+jupyter notebook notebooks/notebook_hw4.ipynb
+```
+
+For a non-interactive execution from the repository root:
+
+```powershell
+jupyter nbconvert --to notebook --execute notebooks/notebook_hw4.ipynb --inplace --ExecutePreprocessor.timeout=-1
+```
+
+The main comparison is saved to `results/hw4_mlp_ablation_results.csv`; error
+plots and the worst-predictions table are saved in the same directory. PyTorch
+and the remaining notebook dependencies are listed in `requirements.txt`.
+
